@@ -7,15 +7,19 @@ import javax.sql.DataSource;
 
 
 public class TestBookDAO {
-
 	public static void main(String[] args) throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:db2://dashdb-txn-sbox-yp-dal09-03.services.dal.bluemix.net:50000/BLUDB:user=jss12325;password=k0m1022nx^dpz80r");
+	try {
+		DataSource ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/springDataSource");
+		Connection con = ds.getConnection();
 		Statement stmt = con.createStatement();
+		
 		ResultSet rs = stmt.executeQuery("SELECT * FROM BOOK");
-		while (rs.next()) {
-			String em = rs.getString("BID");
-			System.out.println(em);
+		while(rs.next()) {
+			System.out.println(rs.getString("BID"));
 		}
 		con.close();
-	}
+} catch (NamingException e) {
+	e.printStackTrace();
+}
+	} 
 }

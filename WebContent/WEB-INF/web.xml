@@ -26,4 +26,9 @@
  	<url-pattern>/greeting</url-pattern>
  	<url-pattern>*.html</url-pattern>
  	</servlet-mapping>
+  	<resource-ref>
+  		<res-ref-name>jdbc/springDataSource</res-ref-name>
+  		<res-type>javax.sql.DataSource</res-type>
+  		<res-auth>Container</res-auth>
+  	</resource-ref>
 </web-app>
