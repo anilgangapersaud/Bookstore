@@ -14,7 +14,9 @@
 <h2>
 Bookstore<br/>
 </h2>
-<p> Our Bookstore is currently in development! Check back soon </p>
+<h3> <a href="welcome.html"> Click here..</a> (at @RequestMapping("/welcome"))</h3>
+<h3> <a href="greeting.html"> Click here..</a> (at @RequestMapping("/greeting"))</h3>
+
 </body>
 </html>
 </jsp:root>

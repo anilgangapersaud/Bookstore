@@ -8,13 +8,10 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Online Bookstore</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h2>
-Bookstore<br/>
-</h2>
-<p> Our Bookstore is currently in development! Check back soon <p>
+<p>Greetings, This message is from Spring BookstoreController.java via greeting.jspx view</p>
 </body>
 </html>
 </jsp:root>
