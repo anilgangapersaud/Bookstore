@@ -24,4 +24,12 @@ public class BookstoreModel {
 	public Map<String, Book> retrieveAllBooks() throws SQLException {
 		return books.retrieveAllBooks();
 	}
+	
+	public Map<String, Book> retrieveCategory(String category) throws SQLException {
+		return books.retrieveAllBooksFromCategory(category);
+	}
+	
+	public Map<String, Book> searchTitle(String title) throws SQLException{
+		return books.searchTitle(title);
+	}
 }

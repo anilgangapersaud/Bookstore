@@ -35,7 +35,8 @@ public class BookDAO {
 			String title = r.getString("TITLE");
 			double price = Double.parseDouble(r.getString("PRICE"));
 			String category = r.getString("CATEGORY");
-			rv.put(bookID, new Book(bookID, title, price, category));
+			String author = r.getString("AUTHOR");
+			rv.put(bookID, new Book(bookID, title, price, category, author));
 		}
 		r.close();
 		p.close();
@@ -54,11 +55,53 @@ public class BookDAO {
 			String title = r.getString("TITLE");
 			double price = Double.parseDouble(r.getString("PRICE"));
 			String category = r.getString("CATEGORY");
-			rv.put(bookID, new Book(bookID, title, price, category));
+			String author = r.getString("AUTHOR");
+			rv.put(bookID, new Book(bookID, title, price, category, author));
 		}
 		r.close();
 		p.close();
 		con.close();
 		return rv;
 	}
-}
+	
+	public Map<String, Book> retrieveAllBooksFromCategory(String category) throws SQLException {
+		String query = "SELECT * FROM BOOK WHERE CATEGORY = '" + category + "'";
+		Map<String, Book> rv = new HashMap<String, Book>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String bookID = r.getString("BID");
+			String title = r.getString("TITLE");
+			double price = Double.parseDouble(r.getString("PRICE"));
+			String bookCategory = r.getString("CATEGORY");
+			String author = r.getString("AUTHOR");
+			rv.put(bookID, new Book(bookID, title, price, bookCategory, author));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
+		}
+	
+
+	public Map<String, Book> searchTitle(String title) throws SQLException {
+		String query = "SELECT * FROM BOOK WHERE TITLE LIKE '%" + title + "%'";
+		Map<String, Book> rv = new HashMap<String, Book>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String bookID = r.getString("BID");
+			String bookTitle = r.getString("TITLE");
+			double price = Double.parseDouble(r.getString("PRICE"));
+			String bookCategory = r.getString("CATEGORY");
+			String author = r.getString("AUTHOR");
+			rv.put(bookID, new Book(bookID, bookTitle, price, bookCategory, author));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
+	}
+	}
