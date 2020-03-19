@@ -20,4 +20,8 @@ public class BookstoreModel {
 	public Map<String, Book> retrieveBook(String bid) throws SQLException {
 		return books.retrieve(bid);
 	}
+	
+	public Map<String, Book> retrieveAllBooks() throws SQLException {
+		return books.retrieveAllBooks();
+	}
 }

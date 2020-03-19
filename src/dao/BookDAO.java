@@ -24,7 +24,7 @@ public class BookDAO {
 		}
 	}
 	
-	public Map<String, Book> retrieve (String bid) throws SQLException {
+	public Map<String, Book> retrieve(String bid) throws SQLException {
 		String query = "SELECT * FROM BOOK WHERE BID = '" + bid + "'" ;
 		Map<String, Book> rv = new HashMap<String, Book>();
 		Connection con = this.ds.getConnection();
@@ -41,6 +41,24 @@ public class BookDAO {
 		p.close();
 		con.close();
 		return rv;
-		
+	}
+	
+	public Map<String, Book> retrieveAllBooks() throws SQLException {
+		String query = "SELECT * FROM BOOK";
+		Map<String, Book> rv = new HashMap<String, Book>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while(r.next()) {
+			String bookID = r.getString("BID");
+			String title = r.getString("TITLE");
+			double price = Double.parseDouble(r.getString("PRICE"));
+			String category = r.getString("CATEGORY");
+			rv.put(bookID, new Book(bookID, title, price, category));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
 	}
 }

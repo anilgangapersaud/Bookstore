@@ -19,7 +19,7 @@ public class BookstoreController {
 	@RequestMapping("/testdao")
 	public void testdao(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) throws SQLException {
 		BookstoreModel mainModel = new BookstoreModel();
-		Map<String, Book> book = mainModel.retrieveBook("b001");
+		Map<String, Book> book = mainModel.retrieveAllBooks();
 		for (Map.Entry<String, Book> entry : book.entrySet()) {
 			System.out.println("Key = " + entry.getKey() + ", Title = " + entry.getValue().getTitle());
 		}
