@@ -56,6 +56,11 @@
  	<artifactId>jstl</artifactId>
  	<version>1.2</version>
  </dependency>
- </dependencies>
+<dependency>
+    <groupId>com.ibm.db2</groupId>
+    <artifactId>jcc</artifactId>
+    <version>11.1.4.4</version>
+</dependency>
+  </dependencies>
   
 </project>

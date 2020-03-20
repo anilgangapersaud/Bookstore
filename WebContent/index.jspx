@@ -14,7 +14,10 @@
 <h2>
 Bookstore<br/>
 </h2>
-<p> Our Bookstore is currently in development! Check back soon </p>
+<p> Hello! Our Bookstore is currently in development. </p>
+
+<h3> <a href="testdao.html"> Click here to test if your database environment is set up correctly</a></h3>
+
 </body>
 </html>
 </jsp:root>

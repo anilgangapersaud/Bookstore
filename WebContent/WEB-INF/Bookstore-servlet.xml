@@ -14,11 +14,10 @@ xsi:schemaLocation="
 <context:component-scan
 base-package="ctrl" />
 <mvc:default-servlet-handler />
-<bean id="jspViewResolver"
-class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-<property name="viewClass"
-value="org.springframework.web.servlet.view.JstlView" />
-<property name="prefix" value="/WEB-INF/jsp/" />
-<property name="suffix" value=".jspx" />
+<bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	<property name="prefix" value="/WEB-INF/jsp/" />
+	<property name="suffix" value=".jspx" />
 </bean>
+
 </beans>
