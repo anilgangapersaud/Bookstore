@@ -15,13 +15,9 @@ xsi:schemaLocation="
 base-package="ctrl" />
 <mvc:default-servlet-handler />
 <bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-<property name="prefix" value="/WEB-INF/jsp/" />
-<property name="suffix" value=".jspx" />
+	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	<property name="prefix" value="/WEB-INF/jsp/" />
+	<property name="suffix" value=".jspx" />
 </bean>
-<bean id="springDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-<property name="jndiName" value="java:comp/env/jdbc/springDataSource"/>
-<property name="lookupOnStartup" value="true"/>
-<property name="proxyInterface" value="javax.sql.DataSource"/>
-</bean>
+
 </beans>

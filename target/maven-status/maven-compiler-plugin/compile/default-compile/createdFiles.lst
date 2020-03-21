@@ -1,2 +1,4 @@
-dao\TestBookDAO.class
+bean\Book.class
 ctrl\BookstoreController.class
+model\BookstoreModel.class
+dao\BookDAO.class

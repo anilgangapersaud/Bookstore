@@ -8,10 +8,10 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Insert title here</title>
+<title>Test DAO</title>
 </head>
 <body>
-<p>Greetings, This message is from Spring BookstoreController.java via greeting.jspx view</p>
+<p>Greetings, Your console should have some book information.</p>
 </body>
 </html>
 </jsp:root>
