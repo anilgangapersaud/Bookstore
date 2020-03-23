@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 
 import javax.validation.constraints.Email;
@@ -6,10 +6,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import validation.EqualPasswords;
+
 
 @EqualPasswords(message="Passwords do not match.")
 public class User {
 
+	private Integer userId;
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	@NotBlank(message="Username can't be empty")
 	private String username;
 	
@@ -51,7 +62,27 @@ public class User {
 	
 	private String province;
 	
+	private Integer role;
 	
+	private Integer loginStatus;
+	
+	
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+
+	public Integer getLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(Integer loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
 	public String getCardType() {
 		return cardType;
 	}

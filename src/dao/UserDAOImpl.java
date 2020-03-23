@@ -1,20 +1,28 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.ibm.db2.jcc.am.ResultSet;
 
-import model.Login;
-import model.User;
+import domain.Login;
+import domain.User;
 
-public class UserDAOImpl implements UserDAO {
+@Repository
+public class UserDAOImpl extends BaseDAO implements UserDAO {
 
 	@Autowired
 	DataSource datasource;
@@ -23,10 +31,19 @@ public class UserDAOImpl implements UserDAO {
 	JdbcTemplate jdbcTemplate;
 	
 	public void register(User user) throws Exception {
-		String sql = "INSERT INTO USERS VALUES(?,?,?,?,?,?,?)";
-		jdbcTemplate.update(sql, new Object[] { user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getAddress(), user.getPhone()});
-		String sql2 = "INSERT INTO ADDRESS(street, zip, country, phone, province, username) VALUES(?,?,?,?,?,?)";
-		jdbcTemplate.update(sql2, new Object[] {user.getAddress(), user.getPostalCode(), user.getCountry(), user.getPhone(), user.getProvince(), user.getUsername()});
+		String sql = "INSERT INTO USERS(username, password, firstname, lastname, email, role)  VALUES(:username, :password, :firstname, :lastname, :email, :role)";
+		Map m = new HashMap();
+		m.put("username", user.getUsername());
+		m.put("password", user.getPassword());
+		m.put("firstname", user.getFirstname());
+		m.put("lastname", user.getLastname());
+		m.put("email", user.getEmail());
+		m.put("role", user.getRole());
+		KeyHolder kh = new GeneratedKeyHolder();
+		SqlParameterSource ps = new MapSqlParameterSource(m);
+		super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+		Integer userId= kh.getKey().intValue();
+		user.setUserId(userId);
 	}
 	
 	public User validateUser(Login login) {
@@ -49,7 +66,7 @@ class UserMapper implements RowMapper<User> {
 		user.setEmail(rs.getString("email"));
 		user.setAddress(rs.getString("address"));
 		user.setPhone(rs.getString("phone"));
-		
+		user.setRole(rs.getInt("role"));
 		return user;
 	}
 	

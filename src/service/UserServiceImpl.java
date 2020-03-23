@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -8,11 +9,13 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dao.UserDAO;
-import model.Login;
-import model.User;
+import domain.Login;
+import domain.User;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 		@Autowired
@@ -24,7 +27,7 @@ public class UserServiceImpl implements UserService {
 				userdao.register(user);
 				return 0;
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 				return 1;
 			}
 		}
@@ -32,4 +35,11 @@ public class UserServiceImpl implements UserService {
 		public User validateUser(Login login) {
 			return userdao.validateUser(login);
 		}
+
+		@Override
+		public List<User> getUserList() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }

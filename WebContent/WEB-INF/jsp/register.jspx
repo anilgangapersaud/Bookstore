@@ -49,6 +49,14 @@
 					<form:input path="email" name="email" id="email"/>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<form:label path="role">Role</form:label>
+				</td>
+				<td>
+					<form:select path="role" items="${roles}" name="role" id="role"/>
+				</td>
+			</tr>
 				
 		
 		</table>
