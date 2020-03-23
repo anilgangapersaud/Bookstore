@@ -1,2 +1,13 @@
-dao\TestBookDAO.class
+model\BookstoreModel.class
+dao\BookDAO.class
 ctrl\BookstoreController.class
+service\UserService.class
+dao\UserMapper.class
+model\EqualPasswordsValidator.class
+bean\Book.class
+dao\UserDAO.class
+model\Login.class
+dao\UserDAOImpl.class
+model\EqualPasswords.class
+service\UserServiceImpl.class
+model\User.class

@@ -25,6 +25,9 @@
  	<url-pattern>/welcome</url-pattern>
  	<url-pattern>/testdao</url-pattern>
  	<url-pattern>*.html</url-pattern>
+ 	<url-pattern>/</url-pattern>
+ 	<url-pattern>/login</url-pattern>
+ 	<url-pattern>/checkout.jspx</url-pattern>
  	</servlet-mapping>
   	<resource-ref>
   		<res-ref-name>jdbc/springDataSource</res-ref-name>
