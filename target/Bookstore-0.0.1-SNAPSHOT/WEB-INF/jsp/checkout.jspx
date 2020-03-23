@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
+		pageEncoding="ISO-8859-1" session="true"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Login</title>
+</head>
+<body>
+	<h1>My Account</h1>
+	<h2>Log In</h2>
+	<form:form modelAttribute="login" action="loginProcess" method="POST">
+
+		<label for="username">Username</label>
+		<form:input id="username" path="username" type="text"/> <br/>
+		<label for="password">Password</label>
+		<form:input id="password" path="password" type="password"/> <br/>
+		<form:button value="login"> Login </form:button> <br/>
+		
+		<form:errors path="username"/>
+		<form:errors path="password"/>
+	</form:form>
+	<p><a href="register">Register for an account</a></p>
+	 <table align="center">
+                <tr>
+                    <td style="font-style: italic; color: red;">${message}</td>
+                </tr>
+            </table>
+</body>
+</html>
+</jsp:root>

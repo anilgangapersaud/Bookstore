@@ -14,9 +14,18 @@
 <h2>
 Bookstore<br/>
 </h2>
-<p>Our Bookstore is currently in development. </p>
 
-<h3> <a href="testdao.html"> Click here to test if your database environment is set up correctly</a></h3>
+ <div class="container text-center">
+    <h1>Welcome to Books4You</h1>      
+    <p>Browse all our awesome Books</p>
+  </div>
+  
+      <ul>
+        <li><a href="login">Checkout</a></li>
+        <li><a href="#">Cart</a></li>
+      </ul>
+
+
 
 </body>
 </html>
