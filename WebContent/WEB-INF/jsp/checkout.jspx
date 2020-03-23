@@ -35,10 +35,16 @@
 			<tr>
                    <td style="font-style: italic; color: red;">${message}</td>
             </tr>
-		<form:button value="login"> Login </form:button>
+            <tr>
+            		<td>
+            			<form:button value="login"> Login </form:button>
+            		</td>
+            </tr>
+        </table>
+		
 		<form:errors path="username"/>
 		<form:errors path="password"/>
-		</table>
+		
 	</form:form>
 	</fieldset>
 	<p align="center"><a href="register">Register for an account</a></p>
