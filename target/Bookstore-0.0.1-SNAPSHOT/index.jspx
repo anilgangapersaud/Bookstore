@@ -14,8 +14,18 @@
 <h2>
 Bookstore<br/>
 </h2>
-<h3> <a href="welcome.html"> Click here..</a> (at @RequestMapping("/welcome"))</h3>
-<h3> <a href="greeting.html"> Click here..</a> (at @RequestMapping("/greeting"))</h3>
+
+ <div class="container text-center">
+    <h1>Welcome to Books4You</h1>      
+    <p>Browse all our awesome Books</p>
+  </div>
+  
+      <ul>
+        <li><a href="login">Checkout</a></li>
+        <li><a href="#">Cart</a></li>
+      </ul>
+
+
 
 </body>
 </html>
