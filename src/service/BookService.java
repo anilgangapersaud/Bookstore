@@ -1,11 +1,11 @@
-package dao;
+package service;
 
 import java.util.List;
 
 import domain.Book;
 
-public interface BookDAO {
-	public void save(Book b);
+public interface BookService {
+	public void create(Book b);
 	public void update(Book b);
 	public void delete(String bid);
 	public Book findById(String bid);

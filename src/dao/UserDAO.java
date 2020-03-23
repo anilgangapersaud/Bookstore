@@ -1,9 +1,11 @@
 package dao;
 
-import model.Login;
-import model.User;
+import java.util.List;
+
+import domain.Login;
+import domain.User;
 
 public interface UserDAO {
-		void register(User user) throws Exception;
+		void register(User u) throws Exception;
 		User validateUser(Login login);
 }

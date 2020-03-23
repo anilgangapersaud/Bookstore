@@ -1,4 +1,4 @@
-package bean;
+package domain;
 
 public class Book {
 
@@ -7,6 +7,7 @@ public class Book {
 	private double price;
 	private String category;
 	private String author;
+	
 	public Book(String bid, String title, double price, String category, String author) {
 		this.bid = bid;
 		this.title = title;
@@ -14,9 +15,15 @@ public class Book {
 		this.category = category;
 		this.author = author;
 	}
+	
+	public Book() {
+		
+	}
+	
 	public String getBid() {
 		return bid;
 	}
+	
 	public String getAuthor() {
 		return author;
 	}
