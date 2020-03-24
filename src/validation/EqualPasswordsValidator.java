@@ -3,6 +3,7 @@ package validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import domain.Registration;
 import domain.User;
 
 public class EqualPasswordsValidator implements ConstraintValidator<EqualPasswords, User>{

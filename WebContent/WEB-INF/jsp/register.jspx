@@ -1,129 +1,150 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.org/tags/form" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
-		pageEncoding="ISO-8859-1" session="false"/>
+		pageEncoding="ISO-8859-1" session="true"/>
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Registration</title>
+	<title>Registration</title>
 </head>
 <body>
-	
-	<form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
-	<fieldset>
-		<legend>Enter Account Information</legend>
+	<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
 		<h2 align="center">Contact Information</h2>
 		<table align="center">
 			<tr>
 				<td>
-					<form:label path="username">Username</form:label>
+					<form:label path="registrationUser.username">Username</form:label>
+					 
 				</td>
 				<td>
-					<form:input path="username" name="username" id="username"/>
+					<form:input path="registrationUser.username" name="username" id="username"/> 
+				</td>
+				<td>
+					<form:errors align="center" path="registrationUser.username" style="font-style: italic; color: red;"/>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<form:label path="registrationUser.password">Password</form:label>
+					
+				</td>
+				<td>
+					<form:password path="registrationUser.password" name="password" id="password"/>
+				</td>
+				<td>
+					<form:errors align="center" path="registrationUser.password" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="password">Password</form:label>
+					<form:label path="registrationUser.confirmPassword">Confirm Password</form:label>
 				</td>
 				<td>
-					<form:password path="password" name="password" id="password"/>
+					<form:password path="registrationUser.confirmPassword" name="confirmPassword" id="confirmPassword"/>
+				</td>
+				<td>
+					<form:errors align="center" path="confirmPassword" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="confirmPassword">Re-Type Password</form:label>
+					<form:label path="registrationUser.firstname">First Name</form:label>
 				</td>
 				<td>
-					<form:password path="confirmPassword" name="confirmPassword" id="confirmPassword"/>
+					<form:input path="registrationUser.firstname" name="firstname" id="firstname"/>
+				</td>
+				<td>
+					<form:errors align="center" path="registrationUser.firstname" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="email">Email</form:label>
+					<form:label path="registrationUser.lastname">Last Name </form:label>
 				</td>
 				<td>
-					<form:input path="email" name="email" id="email"/>
+					<form:input path="registrationUser.lastname" name="lastname" id="lastname"/>
+				</td>
+				<td>
+					<form:errors align="center" path="registrationUser.lastname" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="role">Role</form:label>
+					<form:label path="registrationUser.email">Email</form:label>
 				</td>
 				<td>
-					<form:select path="role" items="${roles}" name="role" id="role"/>
+					<form:input path="registrationUser.email" name="email" id="email"/>
+				</td>
+				<td>
+					 <form:errors align="center" path="registrationUser.email" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
-				
-		
-		</table>
+			<tr>
+				<td>
+					<form:label path="registrationUser.role">Role</form:label>
+				</td>
+				<td>
+					<form:select path="registrationUser.role" items="${roles}" name="role" id="role"/>
+				</td>
+			</tr>
+			
+		</table>	
+	
+	  
 		<h2 align="center">Shipping Address</h2>
 		<table align="center">
 			<tr>
 				<td>
-					<form:label path="firstname">First Name</form:label>
+					<form:label path="address.street">Street</form:label>
 				</td>
 				<td>
-					<form:input path="firstname" name="firstname" id="firstname"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="lastname">Last Name </form:label>
-				</td>
-				<td>
-					<form:input path="lastname" name="lastname" id="lastname"/>
+					<form:input path="address.street" name="street" id="street"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="address">Address</form:label>
+					<form:label path="address.country">Country</form:label>
 				</td>
 				<td>
-					<form:input path="address" name="address" id="address"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="city">City</form:label>
+					<form:select path="address.country" items="${countries}" name="country" id="country"/>
 				</td>
 				<td>
-					<form:input path="city" name="city" id="city"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="country">Country</form:label>
-				</td>
-				<td>
-					<form:input path="country" name="country" id="country"/>
+					<form:errors align="center" path="address.country" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 				<tr>
 				<td>
-					<form:label path="province">Province</form:label>
+					<form:label path="address.province">Province</form:label>
+					
 				</td>
 				<td>
-					<form:select path="province" items="${provinces}" name="province" id="province"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="postalCode">Postal Code (eg. A1A 1A1)</form:label>
-				</td>
-				<td>
-					<form:input path="postalCode" name="postalCode" id="postalCode"/>
+					<form:select path="address.province" items="${provinces}" name="province" id="province"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="phone">Phone (eg. xxx-xxx-xxxx)</form:label>
+					<form:label path="address.postalCode">Postal Code (eg. A1A 1A1)</form:label>
 				</td>
 				<td>
-					<form:input path="phone" name="phone" id="phone"/>
+					<form:input path="address.postalCode" name="postalCode" id="postalCode"/>
+				</td>
+				<td>
+					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:label path="address.phone">Phone (eg. xxx-xxx-xxxx)</form:label>
+				</td>
+				<td>
+					<form:input path="address.phone" name="phone" id="phone"/>
+				</td>
+				<td>
+					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 				</td>
 			</tr>
 		</table>
@@ -131,64 +152,53 @@
 		<table align="center">
 			<tr>
 				<td>
-					<form:label path="cardType">Card Type</form:label>
+					<form:label path="billing.cardType">Card Type</form:label>
 				</td>
 				<td>
-					<form:select path="cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="cardholder">Cardholder Name(as shown on card)</form:label>
-				</td>
-				<td>
-					<form:input path="cardholder" name="cardholder" id="cardholder"></form:input>
+					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<form:label path="cardnumber">Card Number</form:label>
+					<form:label path="billing.cardholderName">Cardholder Name(as shown on card)</form:label>
+					<form:errors align="center" path="billing.cardholderName" style="font-style: italic; color: red;"/>
 				</td>
 				<td>
-					<form:input path="cardnumber" name="cardnumber" id="cardnumber"/>
+					<form:input path="billing.cardholderName" name="cardholderName" id="cardholderName"></form:input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<form:label path="billing.cardNumber">Card Number</form:label>
+					 <form:errors align="center" path="billing.cardNumber" style="font-style: italic; color: red;"/>
+				</td>
+				<td>
+					<form:input path="billing.cardNumber" name="cardNumber" id="cardNumber"/>
 				</td>
 			</tr>
 				<tr>
 				<td>
-					<form:label path="expDate">Expiration Date</form:label>
+					<form:label path="billing.expDate">Expiration Date</form:label>
+					<form:errors align="center" path="billing.expDate" style="font-style: italic; color: red;"/><br/>
 				</td>
 				<td>
-					<form:input path="expDate" name="expDate" id="expDate"/>
+					<form:input path="billing.expDate" name="expDate" id="expDate"/>
 				</td>
 			</tr>
-			<tr>
+		</table>
+			<table align="center">
+         	<tr>
+              	<td style="font-style: italic; color: red;">${message}</td>
+           </tr>
+           <tr>
 				<td>
 					<form:button id="register" name="register">Register</form:button>
 				</td>
 			</tr>
-		</table>
-		<table align="center">
-         	<tr>
-              	<td style="font-style: italic; color: red;">${message}</td>
-                  <form:errors align="center" path="username" style="font-style: italic; color: red;"/> <br/>
-				  <form:errors align="center" path="password" style="font-style: italic; color: red;"/> <br/>
-		   		  <form:errors align="center" path="firstname" style="font-style: italic; color: red;"/><br/>
-		   		  <form:errors align="center" path="lastname" style="font-style: italic; color: red;"/><br/>
-		   		  <form:errors align="center" path="confirmPassword" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="email" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="postalCode" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="country" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="phone" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="cardnumber" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="cardholder" style="font-style: italic; color: red;"/><br/>
-		   	      <form:errors align="center" path="expDate" style="font-style: italic; color: red;"/><br/>
-		   	</tr>
-         </table>
-		</fieldset>
-	</form:form>
-	<div align="center">
-		<form:errors align="center" path="user" style="font-style: italic; color: red;"/><br/>
-	</div>
+           	
+        </table>
+		</form:form>
+		<form:errors align="center" path="registration.registrationUser" style="font-style: italic; color: red;"/>
 </body>
 </html>
 </jsp:root>

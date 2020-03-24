@@ -13,12 +13,12 @@
 <body>	
 	<table>
 		<tr>
-			<td>Welcome ${firstname}</td>
+			<td>Welcome ${firstname}, you have registered an account succesfully. Please login with your credentials</td>
 		</tr>
 		<tr>
 		</tr>
 		<tr>
-			<td><a href="index.jspx">Home</a></td>
+			<td><a href="login">Login</a></td>
 		</tr>
 	</table>
 </body>

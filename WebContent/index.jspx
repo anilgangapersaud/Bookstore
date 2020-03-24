@@ -11,7 +11,7 @@
 <title>Online Bookstore</title>
 </head>
 <body>
-    <h1 align="center">Welcome to Books4You</h1>      
+    <h1 align="center">Welcome to Livraria</h1>      
     <p align="center">Browse all our awesome Books</p>
     <ul align="left">
        <li><a href="login">Checkout</a></li>

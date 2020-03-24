@@ -12,8 +12,6 @@
 </head>
 <body>
 	<h1 align="center">My Account</h1>
-	<fieldset>
-	<legend>Log in to your account</legend>
 	<form:form modelAttribute="login" action="loginProcess" method="POST">
 		<table align="center">
 			<tr>
@@ -46,7 +44,6 @@
 		<form:errors path="password"/>
 		
 	</form:form>
-	</fieldset>
 	<p align="center"><a href="register">Register for an account</a></p>
 </body>
 </html>
