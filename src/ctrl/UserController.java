@@ -37,6 +37,12 @@ public class UserController {
 	private List<String> roles = Arrays.asList("Admin", "Customer", "Partner");
 	private List<String> countries = Arrays.asList("Canada");
 	
+	
+	@GetMapping("/")
+	public ModelAndView getHomePage() {
+		return new ModelAndView("index");
+	}
+	
 	@GetMapping("/login")
 	public String displayLogin(Model model) {
 		Login login = new Login();
@@ -56,8 +62,14 @@ public class UserController {
 			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
 				addUserInSession(loggedInUser, session);
 			}
+			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
+				addUserInSession(loggedInUser, session);
+			}
+			if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
+				addUserInSession(loggedInUser, session);
+			}
 	
-			return new ModelAndView("admin_dashboard", "firstname", loggedInUser.getFirstname());
+			return new ModelAndView("index", "firstname", loggedInUser.getFirstname());
 		} else {
 			//LOGIN FAILED
 			mav = new ModelAndView("checkout");
@@ -105,34 +117,16 @@ public class UserController {
 		return new ModelAndView("welcome", "firstname", registration.getRegistrationUser().getFirstname());
 	}
 	
-//	@PostMapping("/addAddress")
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public void addAddress(@Valid @ModelAttribute("address") Address address, Errors errors, Model model) {
-//		System.out.println(address.getCountry());
-//		return;
-//		
-//	}
-//	
-//	@PostMapping("/addBilling")
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public void addBilling(@Valid @ModelAttribute("billing") Billing billing, Errors errors, Model model) {
-//		System.out.println(billing.getCardholderName());
-//		return;
-//	}
-	
-	@GetMapping("/user/dashboard")
-	public String userDashboard() {
-		return "user_dashboard";
-	}
-	
-	@GetMapping("/admin/dashboard")
-	public String adminDashboard() {
-		return "admin_dashboard";
+	@GetMapping("/logout") 
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index";
 	}
 	
 	private void addUserInSession(User u, HttpSession session) {
 		session.setAttribute("user", u);
 		session.setAttribute("userId", u.getUserId());
 		session.setAttribute("role", u.getRole());
+		session.setAttribute("firstname", u.getFirstname());
 	}
 }

@@ -14,6 +14,7 @@ xsi:schemaLocation="
 <context:component-scan
 base-package="ctrl" />
 <mvc:default-servlet-handler />
+<mvc:resources mapping="/resources/**" location="/resources/"/>
 <bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	<property name="prefix" value="/WEB-INF/jsp/" />
@@ -34,6 +35,5 @@ base-package="ctrl" />
 	</bean>
 <bean id="userService" class="service.UserServiceImpl"/>
 <bean id="bookService" class="service.BookServiceImpl"/>
-
 
 </beans>
