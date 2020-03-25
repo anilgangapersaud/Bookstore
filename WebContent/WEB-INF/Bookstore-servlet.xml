@@ -14,13 +14,16 @@ xsi:schemaLocation="
 <context:component-scan
 base-package="ctrl" />
 <mvc:default-servlet-handler />
+<mvc:resources mapping="/resources/**" location="/resources/"/>
 <bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	<property name="prefix" value="/WEB-INF/jsp/" />
 	<property name="suffix" value=".jspx" />
 </bean>
+<bean id="billingdao" class="dao.BillingDAOImpl"/>
 <bean id="bookdao" class="dao.BookDAOImpl"/>
 <bean id="userDAO" class="dao.UserDAOImpl"/>
+<bean id="addressdao" class="dao.AddressDAOImpl"/>
 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	<property name="dataSource" ref="datasource" />
 </bean>
@@ -32,4 +35,5 @@ base-package="ctrl" />
 	</bean>
 <bean id="userService" class="service.UserServiceImpl"/>
 <bean id="bookService" class="service.BookServiceImpl"/>
+
 </beans>

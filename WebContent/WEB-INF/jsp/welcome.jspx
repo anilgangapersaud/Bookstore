@@ -7,18 +7,19 @@
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
+<jsp:include page="header.jspx"/>
 <head>
 <title>Welcome</title>
 </head>
 <body>	
 	<table>
 		<tr>
-			<td>Welcome ${firstname}</td>
+			<td class="success">Welcome ${firstname}, you have registered an account successfully. Please login with your credentials</td>
 		</tr>
 		<tr>
 		</tr>
 		<tr>
-			<td><a href="index.jspx">Home</a></td>
+			<td><a href="login">Login</a></td>
 		</tr>
 	</table>
 </body>

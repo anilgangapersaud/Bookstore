@@ -5,18 +5,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import domain.Address;
+import domain.Billing;
 import domain.Login;
+import domain.Registration;
 import domain.User;
 import service.UserService;
 
@@ -26,6 +33,17 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
+	private List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
+	private List<String> roles = Arrays.asList("Admin", "Customer", "Partner");
+	private List<String> countries = Arrays.asList("Canada");
+	
+	
+	@RequestMapping(value= {"/", "/index"})
+	public ModelAndView getHomePage() {
+		return new ModelAndView("index");
+	}
+	
 	@GetMapping("/login")
 	public String displayLogin(Model model) {
 		Login login = new Login();
@@ -34,7 +52,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/loginProcess")
-	public ModelAndView processLogin(@Valid @ModelAttribute("login")Login login, Errors errors, Model model) {
+	public ModelAndView processLogin(@Valid @ModelAttribute("login")Login login, Errors errors, Model model, HttpSession session) {
 		
 		ModelAndView mav = null;
 		User loggedInUser = userService.validateUser(login);
@@ -42,9 +60,17 @@ public class UserController {
 		if (loggedInUser != null) {
 			//LOGIN SUCCESS
 			
-			
-			
-			return new ModelAndView("welcome", "firstname", loggedInUser.getFirstname());
+			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
+				addUserInSession(loggedInUser, session);
+			}
+			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
+				addUserInSession(loggedInUser, session);
+			}
+			if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
+				addUserInSession(loggedInUser, session);
+			}
+	
+			return new ModelAndView("index", "firstname", loggedInUser.getFirstname());
 		} else {
 			//LOGIN FAILED
 			mav = new ModelAndView("checkout");
@@ -55,46 +81,54 @@ public class UserController {
 	
 	@GetMapping("/register")
 	public String displayRegister(Model model) {
-		User user = new User();
-		List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
-		List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
-		List<Integer> roles = Arrays.asList(1, 2);
+		Registration registration = new Registration();
 		model.addAttribute("provinces", provinces);
 		model.addAttribute("cardTypes", cardTypes);
-		model.addAttribute("user", user);
+		model.addAttribute("registration", registration);
 		model.addAttribute("roles", roles);
+		model.addAttribute("countries", countries);
 		return "register";
 	}
 	
 	@PostMapping("/registerProcess")
-	public ModelAndView addUser(@Valid @ModelAttribute("user") User user, Errors errors, Model model) throws Exception {
-		int result;
+	public ModelAndView addUser(@Valid @ModelAttribute("registration") Registration registration, Errors errors, Model model) throws Exception {
+
 		if (errors.hasErrors()) {
 			ModelAndView mav = new ModelAndView("register");
-			List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
-			List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
-			List<Integer> roles = Arrays.asList(1, 2);
 			model.addAttribute("provinces", provinces);
 			model.addAttribute("cardTypes", cardTypes);
 			model.addAttribute("roles", roles);
+			model.addAttribute("countries", countries);
 			return mav;
 		}
-		result = userService.register(user);
+		
+		int result = userService.register(registration.getRegistrationUser());
+		
 		if (result == 1) {
 			ModelAndView mav = new ModelAndView("register");
 			mav.addObject("message", "Username already exists");
 			return mav;
 		}
-		return new ModelAndView("welcome", "firstname", user.getFirstname());
+		
+		int userId = registration.getRegistrationUser().getUserId();
+		registration.getAddress().setUserid(userId);
+		userService.createAddress(registration.getAddress());
+		registration.getBilling().setUserid(userId);
+		userService.createBilling(registration.getBilling());
+		return new ModelAndView("welcome", "firstname", registration.getRegistrationUser().getFirstname());
 	}
 	
-	@GetMapping("/user/dashboard")
-	public String userDashboard() {
-		return "user_dashboard";
+	@GetMapping("/logout") 
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:index?act=lo";
 	}
 	
-	@GetMapping("/admin/dashboard")
-	public String adminDashboard() {
-		return "admin_dashboard";
+	private void addUserInSession(User u, HttpSession session) {
+		session.setAttribute("user", u);
+		session.setAttribute("userId", u.getUserId());
+		session.setAttribute("role", u.getRole());
+		session.setAttribute("firstname", u.getFirstname());
 	}
 }
