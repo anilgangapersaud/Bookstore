@@ -20,6 +20,8 @@
     <ul class="navbar" align="left">
        <li><a href="login">Checkout</a></li>
        <li><a href="#">Cart</a></li>
+       <li><a href="register">Register</a></li>
+       <li><a href="login">Login</a></li>
      </ul>
 	</c:if>
 	
@@ -45,7 +47,13 @@
        <li><a href="#">Cart</a></li>
        <li><a href="logout">Logout</a></li>
      </ul>
+     
      <p align="left">Welcome ${sessionScope.firstname}</p>
+     
+     </c:if>
+     
+     <c:if test="${param.act eq 'lo'}">
+     	<p class="success"> Logout Successfuly! Thanks for visiting Livraria.</p>
 	</c:if>
 	
 	<c:if test="${sessionScope.role eq 'Partner'}">

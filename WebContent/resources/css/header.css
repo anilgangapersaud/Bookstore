@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
 
+.success {
+	color: blue;
+}
 
 .navbar {
 	list-style-type: none;

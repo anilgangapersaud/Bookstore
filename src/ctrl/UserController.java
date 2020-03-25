@@ -16,6 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,7 +39,7 @@ public class UserController {
 	private List<String> countries = Arrays.asList("Canada");
 	
 	
-	@GetMapping("/")
+	@RequestMapping(value= {"/", "/index"})
 	public ModelAndView getHomePage() {
 		return new ModelAndView("index");
 	}
@@ -120,7 +121,8 @@ public class UserController {
 	@GetMapping("/logout") 
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "index";
+		
+		return "redirect:index?act=lo";
 	}
 	
 	private void addUserInSession(User u, HttpSession session) {
