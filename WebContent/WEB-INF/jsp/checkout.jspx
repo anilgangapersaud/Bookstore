@@ -6,14 +6,13 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
+		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Login</title>
 </head>
 <body>
 	<h1 align="center">My Account</h1>
-	<fieldset>
-	<legend>Log in to your account</legend>
 	<form:form modelAttribute="login" action="loginProcess" method="POST">
 		<table align="center">
 			<tr>
@@ -46,7 +45,6 @@
 		<form:errors path="password"/>
 		
 	</form:form>
-	</fieldset>
 	<p align="center"><a href="register">Register for an account</a></p>
 </body>
 </html>
