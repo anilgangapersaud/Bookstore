@@ -6,44 +6,11 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
+		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Online Bookstore</title>
 </head>
-<body>
-	<c:if test="${sessionScope.userId eq null}">
-	
-	<h1 align="center">Welcome to Livraria</h1>      
-    <p align="center">Browse all our awesome Books</p>
-    <ul align="left">
-       <li><a href="login">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
-     </ul>
-	</c:if>
-	
-	<c:if test="${sessionScope.role eq 'Admin'}">
 
-		<h1 align="center">Welcome to Livraria</h1>      
-    	<p align="center">Browse all our awesome Books</p>
-    	<ul align="left">
-       		<li><a href="login">Checkout</a></li>
-       		<li><a href="#">Cart</a></li>
-       		<li><a href="#">Logout</a></li>
-     	</ul>
-     	<p align="left">Welcome ${firstname}</p>
-	</c:if>
-	
-	<c:if test="${sessionScope.role eq 'Customer'}">
-
-	<h1 align="center">Welcome to Livraria</h1>      
-    <p align="center">Browse all our awesome Books</p>
-    <ul align="left">
-       <li><a href="login">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
-     </ul>
-	</c:if>
-	
-
-</body>
 </html>
 </jsp:root>
