@@ -14,7 +14,7 @@
 <body>	
 	<table>
 		<tr>
-			<td>Welcome ${firstname}, you have registered an account successfully. Please login with your credentials</td>
+			<td class="success">Welcome ${firstname}, you have registered an account successfully. Please login with your credentials</td>
 		</tr>
 		<tr>
 		</tr>

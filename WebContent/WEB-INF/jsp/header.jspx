@@ -53,7 +53,7 @@
      </c:if>
      
      <c:if test="${param.act eq 'lo'}">
-     	<p class="success"> Logout Successfuly! Thanks for visiting Livraria.</p>
+     	<p class="success"> You have been logged out! Thanks for visiting Livraria.</p>
 	</c:if>
 	
 	<c:if test="${sessionScope.role eq 'Partner'}">
