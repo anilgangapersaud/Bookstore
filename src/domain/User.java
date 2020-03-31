@@ -9,6 +9,10 @@ import javax.validation.constraints.Size;
 import validation.EqualPasswords;
 
 
+/**
+ * Domain object to represent a User Entity.
+ *
+ */
 @EqualPasswords(message="Passwords do not match.")
 public class User {
 

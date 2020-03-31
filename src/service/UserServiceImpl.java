@@ -31,15 +31,8 @@ public class UserServiceImpl implements UserService {
 		@Autowired
 		public BillingDAO billingdao;
 		
-		public int register(User user) throws Exception {
-			int result = -1;
-			try {
-				userdao.register(user);
-				return 0;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 1;
-			}
+		public void register(User user) throws Exception {
+					userdao.register(user);
 		}
 		
 		public User validateUser(Login login) {
