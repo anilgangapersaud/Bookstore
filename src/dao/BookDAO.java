@@ -2,8 +2,14 @@ package dao;
 
 import java.util.List;
 
-import domain.Book;
 
+import domain.Book;
+/**
+ * An interface to create, update, delete, read, from the Book Table
+ * implemented in BookDAOImpl
+ * @author Anil
+ *
+ */
 public interface BookDAO {
 	public void save(Book b);
 	public void update(Book b);

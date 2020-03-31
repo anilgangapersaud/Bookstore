@@ -1,5 +1,9 @@
 package domain;
 
+/**
+ * Domain object to represent an Book entity.
+ *
+ */
 public class Book {
 
 	private String bid;

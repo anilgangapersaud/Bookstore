@@ -13,6 +13,10 @@ public class EqualPasswordsValidator implements ConstraintValidator<EqualPasswor
 		
 	}
 
+	/**
+	 * checks if password and confirm password are equal.
+	 * @author Anil
+	 */
 	@Override
 	public boolean isValid(User user, ConstraintValidatorContext context) {
 		return user.getPassword().equals(user.getConfirmPassword());
