@@ -16,7 +16,7 @@
 <c:url var="url" value="/resources/css/books.css"/>
  <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
-<body>
+<body class="body">
      <br/>
    <div class="centerBooks">
      <form id="bookTable" action="category" method="get">
