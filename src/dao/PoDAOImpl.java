@@ -67,6 +67,13 @@ public class PoDAOImpl extends BaseDAO implements PoDAO {
 		String sql = " SELECT * FROM PO WHERE "+propName+"=?";
 		List<PO> PO = getJdbcTemplate().query(sql, new POMapper(), propValue);
 		return PO;
+	}
+
+	@Override
+	public List<PO> getOrdersByBid(String bid) {
+		String sql = "SELECT * FROM PO p JOIN POITEM i ON p.id = i.id WHERE i.bid = ?";
+		List<PO> PO = getJdbcTemplate().query(sql, new POMapper(), bid);
+		return PO;
 	} 
 }
 

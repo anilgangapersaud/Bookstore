@@ -57,7 +57,12 @@ public class UserController {
 			if (role.equals("Partner")) 
 				return "catalog";
 		}
-		return "404";
+		return "catalog";
+	}
+	
+	@GetMapping("/orders")
+	public String orderPage() {
+		return "orders";
 	}
 	
 	/**

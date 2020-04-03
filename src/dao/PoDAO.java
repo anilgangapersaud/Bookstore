@@ -18,4 +18,5 @@ public interface PoDAO {
 	public PO findById(Integer poid);
 	public List<PO> findAll();
 	public List<PO> findByProperty(String propName, Object propValue);
+	public List<PO> getOrdersByBid(String bid);
 }

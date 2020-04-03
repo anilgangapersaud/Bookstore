@@ -9,31 +9,41 @@
 		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Search Catalog</title>
+<title>Order Process</title>
 <c:url var="url" value="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
 <body>
-<form method="GET" action="getProductInfo">
+<form method="GET" action="getOrdersByPartNumber">
 	<div class="loginContainer">
 	<fieldset>
-		<legend>Search Catalog</legend>
+		<legend>Get Orders</legend>
 			<label for="book">Enter ISBN: </label>
 			<input type="text" name="bid"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>
 </form>
-<c:if test="${bid != null}">
-<div>
-	<h2>Book Information</h2>
-		<br/>
-		<p>BID: ${bid}</p> <br/>
-		<p>Title: ${title}</p> <br/>
-		<p>Author: ${author}</p> <br/>
-		<p>Price: ${price}</p> <br/>
-		<p>Category: ${category}</p> <br/>
-</div>
+<c:if test="${orders != null}">
+<h2>Purchase Orders</h2>
+		<table border="2">
+				<tr>
+					<th>Order ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Status</th>
+					<th>Address ID</th>
+				</tr>
+			<c:forEach var="element" items="${orders}">
+				<tr>
+					<td>${element.getId()}</td>
+					<td>${element.getFirstname()}</td>
+					<td>${element.getLastname()}</td>
+					<td>${element.getStatus()}</td>
+					<td>${element.getAddressid()}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</c:if>
 </body>
 </html>
