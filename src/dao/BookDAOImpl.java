@@ -48,7 +48,6 @@ public class BookDAOImpl extends BaseDAO implements BookDAO{
 	public void delete(String bid) {
 		String sql = "DELETE FROM BOOK WHERE bid=?";
 		getJdbcTemplate().update(sql, bid);
-		
 	}
 
 	@Override

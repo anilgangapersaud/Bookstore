@@ -4,6 +4,12 @@ import java.util.List;
 
 import domain.Address;
 
+/**
+ * An interface to create, update, delete, read, from the Address Table
+ * implemented in AddressDAOImpl
+ * @author Anil
+ *
+ */
 public interface AddressDAO {
 	public void save(Address a);
 	public void update(Address a);

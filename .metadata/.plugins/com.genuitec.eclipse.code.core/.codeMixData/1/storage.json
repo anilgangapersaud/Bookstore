@@ -1,0 +1,14 @@
+{
+    "telemetry.machineId": "a742b18c64690f8490c8710959ec821d420e885c6b64cb39692716c71b236166",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "36e8c4aab5f0dfcf10945d407f2ad882",
+                "configURIPath": "file:///c%3A/Users/agang/git/Bookstore/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#221a0f"
+}

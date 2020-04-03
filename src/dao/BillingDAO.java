@@ -4,6 +4,12 @@ import java.util.List;
 
 import domain.Billing;
 
+/**
+ * An interface to create, update, delete, read, from the Billing Table
+ * implemented in BillingDAOImpl
+ * @author Anil
+ *
+ */
 public interface BillingDAO {
 	public void save(Billing b);
 	public void update(Billing b);

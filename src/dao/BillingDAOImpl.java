@@ -8,10 +8,12 @@ import java.util.Map;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import domain.Address;
 import domain.Billing;
 
+@Repository
 public class BillingDAOImpl extends BaseDAO implements BillingDAO {
 
 	@Override
