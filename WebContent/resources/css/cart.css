@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  
+}
+.grid-item {
+	padding: 20px;
+  text-align: center;
+}
+
+
+#shoppingcart {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+ /* width: 100%; */
+  table-layout: fixed;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+#shoppingcart td, #shoppingcart th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  word-wrap:break-word;
+  text-align: left;
+}
+
+#shoppingcart tr:nth-child(even){background-color: #f2f2f2;}
+
+#shoppingcart tr:hover {background-color: #ddd;}
+
+#shoppingcart th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  
+}
+
+input[type=number]{
+    width: 40px;
+}
+

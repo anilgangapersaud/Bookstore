@@ -19,7 +19,7 @@
     <p align="center">Browse all our awesome Books</p>
     <ul class="navbar" align="left">
        <li><a href="login">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li><a href="register">Register</a></li>
        <li><a href="login">Login</a></li>
      </ul>
@@ -31,7 +31,7 @@
     	<p align="center">Browse all our awesome Books</p>
     	<ul class="navbar" align="left">
        		<li><a href="login">Checkout</a></li>
-       		<li><a href="#">Cart</a></li>
+       		<li><a href="cart">Cart</a></li>
        		<li><a href="logout">Logout</a></li>
        		<li><a href="reports">Reports</a></li>
      	</ul>
@@ -44,7 +44,6 @@
     <p align="center">Browse all our awesome Books</p>
     <ul class="navbar" align="left">
        <li><a href="login">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
        <li><a href="logout">Logout</a></li>
      </ul>
      
@@ -61,7 +60,7 @@
     <p align="center">Browse all our awesome Books</p>
     <ul class="navbar" align="left">
        <li><a href="login">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li><a href="catalog">Search Catalog</a></li>
        <li><a href="logout">Logout</a></li>
      </ul>
