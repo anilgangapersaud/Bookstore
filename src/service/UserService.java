@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import org.springframework.dao.DuplicateKeyException;
+
 import domain.Address;
 import domain.Billing;
 import domain.Book;
@@ -14,7 +16,7 @@ public interface UserService {
 		public static final String ROLE_USER="Customer";
 		public static final String ROLE_PARTNER="Partner";
 		
-		int register(User user) throws Exception;
+		void register(User user) throws Exception;
 		User validateUser(Login login);
 		public void createAddress(Address a);
 		public void updateAddress(Address a);

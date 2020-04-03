@@ -6,7 +6,10 @@ import javax.validation.constraints.Size;
 
 import validation.EqualPasswords;
 
-
+/**
+ * Domain object to collect data from Registration form.
+ *
+ */
 public class Registration {
 
 	@Valid

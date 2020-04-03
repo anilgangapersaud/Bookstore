@@ -4,6 +4,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * Domain object to collect data from Login form.
+ *
+ */
 public class Login {
 
 	@NotBlank(message="Username can't be empty")

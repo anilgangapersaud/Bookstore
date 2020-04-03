@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+/* CSS for displaying books */
+.centerBooks{
+  width:850px;
+  margin:0 auto;
+}
+div.gallery {
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  float: left;
+  width: 200px;
+  height: 280px;
+  overflow:auto;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  overflow: auto;
+}
+
+
+#buttonBook {
+    background-color: #333;
+    border: none;
+    overflow: hidden;
+    outline:none;
+}
+
+#centerBooks{
+  margin: 0 auto;
+}
+
+/* CSS for Reviews */
+
+.container {
+  border: 2px solid #ccc;
+  background-color: white;
+  border-radius: 5px;
+  padding: 16px;
+  width:500 px;
+  height:350 px;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+.container span {
+  font-size: 20px;
+  margin-right: 15px;
+}
+.container img{
+ 
+  height:20px;
+  background-color: transparent;
+}
+#fiveStar{
+   width:100px;
+}
+#fourStar{
+   width:80px;
+}
+#threeStar{
+  width:60px;
+}
+#twoStar{
+  width:40px;
+}
+#oneStar{
+  width:20px;
+}
+/*
+@media (max-width: 500px) {
+  .container {
+      text-align: center;
+  }
+  .container img {
+      margin: auto;
+      float: none;
+      display: block;
+  }
+}
+*/
+/* Book details */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  overflow:auto;
+}
+
+
+.card img
+{
+  max-width:auto;
+  max-height:auto;
+}
+
+.price {
+  color: red;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+#centerInfoCard
+{
+  text-align: center;
+}
+/* category,show reviews and add review style */
+#alignReviews {
+    text-align: center;
+}
+
+.buttonReviewCategory
+{
+
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+.buttonReviewCategory:hover
+{
+  background-color: black;
+}
+/* submit review form */
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#submitReview {
+  width: 100%;
+  background-color: 333;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submitReview:hover {
+  background-color: black;
+}
+
+#review {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+
+
+
+
+

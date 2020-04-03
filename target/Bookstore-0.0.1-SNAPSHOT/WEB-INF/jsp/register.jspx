@@ -7,179 +7,104 @@
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
+<jsp:include page="header.jspx"/>
 <head>
+ 	<c:url var="url2" value="/resources/js/forms.js"/>
+ 	<script type="text/javascript" src="${url2}"><!-- comment --></script>
+ 	<c:url var="url" value="/resources/css/forms.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${url}"/>
+ 	<meta charset="UTF-8"></meta>
 	<title>Registration</title>
-
-	<script type="text/javascript" src="/forms.js"></script>
 </head>
-<body>
-	<form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
-		<h2 align="center">Contact Information</h2>
-		<table align="center">
-			<tr>
-				<td>
-					<form:label path="username">Username</form:label>
-					<form:errors align="center" path="username" style="font-style: italic; color: red;"/> 
-				</td>
-				<td>
-					<form:input path="username" name="username" id="username"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="password">Password</form:label>
-					<form:errors align="center" path="password" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:password path="password" name="password" id="password"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="confirmPassword">Re-Type Password</form:label>
-					<form:errors align="center" path="confirmPassword" style="font-style: italic; color: red;"/><br/>
-				</td>
-				<td>
-					<form:password path="confirmPassword" name="confirmPassword" id="confirmPassword"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="firstname">First Name</form:label>
-					<form:errors align="center" path="firstname" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="firstname" name="firstname" id="firstname"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="lastname">Last Name </form:label>
-					<form:errors align="center" path="lastname" style="font-style: italic; color: red;"/><br/>
-				</td>
-				<td>
-					<form:input path="lastname" name="lastname" id="lastname"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="email">Email</form:label>
-					 <form:errors align="center" path="email" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="email" name="email" id="email"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="role">Role</form:label>
-				</td>
-				<td>
-					<form:select path="role" items="${roles}" name="role" id="role"/>
-				</td>
-			</tr>
-		</table>	
-	</form:form>
-	  <form:errors align="center" path="user" style="font-style: italic; color: red;"/>
-		<form:form id="shipForm" modelAttribute="address">
-		<h2 align="center">Shipping Address</h2>
-		<table align="center">
-			<tr>
-				<td>
-					<form:label path="street">Street</form:label>
-				</td>
-				<td>
-					<form:input path="street" name="street" id="street"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="country">Country</form:label>
-					<form:errors align="center" path="country" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="country" name="country" id="country"/>
-				</td>
-			</tr>
-				<tr>
-				<td>
-					<form:label path="province">Province</form:label>
-					
-				</td>
-				<td>
-					<form:select path="province" items="${provinces}" name="province" id="province"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="postalCode">Postal Code (eg. A1A 1A1)</form:label>
-					<form:errors align="center" path="postalCode" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="postalCode" name="postalCode" id="postalCode"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="phone">Phone (eg. xxx-xxx-xxxx)</form:label>
-					<form:errors align="center" path="phone" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="phone" name="phone" id="phone"/>
-				</td>
-			</tr>
-		</table>
+<body class="body">
+	<p align="center" style="font-style: italic; color: red;">${message}</p>
+	<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
+		<div class="loginContainer">
+			<h2 align="left">Contact Information</h2>
+					<form:label for="username" path="registrationUser.username"><b>Username     </b></form:label>
+					<form:errors path="registrationUser.username" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input  path="registrationUser.username" placeholder="Enter Username" name="username" id="username"/> 
+					<br/>
+					<form:label for="password" path="registrationUser.password"><b>Password     </b></form:label>
+					<form:errors  path="registrationUser.password" style="font-style: italic; color: red;"/>
+					<form:errors  path="registrationUser" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:password path="registrationUser.password" placeholder="Enter Password" name="password" id="password"/>
+					<br/>
+					<form:label path="registrationUser.confirmPassword"><b>Confirm Password     </b></form:label>
+					<form:errors  path="confirmPassword" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:password path="registrationUser.confirmPassword" placeholder="Re-Enter Password" name="confirmPassword" id="confirmPassword"/>
+					<br/>
+					<form:label path="registrationUser.firstname"><b>First Name     </b></form:label>
+					<form:errors path="registrationUser.firstname" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="registrationUser.firstname" placeholder="Enter first name" name="firstname" id="firstname"/>
+					<br/>
+					<form:label path="registrationUser.lastname"><b>Last Name     </b></form:label>
+					<form:errors path="registrationUser.lastname" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="registrationUser.lastname" placeholder="Enter last name" name="lastname" id="lastname"/>
+					<br/>
+					<form:label path="registrationUser.email"><b>Email     </b></form:label>
+					<form:errors path="registrationUser.email" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="registrationUser.email" placeholder="Enter email address" name="email" id="email"/>
+					<br/>
+					<form:label path="registrationUser.role"><b>Role      </b></form:label> 
+					<br/>
+					<form:select path="registrationUser.role" items="${roles}" name="role" id="role"/>
+		<h2 align="left">Shipping Address</h2>
+				 	<form:label path="address.street"><b>Street</b></form:label>
+				 	<br/>
+					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
+					<br/>
+					<form:label path="address.country"><b>Country</b></form:label>
+					<br/>
+					<form:select path="address.country" items="${countries}" name="country" id="country"/>
+					<br/>
+					<form:label path="address.province"><b>Province</b></form:label>
+					<br/>
+					<form:select path="address.province" items="${provinces}" name="province" id="province"/>
+					<br/>
+					<form:label path="address.postalCode"><b>Postal Code    </b></form:label>
+					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<br/>
+					<form:label path="address.phone"><b>Phone    </b></form:label>
+					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
+
+		<h2 align="left">Billing Information</h2>
+					<form:label path="billing.cardType"><b>Card Type</b></form:label>
+					<br/>
+					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
+					<br/>
+					<form:label path="billing.cardholderName"><b>Cardholder Name(as shown on card)      </b></form:label> 
+					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<br/>
+					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
+					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
+					<br/>
+					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
+					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/><br/>
+					<br/>
+					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<br/>
+	
+					<form:button id="register" name="register" class="registerbtn">Register</form:button>
+			</div>
 		</form:form>
-		<form:form id="billForm" modelAttribute="billing" >
-		<h2 align="center">Billing Information</h2>
-		<table align="center">
-			<tr>
-				<td>
-					<form:label path="cardType">Card Type</form:label>
-				</td>
-				<td>
-					<form:select path="cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="cardholderName">Cardholder Name(as shown on card)</form:label>
-					<form:errors align="center" path="cardholderName" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="cardholderName" name="cardholderName" id="cardholderName"></form:input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="cardNumber">Card Number</form:label>
-					 <form:errors align="center" path="cardNumber" style="font-style: italic; color: red;"/>
-				</td>
-				<td>
-					<form:input path="cardNumber" name="cardNumber" id="cardNumber"/>
-				</td>
-			</tr>
-				<tr>
-				<td>
-					<form:label path="expDate">Expiration Date</form:label>
-					<form:errors align="center" path="expDate" style="font-style: italic; color: red;"/><br/>
-				</td>
-				<td>
-					<form:input path="expDate" name="expDate" id="expDate"/>
-				</td>
-			</tr>
-		</table>
-			<table align="center">
-         	<tr>
-              	<td style="font-style: italic; color: red;">${message}</td>
-           </tr>
-           	<tr>
-				<td>
-					<form:button id="register" name="register" onclick="submitForms()">Register</form:button>
-				</td>
-			</tr>
-        </table>
-		</form:form>
+		<div class="signin">
+			<p>Already have an account? <a href="login">Sign in</a>.</p>
+		</div>
 </body>
 </html>
 </jsp:root>

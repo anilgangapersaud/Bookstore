@@ -6,48 +6,91 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
+		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Login</title>
+	<title>Checkout</title>
+ 	<c:url var="url" value="/resources/css/forms.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${url}"/>
+ 	<c:url var="url2" value="/resources/js/forms.js"/>
+ 	<script type="text/javascript" src="${url2}"><!-- comment --></script>
 </head>
-<body>
-	<h1 align="center">My Account</h1>
-	<fieldset>
-	<legend>Log in to your account</legend>
-	<form:form modelAttribute="login" action="loginProcess" method="POST">
-		<table align="center">
-			<tr>
-				<td>
-					<form:label path="username">Username</form:label>
-				</td>
-				<td>
-					<form:input id="username" path="username" type="text"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form:label path="password">Password</form:label>
-				</td>
-				<td>
-					<form:input id="password" path="password" type="password"/>
-				</td>
-			</tr>
-			<tr>
-                   <td style="font-style: italic; color: red;">${message}</td>
-            </tr>
-            <tr>
-            		<td>
-            			<form:button value="login"> Login </form:button>
-            		</td>
-            </tr>
-        </table>
-		
-		<form:errors path="username"/>
-		<form:errors path="password"/>
-		
-	</form:form>
-	</fieldset>
-	<p align="center"><a href="register">Register for an account</a></p>
+<body class="body">
+	<c:if test="${sessionScope.userId eq null}">
+	<p align="center" style="font-style: italic; color: red;">${message}</p>
+		<div class="loginContainer">
+			<h2 align="left">Login</h2>
+			<form:form modelAttribute="login" action="loginProcess" method="POST">
+			<form:label path="username"><b>Username     </b></form:label>
+			<form:errors style="font-style: italic; color: red;" path="username"/>
+			<br/>
+			<form:input id="username" path="username" type="text"/>
+			<form:label path="password"><b>Password    </b></form:label>
+			<form:errors style="font-style: italic; color: red;" path="password"/>
+			<br/>
+			<form:input id="password" path="password" type="password"/>
+            <form:button value="login" class="registerbtn"> Login </form:button>
+			
+			
+		</form:form>
+		</div>
+		<div class="signin">
+			<p>Don't have an account? <a href="register">Register for an account</a>.</p>
+		</div>
+	</c:if>
+	<c:if test="${sessionScope.role eq 'Customer'}">
+	<p align="center" style="font-style: italic; color: red;">${message}</p>
+		<div class="container">
+			<h2 align="center"> 1.Shipping</h2>
+			<form:form id="regForm" modelAttribute="checkout" action="checkoutProcess" method="POST">
+				<form:label path="address.street"><b>Street</b></form:label>
+				 	<br/>
+					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
+					<br/>
+					<form:label path="address.country"><b>Country</b></form:label>
+					<br/>
+					<form:select path="address.country" items="${countries}" name="country" id="country"/>
+					<br/>
+					<form:label path="address.province"><b>Province</b></form:label>
+					<br/>
+					<form:select path="address.province" items="${provinces}" name="province" id="province"/>
+					<br/>
+					<form:label path="address.postalCode"><b>Postal Code    </b></form:label>
+					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<br/>
+					<form:label path="address.phone"><b>Phone    </b></form:label>
+					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
+			<h2 align="left">2. Payment</h2>
+					<form:label path="billing.cardType"><b>Card Type</b></form:label>
+					<br/>
+					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
+					<br/>
+					<form:label path="billing.cardholderName"><b>Cardholder Name(as shown on card)      </b></form:label> 
+					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<br/>
+					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
+					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
+					<br/>
+					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
+					<br/>
+					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
+					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/><br/>
+					<br/>
+					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<br/>
+					<form:button id="register" name="register" class="registerbtn">Confirm Order</form:button>
+			</form:form>
+		</div>
+		<div class="orderSummary">
+			<h2 align="center"> Order Summary</h2>
+		</div>
+	</c:if>
 </body>
 </html>
 </jsp:root>
