@@ -17,9 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Book;
 import domain.Login;
+<<<<<<< HEAD
 import domain.PO;
+=======
 import domain.Registration;
 import domain.Review;
+>>>>>>> origin
 import domain.User;
 import domain.Cart;
 import service.BookService;
@@ -40,6 +43,7 @@ public class BookstoreController {
 	@Autowired
 	BookService bookService;
 	
+<<<<<<< HEAD
 	@Autowired
 	OrderService orderService;
 	
@@ -66,7 +70,7 @@ public class BookstoreController {
 		mav.addObject("price", price);
 		return mav;
 	}
-	
+=======
 	Map<String, Cart> cart;
 	/**
 	 * Returns all the books available in the bookstore.
@@ -211,6 +215,7 @@ public class BookstoreController {
 		  Review review = new Review();
 		  model.addAttribute("reviewModel", review);
 	  }
+>>>>>>> origin
 	
 	/**
 	 * Given a unique bid, returns all orders containing this bid.

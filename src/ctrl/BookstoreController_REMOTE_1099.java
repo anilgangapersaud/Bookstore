@@ -17,13 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Book;
 import domain.Login;
-import domain.PO;
 import domain.Registration;
 import domain.Review;
 import domain.User;
 import domain.Cart;
 import service.BookService;
-import service.OrderService;
 import service.UserService;
 
 import org.springframework.ui.Model;
@@ -39,33 +37,6 @@ public class BookstoreController {
 	
 	@Autowired
 	BookService bookService;
-	
-	@Autowired
-	OrderService orderService;
-	
-	/**
-	 * Given a unique bid, returns detailed information of that book.
-	 * Browser Component
-	 * @author Anil
-	 * @param bid
-	 * @return
-	 */
-	@GetMapping("/getProductInfo")
-	public ModelAndView productCatalog(@RequestParam("bid") String bid) {
-		ModelAndView mav = new ModelAndView("catalog");
-		Book b = bookService.findById(bid);
-		String title = b.getTitle();
-		String author = b.getAuthor();
-		String category = b.getCategory();
-		String isbn = b.getBid();
-		double price = b.getPrice();
-		mav.addObject("title", title);
-		mav.addObject("author", author);
-		mav.addObject("category", category);
-		mav.addObject("bid", isbn);
-		mav.addObject("price", price);
-		return mav;
-	}
 	
 	Map<String, Cart> cart;
 	/**
@@ -212,19 +183,5 @@ public class BookstoreController {
 		  model.addAttribute("reviewModel", review);
 	  }
 	
-	/**
-	 * Given a unique bid, returns all orders containing this bid.
-	 * Browser Component
-	 * @author Anil
-	 * @param bid
-	 * @return
-	 */
-	@GetMapping("/getOrdersByPartNumber")
-	public ModelAndView orderProcess(@RequestParam("bid")String bid) {
-		ModelAndView mav = new ModelAndView("orders");
-		List<PO> orders = orderService.getOrdersByBid(bid);
-		mav.addObject("orders", orders);
-		return mav;
-	}
 	
 }
