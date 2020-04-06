@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1" session="true" />
 	<jsp:output doctype-root-element="html"
@@ -9,65 +10,77 @@
 	<jsp:include page="header.jspx" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <c:url var="url" value="/resources/css/cart.css"/>
- <link rel="stylesheet" type="text/css" href="${url}"/>
- <meta charset="UTF-8"></meta>
- <script type="text/javascript"
-	src="/resources/js/cart.js">
-	;
-</script>
- <title>Cart</title>
+<c:url var="url" value="/resources/css/cart.css" />
+<link rel="stylesheet" type="text/css" href="${url}" />
+<meta charset="UTF-8"></meta>
+<title>Cart</title>
 
 </head>
 <body>
-	<header>
-		<h1 align="center">Your shopping cart</h1>
 
-	</header>
+	<c:if test="${empty cart}">
+		<header>
+			<h1 align="center">Your shopping cart is empty</h1>
+		</header>
+	</c:if>
+
+	<c:if test="${ not empty cart}">
+		<header>
+			<h1 align="center">Your shopping cart</h1>
 	
-	<div class="grid-container">
-  <div class="grid-item">
-  	<table id="shoppingcart">
+		</header>
+		<div class="grid-container">
+			<form action="/Bookstore/updateCart" method="POST">
+				<div class="grid-item">
+					<table id="shoppingcart">
+						<tr>
+							<th>Title</th>
+							<th>Author</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th></th>
 
-				<tr>
-					<th>Title</th>
-					<th>Price</th>
-					<th>Quantity</th>
-					<th></th>
-				</tr>
+						</tr>
+
+						<c:forEach var="bookItem" items="${cart}">
+							<tr>
+								<td>${bookItem.value.book.title}</td>
+								<td>${bookItem.value.book.author}</td>
+								<td>${bookItem.value.book.category}</td>
+								<td id="item1">$${bookItem.value.book.price}</td>
+								<td><input type="number" step="1" min="1" name="quantity"
+									id="quantity" value="${bookItem.value.quantity}"></input></td>
+
+								<td><a href="/Bookstore/removeItem/${bookItem.key}">remove</a></td>
+							</tr>
+						</c:forEach>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td><STRONG>Total</STRONG></td>
+							<td><strong>$${totalPrice}</strong></td>
+							<td></td>
+							<td></td>
+						</tr>
 
 
-				<tr>
-					<td>Little Blue Truck's Springtime</td>
-					<td id="item1">$20.99</td>
-					<td><input type="number" step="1" min="1" value="1"></input></td>
-					<td><a href="#" onclick="removeItem();">remove</a></td>
-				</tr>
-				<tr>
-					<td>It's Not Easy Being a Bunny (Beginner Books(R))</td>
-					<td id="item2">$10.99</td>
-					<td><input type="number" step="1" min="1" value="1"></input></td>
-					<td><a href="#" onclick="removeItem();">remove</a></td>
-				</tr>
-				<tr>
-					<td>Total</td>
-					<td id="total"></td>
-				</tr>
+					</table>
+				</div>
+				<div class="grid-item">
+					<input class="button button1" type="submit" value="Update Cart" />
+					<button type="button" class="button button1" onclick="location.href='/Bookstore/checkout'">Payment</button>
+					
+				</div>
+			</form>
 
-			</table>
-  </div>
-  <div class="grid-item">
-  	<form action="login">
-         <button type="submit">Payment</button>
-      </form>
-  	
-  </div>
-  </div>
-		
-
-		
 			
-		
+		</div>
+
+	</c:if>
+
+
 
 </body>
 	</html>

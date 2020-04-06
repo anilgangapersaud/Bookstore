@@ -22,7 +22,7 @@
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li class="regButtons"><a href="register">Register</a></li>
        <li class="regButtons"><a href="login">Login</a></li>
      </ul>
@@ -45,7 +45,7 @@
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
        <li class="regButtons"><a href="logout">Logout</a></li>
      </ul>
