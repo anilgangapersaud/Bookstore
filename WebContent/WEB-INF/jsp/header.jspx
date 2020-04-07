@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
-	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1" session="true"/>
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -15,22 +15,22 @@
 </head>
 <body>
 	<div class="head">
-	
+
 	<c:if test="${sessionScope.userId eq null}">
 	<!--  User is a Visitor -->
-	<a href="index"><img src="${logo}" class="center"></img></a>   
+	<a href="index"><img src="${logo}" class="center"></img></a>
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li class="regButtons"><a href="register">Register</a></li>
        <li class="regButtons"><a href="login">Login</a></li>
      </ul>
 	</c:if>
-	
+
 	<c:if test="${sessionScope.role eq 'Admin'}">
 	<!--  User is an Admin -->
-		<a href="index"><img src="${logo}" class="center"></img></a>    
+		<a href="index"><img src="${logo}" class="center"></img></a>
     	<ul class="navbar" align="left">
     		<li> <a href="books"> Books </a> </li>
        		<li class="regButtons"><a href="logout">Logout</a></li>
@@ -38,19 +38,19 @@
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
 	</c:if>
-	
+
 	<c:if test="${sessionScope.role eq 'Customer'}">
 	<!--  User is a Customer -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
-       <li><a href="#">Cart</a></li>
+       <li><a href="cart">Cart</a></li>
        <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
        <li class="regButtons"><a href="logout">Logout</a></li>
      </ul>
      </c:if>
-     
+
 	<c:if test="${sessionScope.role eq 'Partner'}">
 	<!--  User is a Partner -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
