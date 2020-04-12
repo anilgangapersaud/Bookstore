@@ -145,6 +145,7 @@ public class BookstoreController {
 			  else
 			  {
 				  temporaryCart.setQuantity(1);
+				  temporaryCart.setBook(b);
 				  cart.put(bid, temporaryCart);
 				
 			  }
