@@ -79,11 +79,14 @@ public class UserController {
 	
 	/**
 	 * @author Anil
-	 * @return Order Process Browser Component
+	 * @return Order Process Browser Component only for Partners
 	 */
 	@GetMapping("/orders")
-	public String orderPage() {
-		return "orders";
+	public String orderPage(HttpSession session) {
+		if (session.getAttribute("role").equals("Partner"))
+			return "orders";
+		else 
+			return "404";
 	}
 	
 	/**

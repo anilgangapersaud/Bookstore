@@ -9,8 +9,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <jsp:include page="header.jspx"/>
 <head>
- 	<c:url var="url2" value="/resources/js/forms.js"/>
- 	<script type="text/javascript" src="${url2}"><!-- comment --></script>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
  	<meta charset="UTF-8"></meta>
