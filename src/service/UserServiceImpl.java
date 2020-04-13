@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		@Override
-		public Billing findById(String id) {
+		public Billing findByBillingId(int id) {
 			return billingdao.findById(id);
 		}
 

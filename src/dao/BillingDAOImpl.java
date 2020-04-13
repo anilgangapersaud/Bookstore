@@ -5,9 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import domain.Address;
@@ -16,6 +22,13 @@ import domain.Billing;
 @Repository
 public class BillingDAOImpl extends BaseDAO implements BillingDAO {
 
+	
+	@Autowired
+	DataSource datasource;
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public void save(Billing b) {
 		String sql = "INSERT INTO BILLING(cardtype, expdate, cardnumber, cardholder, userid) VALUES (:cardtype, :expdate, :cardnumber, :cardholder, :userid)";
@@ -25,8 +38,11 @@ public class BillingDAOImpl extends BaseDAO implements BillingDAO {
 		m.put("cardnumber", b.getCardNumber());
 		m.put("cardholder", b.getCardholderName());
 		m.put("userid", b.getUserid());
+		KeyHolder kh = new GeneratedKeyHolder();
 		SqlParameterSource ps = new MapSqlParameterSource(m);
-		super.getNamedParameterJdbcTemplate().update(sql, ps);
+		super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+		Integer cardid = kh.getKey().intValue();
+		b.setCardid(cardid);
 	}
 
 	@Override
@@ -50,7 +66,7 @@ public class BillingDAOImpl extends BaseDAO implements BillingDAO {
 	}
 
 	@Override
-	public Billing findById(String id) {
+	public Billing findById(Integer id) {
 		String sql = "SELECT * FROM BILLING WHERE cardid=?";
 		Billing b = getJdbcTemplate().queryForObject(sql, new BillingMapper(), id);
 		return b;

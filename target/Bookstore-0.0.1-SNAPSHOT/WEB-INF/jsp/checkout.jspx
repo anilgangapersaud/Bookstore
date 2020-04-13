@@ -12,38 +12,15 @@
 	<title>Checkout</title>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
- 	<c:url var="url2" value="/resources/js/forms.js"/>
- 	<script type="text/javascript" src="${url2}"><!-- comment --></script>
+ 	<c:url var="url1" value="/resources/css/cart.css" />
+<link rel="stylesheet" type="text/css" href="${url1}" />
 </head>
 <body class="body">
-	<c:if test="${sessionScope.userId eq null}">
-	<p align="center" style="font-style: italic; color: red;">${message}</p>
-		<div class="loginContainer">
-			<h2 align="left">Login</h2>
-			<form:form modelAttribute="login" action="loginProcess" method="POST">
-			<form:label path="username"><b>Username     </b></form:label>
-			<form:errors style="font-style: italic; color: red;" path="username"/>
-			<br/>
-			<form:input id="username" path="username" type="text"/>
-			<form:label path="password"><b>Password    </b></form:label>
-			<form:errors style="font-style: italic; color: red;" path="password"/>
-			<br/>
-			<form:input id="password" path="password" type="password"/>
-            <form:button value="login" class="registerbtn"> Login </form:button>
-			
-			
-		</form:form>
-		</div>
-		<div class="signin">
-			<p>Don't have an account? <a href="register">Register for an account</a>.</p>
-		</div>
-	</c:if>
-	<c:if test="${sessionScope.role eq 'Customer'}">
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
 		<div class="container">
-			<h2 align="center"> 1.Shipping</h2>
+			<h2 align="left"> 1.Shipping</h2>
 			<form:form id="regForm" modelAttribute="checkout" action="checkoutProcess" method="POST">
-				<form:label path="address.street"><b>Street</b></form:label>
+					<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
 					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
 					<br/>
@@ -89,8 +66,55 @@
 		</div>
 		<div class="orderSummary">
 			<h2 align="center"> Order Summary</h2>
+		<c:if test="${empty cart}">
+			<header>
+				<h1 align="center">Your shopping cart is empty</h1>
+			</header>
+		</c:if>
+		<c:if test="${ not empty cart}">
+		<div class="grid-container">
+			<form action="/Bookstore/updateCart" method="POST">
+				<div class="grid-item">
+					<table id="shoppingcart">
+						<tr>
+							<th>Title</th>
+							<th>Author</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
+
+						</tr>
+
+						<c:forEach var="bookItem" items="${cart}">
+							<tr>
+								<td>${bookItem.value.book.title}</td>
+								<td>${bookItem.value.book.author}</td>
+								<td>${bookItem.value.book.category}</td>
+								<td id="item1">$${bookItem.value.book.price}</td>
+								<td><input type="number" step="1" min="1" name="quantity"
+									id="quantity" value="${bookItem.value.quantity}"></input></td>
+							</tr>
+						</c:forEach>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td><STRONG>Total</STRONG></td>
+							<td><strong>$${totalPrice}</strong></td>
+							<td></td>
+						</tr>
+
+
+					</table>
+				</div>
+			</form>
+
+			
 		</div>
+
 	</c:if>
+		
+		</div>
 </body>
 </html>
 </jsp:root>

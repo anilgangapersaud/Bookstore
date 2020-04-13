@@ -12,11 +12,13 @@
 <head>
 <c:url var="url" value="/resources/css/cart.css" />
 <link rel="stylesheet" type="text/css" href="${url}" />
+<c:url var="url2" value="/resources/css/forms.css" />
+<link rel="stylesheet" type="text/css" href="${url2}" />
 <meta charset="UTF-8"></meta>
 <title>Cart</title>
 
 </head>
-<body>
+<body class="body">
 
 	<c:if test="${empty cart}">
 		<header>

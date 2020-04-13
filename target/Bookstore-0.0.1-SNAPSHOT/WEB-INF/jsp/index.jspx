@@ -9,7 +9,7 @@
 		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Online Bookstore</title>
+	<title>Online Bookstore</title>
 </head>
 <body class="body">
 

@@ -5,9 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import domain.Address;
@@ -16,6 +22,13 @@ import domain.Book;
 @Repository
 public class AddressDAOImpl extends BaseDAO implements AddressDAO  {
 
+	
+	@Autowired
+	DataSource datasource;
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public void save(Address a) {
 		String sql = "INSERT INTO ADDRESS(userId, street, phone, zip, country, province) VALUES(:userId, :street, :phone, :zip, :country, :province)";
@@ -26,8 +39,11 @@ public class AddressDAOImpl extends BaseDAO implements AddressDAO  {
 		m.put("zip", a.getPostalCode());
 		m.put("country", a.getCountry());
 		m.put("province", a.getProvince());
+		KeyHolder kh = new GeneratedKeyHolder();
 		SqlParameterSource ps = new MapSqlParameterSource(m);
-		super.getNamedParameterJdbcTemplate().update(sql, ps);
+		super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+		Integer addressid = kh.getKey().intValue();
+		a.setAddressid(addressid);
 	}
 
 	@Override

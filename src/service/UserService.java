@@ -27,7 +27,7 @@ public interface UserService {
 		public void createBilling(Billing b);
 		public void updateBilling(Billing b);
 		public void deleteBilling(Integer cardid);
-		public Billing findById(String id);
+		public Billing findByBillingId(int id);
 		public List<Billing> findAllBilling();
 		public List<Billing> findByPropertyBilling(String propName, Object propValue);
 		

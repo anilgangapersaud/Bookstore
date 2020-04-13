@@ -14,9 +14,10 @@
  <link rel="stylesheet" type="text/css" href="${url}"/>
  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/books.js">;</script>
 </head>
-<body>
+<body class="body">
 <div class="centerBooks">
 <h2 style="text-align:center">${book.title}</h2>
+
 
 <div class="card">
   <table>
@@ -42,14 +43,14 @@
   	</td>
   </tr>
    </table>
-  
+  	<c:if test="${sessionScope.role != 'Partner'}">
   		<p><form id="addBook" action="addToCart" method="post">
     
      		<button id="buttonCart" name="buttonCart" value="${book.bid}">Add to Cart</button>
      	</form>
   		 </p>
- 	 
- 
+ 		 <p style="font-style: italic; color: green;" align="center">${msg}</p>
+ 		</c:if>
 </div>
 <br/>
 <div id="alignReviews">

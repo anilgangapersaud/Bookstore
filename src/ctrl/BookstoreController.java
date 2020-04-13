@@ -169,6 +169,7 @@ public class BookstoreController {
 		  }
 		  // Add Cart to session ( new or updates the old one).
 		  session.setAttribute("cart", cart);
+		  model.addAttribute("msg", b.getTitle() + " added to cart.");
 		  return "book_detail";
 	  }
 	
@@ -191,19 +192,6 @@ public class BookstoreController {
 		  model.addAttribute("reviewModel", review);
 	  }
 	
-	/**
-	 * Given a unique bid, returns all orders containing this bid.
-	 * Browser Component
-	 * @author Anil
-	 * @param bid
-	 * @return
-	 */
-	@GetMapping("/getOrdersByPartNumber")
-	public ModelAndView orderProcess(@RequestParam("bid")String bid) {
-		ModelAndView mav = new ModelAndView("orders");
-		List<PO> orders = orderService.getOrdersByBid(bid);
-		mav.addObject("orders", orders);
-		return mav;
-	}
+
 	
 }

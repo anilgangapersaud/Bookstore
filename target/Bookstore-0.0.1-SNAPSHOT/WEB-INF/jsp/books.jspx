@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+		<jsp:include page="header.jspx"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Online Bookstore</title>
+<c:url var="url" value="/resources/css/books.css"/>
+ <link rel="stylesheet" type="text/css" href="${url}"/>
+</head>
+<body class="body">
+     <br/>
+   <div class="centerBooks">
+     <form id="bookTable" action="category" method="get">
+     	<select name="bookCategory" class="buttonReviewCategory" >
+     	<option value = "Science">Science</option>
+        <option value = "Engineering">Engineering</option>
+        <option value = "Fiction">Fiction</option>
+     	</select>
+     	<button class="buttonReviewCategory" name="buttonCategory">Filter by category</button>
+     </form>
+     <br/>
+    <c:if test="${ not empty books}">
+
+  			<c:forEach var="bookRetrieve" items="${books}"> 
+				<div class="gallery">
+				<form id="bookTable" action="findId" method="get">
+  				
+  						<button id="buttonBook" name="bookId" value="${bookRetrieve.bid}" style="cursor:pointer;">
+  							
+  						<c:if test="${ bookRetrieve.category eq 'Engineering'}">
+				 			<img src="${pageContext.request.contextPath}/resources/images/Engineering.png" alt="engineering" width="600" height="400"> 
+				 			</img>
+				 		</c:if>
+						 <c:if test="${ bookRetrieve.category eq 'Science'}">
+				 			<img src="${pageContext.request.contextPath}/resources/images/Science.png" alt="Science" width="600" height="400"> 
+				 			</img>
+						 </c:if>
+						 <c:if test="${ bookRetrieve.category eq 'Fiction'}">
+				 			<img src="${pageContext.request.contextPath}/resources/images/Fiction.png" alt="Fiction" width="600" height="400"> 
+				 			</img>
+						 </c:if>
+  						
+  						</button>
+				 
+				</form>
+  				<div class="desc">
+  					<p> ${bookRetrieve.title} <br/> <br/>
+  					Author: <br/>
+  					<c:choose>
+  					
+    					<c:when test="${empty bookRetrieve.author}">
+        					Unknown
+    				</c:when>
+   					 <c:otherwise>
+      					 ${bookRetrieve.author}
+    				</c:otherwise>
+					</c:choose>
+ 					 
+ 					 </p>
+  				
+  	
+  				
+    			</div>
+    			</div>
+    	
+			</c:forEach>	
+		
+	  </c:if>
+	  </div>
+</body>
+</html>
+</jsp:root>

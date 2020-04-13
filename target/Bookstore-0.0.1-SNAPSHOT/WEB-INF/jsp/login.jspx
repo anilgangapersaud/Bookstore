@@ -16,23 +16,24 @@
 <body class="body">
 <p align="center" style="font-style: italic; color: red;">${message}</p>
 <p align="center" style="font-style: italic; color: blue;">${reg}</p>
-		<div class="loginContainer">
-			<h2 align="left">Login</h2>
+	<div class="loginContainer">
+		<h2 align="left">Login</h2>
 			<form:form modelAttribute="login" action="loginProcess" method="POST">
-			<form:label path="username"><b>Username     </b></form:label>
-			<form:errors path="username" style="font-style: italic; color: red;"/>
-			<br/>
-			<form:input id="username" path="username" type="text"/>
-			<form:label path="password"><b>Password     </b></form:label>
-			<form:errors style="font-style: italic; color: red;" path="password"/>
-			<br/>
-			<form:input id="password" path="password" type="password"/>
-            <form:button value="login" class="registerbtn"> Login </form:button>		
-		</form:form>
-		</div>
-		<div class="signin">
-			<p>Don't have an account? <a href="register">Register for an account</a>.</p>
-		</div>
+				<form:label path="username"><b>Username     </b></form:label>
+				<form:errors path="username" style="font-style: italic; color: red;"/>
+				<br/>
+				<form:input id="username" path="username" type="text"/>
+				<form:label path="password"><b>Password     </b></form:label>
+				<form:errors style="font-style: italic; color: red;" path="password"/>
+				<br/>
+				<form:input id="password" path="password" type="password"/>
+            	<form:button value="login" class="registerbtn"> Login </form:button>		
+			</form:form>
+	</div>
+	<div class="signin">
+		<p>Don't have an account? <a href="register">Register for an account</a>.</p>
+		<p><a href="visitorCheckout">Checkout As Guest</a></p>
+	</div>
 </body>
 </html>
 </jsp:root>

@@ -7,6 +7,12 @@ public class POItem {
 	private double price;
 	private Integer quantity;
 	
+
+
+	
+	public POItem() {
+		
+	}
 	
 	public Integer getItemId() {
 		return itemId;
