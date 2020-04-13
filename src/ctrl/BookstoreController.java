@@ -17,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Book;
 import domain.Login;
+import domain.PO;
 import domain.Registration;
 import domain.Review;
 import domain.User;
 import domain.Cart;
 import service.BookService;
+import service.OrderService;
 import service.UserService;
 
 import org.springframework.ui.Model;
@@ -37,6 +39,11 @@ public class BookstoreController {
 	
 	@Autowired
 	BookService bookService;
+	
+	@Autowired
+	OrderService orderService;
+	
+
 	
 	Map<String, Cart> cart;
 	/**
@@ -162,6 +169,7 @@ public class BookstoreController {
 		  }
 		  // Add Cart to session ( new or updates the old one).
 		  session.setAttribute("cart", cart);
+		  model.addAttribute("msg", b.getTitle() + " added to cart.");
 		  return "book_detail";
 	  }
 	
@@ -184,5 +192,6 @@ public class BookstoreController {
 		  model.addAttribute("reviewModel", review);
 	  }
 	
+
 	
 }

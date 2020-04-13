@@ -7,34 +7,32 @@ package domain;
 public class PO {
 
 	private Integer poid;
-	private String lastname;
-	private String firstname;
 	private String status;
+	private String orderDate;
 	private Integer addressid;
+	private Integer cardid;
+	private Address a;
+	private Billing b;
 	
-	public Integer getId() {
-		return poid;
+	
+	
+	public Address getA() {
+		return a;
 	}
-	public void setId(Integer id) {
-		this.poid = id;
+	public void setA(Address a) {
+		this.a = a;
 	}
-	public String getLastname() {
-		return lastname;
+	public Billing getB() {
+		return b;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setB(Billing billing) {
+		this.b = billing;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getOrderDate() {
+		return orderDate;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
 	}
 	public Integer getAddressid() {
 		return addressid;
@@ -42,4 +40,24 @@ public class PO {
 	public void setAddressid(Integer addressid) {
 		this.addressid = addressid;
 	}
+	public Integer getCardid() {
+		return cardid;
+	}
+	public void setCardid(Integer cardid) {
+		this.cardid = cardid;
+	}
+	public Integer getId() {
+		return poid;
+	}
+	public void setId(Integer id) {
+		this.poid = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 }

@@ -81,4 +81,9 @@ public class OrderServiceImpl implements OrderService {
 		return poItemDAO.findByProperty(propName, propValue);
 	}
 
+	@Override
+	public List<PO> getOrdersByBid(String bid) {
+		return podao.getOrdersByBid(bid);
+	}
+
 }

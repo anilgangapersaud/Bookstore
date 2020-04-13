@@ -11,6 +11,7 @@
  <c:url var="url" value="/resources/css/header.css"/>
  <link rel="stylesheet" type="text/css" href="${url}"/>
  <c:url var="logo" value="/resources/images/logo.png.png"/>
+ <c:url var="cart" value="/resources/images/shoppingcart.png"/>
  <meta charset="UTF-8"></meta>
 </head>
 <body>
@@ -22,7 +23,9 @@
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
+       <li><a href="catalog">Search Catalog</a></li>
        <li><a href="cart">Cart</a></li>
+
        <li class="regButtons"><a href="register">Register</a></li>
        <li class="regButtons"><a href="login">Login</a></li>
      </ul>
@@ -35,16 +38,17 @@
     		<li> <a href="books"> Books </a> </li>
        		<li class="regButtons"><a href="logout">Logout</a></li>
        		<li><a href="reports">Reports</a></li>
+       		<li><a href="catalog">Search Catalog</a></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
 	</c:if>
-
 	<c:if test="${sessionScope.role eq 'Customer'}">
 	<!--  User is a Customer -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
     <ul class="navbar" align="left">
        <li> <a href="books"> Books </a> </li>
        <li><a href="checkout">Checkout</a></li>
+       <li><a href="catalog">Search Catalog</a></li>
        <li><a href="cart">Cart</a></li>
        <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
        <li class="regButtons"><a href="logout">Logout</a></li>
@@ -56,6 +60,7 @@
 	<a href="index"><img src="${logo}" class="center"></img></a>
     <ul class="navbar" align="left">
        <li><a href="catalog">Search Catalog</a></li>
+       <li><a href="orders">Orders</a></li>
        <li class="regButtons"><a href="logout">Logout</a></li>
        	 <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      </ul>

@@ -18,9 +18,9 @@
 </head>
 <body class="body">
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
-	<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
 		<div class="loginContainer">
 			<h2 align="left">Contact Information</h2>
+					<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
 					<form:label for="username" path="registrationUser.username"><b>Username     </b></form:label>
 					<form:errors path="registrationUser.username" style="font-style: italic; color: red;"/>
 					<br/>
@@ -55,7 +55,7 @@
 					<form:label path="registrationUser.role"><b>Role      </b></form:label> 
 					<br/>
 					<form:select path="registrationUser.role" items="${roles}" name="role" id="role"/>
-		<h2 align="left">Shipping Address</h2>
+			<h2 align="left">Shipping Address</h2>
 				 	<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
 					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
@@ -78,7 +78,7 @@
 					<br/>
 					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
 
-		<h2 align="left">Billing Information</h2>
+			<h2 align="left">Billing Information</h2>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
 					<br/>
 					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
@@ -98,10 +98,9 @@
 					<br/>
 					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
 					<br/>
-	
 					<form:button id="register" name="register" class="registerbtn">Register</form:button>
-			</div>
-		</form:form>
+					</form:form>
+		</div>
 		<div class="signin">
 			<p>Already have an account? <a href="login">Sign in</a>.</p>
 		</div>

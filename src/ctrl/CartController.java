@@ -58,7 +58,6 @@ public class CartController {
 				singlePrice = cartItem.getValue().getBook().getPrice() * cartItem.getValue().getQuantity();
 				totalPrice = totalPrice + singlePrice;
 			}
-
 			session.setAttribute("totalPrice", df.format(totalPrice));
 		}
 		session.setAttribute("cart", cart);

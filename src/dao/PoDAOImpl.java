@@ -5,9 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import domain.Book;
@@ -16,28 +22,37 @@ import domain.PO;
 @Repository
 public class PoDAOImpl extends BaseDAO implements PoDAO {
 
+	
+	@Autowired
+	DataSource datasource;
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public void save(PO p) {
-		String sql = "INSERT INTO PO(id, lname, fname, status, address) VALUES (:id, :lname, :fname, :status, :address)";
+		String sql = "INSERT INTO PO(status, orderDate, addressid, cardid) VALUES (:status, :orderDate, :addressid, :cardid)";
 		Map m = new HashMap();
-		m.put("id", p.getId());
-		m.put("lname", p.getLastname());
-		m.put("fname", p.getFirstname());
 		m.put("status", p.getStatus());
-		m.put("address", p.getAddressid());
+		m.put("orderDate", p.getOrderDate());
+		m.put("addressid", p.getAddressid());
+		m.put("cardid", p.getCardid());
+		KeyHolder kh = new GeneratedKeyHolder();
 		SqlParameterSource ps = new MapSqlParameterSource(m);
-		super.getNamedParameterJdbcTemplate().update(sql, ps);
+		super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
+		Integer poid = kh.getKey().intValue();
+		p.setId(poid);
 	}
 
 	@Override
 	public void update(PO p) {
-		String sql = "UPDATE PO SET lname=:lname, fname=:fname, status=:status, address=:address WHERE id=:id";
+		String sql = "UPDATE PO SET orderDate=:orderDate, addressid=:addressid, cardid=:cardid status=:status, WHERE id=:id";
 		Map m = new HashMap();
-		m.put("lname", p.getLastname());
-		m.put("fname", p.getFirstname());
-		m.put("status", p.getStatus());
-		m.put("address", p.getAddressid());
 		m.put("id", p.getId());
+		m.put("status", p.getStatus());
+		m.put("orderDate", p.getOrderDate());
+		m.put("addressid", p.getAddressid());
+		m.put("cardid", p.getCardid());
 		SqlParameterSource ps = new MapSqlParameterSource(m);	
 		super.getNamedParameterJdbcTemplate().update(sql, ps);
 	}
@@ -67,6 +82,13 @@ public class PoDAOImpl extends BaseDAO implements PoDAO {
 		String sql = " SELECT * FROM PO WHERE "+propName+"=?";
 		List<PO> PO = getJdbcTemplate().query(sql, new POMapper(), propValue);
 		return PO;
+	}
+
+	@Override
+	public List<PO> getOrdersByBid(String bid) {
+		String sql = "SELECT * FROM PO p JOIN POITEM i ON p.id = i.id WHERE i.bid = ?";
+		List<PO> PO = getJdbcTemplate().query(sql, new POMapper(), bid);
+		return PO;
 	} 
 }
 
@@ -77,10 +99,10 @@ class POMapper implements RowMapper<PO> {
 	PO p = new PO();
 	
 		p.setId(rs.getInt("ID"));
-		p.setFirstname(rs.getString("FNAME"));
-		p.setLastname(rs.getString("LNAME"));
-		p.setAddressid(rs.getInt("ADDRESS"));
 		p.setStatus(rs.getString("STATUS"));
+		p.setAddressid(rs.getInt("ADDRESSID"));
+		p.setCardid(rs.getInt("CARDID"));
+		p.setOrderDate(rs.getString("ORDERDATE"));
 		
 		return p;
 	}

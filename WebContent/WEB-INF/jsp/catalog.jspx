@@ -13,17 +13,30 @@
 <c:url var="url" value="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
-<body>
-<form method="GET" action="getBookById">
+<body class="body">
+<form method="GET" action="findId">
 	<div class="loginContainer">
 	<fieldset>
 		<legend>Search Catalog</legend>
 			<label for="book">Enter ISBN: </label>
-			<input type="text" name="bid"></input>
+			<input type="text" name="bookId"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>
 </form>
+<!--  
+<c:if test="${bid != null}">
+<div>
+	<h2>Book Information</h2>
+		<br/>
+		<p>BID: ${bid}</p> <br/>
+		<p>Title: ${title}</p> <br/>
+		<p>Author: ${author}</p> <br/>
+		<p>Price: ${price}</p> <br/>
+		<p>Category: ${category}</p> <br/>
+</div>
+	</c:if>
+	-->
 </body>
 </html>
 </jsp:root>

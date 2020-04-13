@@ -19,4 +19,5 @@ public interface OrderService {
 	public POItem findPOItemById(Integer itemid);
 	public List<POItem> findAllPOItems();
 	public List<POItem> findPOItemByProperty(String propName, Object propValue);
+	public List<PO> getOrdersByBid(String bid);
 }

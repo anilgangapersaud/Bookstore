@@ -12,7 +12,7 @@
 <title>Order Successful</title>
 </head>
 <body class="body">
-<p align="center" class="success"> Order Successfully Completed.</p>
+<p align="center" class="success">${msg}</p>
 </body>
 </html>
 </jsp:root>

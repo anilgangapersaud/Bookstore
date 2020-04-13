@@ -1,5 +1,6 @@
 package ctrl;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,10 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Address;
 import domain.Billing;
+import domain.Cart;
 import domain.Checkout;
 import domain.Login;
 import domain.Registration;
 import domain.User;
+import service.BookService;
 import service.UserService;
 
 /**
@@ -39,35 +42,74 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	BookService bookService;
+	
+	
+	private Map<String, Cart> cart;
 	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
 	private List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
 	private List<String> roles = Arrays.asList("Admin", "Customer", "Partner");
 	private List<String> countries = Arrays.asList("Canada");
-	private int authorization = 1;
+	
+	
+	/** Returns the admin view.
+	 * @author Anil
+	 * @return
+	 */
+	@GetMapping("/reports")
+	public String adminPage(HttpSession session) {
+		if (session.getAttribute("role").equals("Admin"))
+			return "reports"; // Verify the User is a Partner and return the reports page
+		else 
+			return "404"; // Otherwise not authorized to view page.
+	}
+	
 	
 	/**
-	 * Gets a request to redirect to the catalog page. Only available for Partners.
+	 * Gets a request to redirect to the catalog page. DB search
+	 * Product Catalog Browser Component
 	 * @author Anil	
-	 * @return catalog view if Partner, otherwise 404
+	 * @return catalog view 
 	 */
 	@GetMapping("/catalog")
 	public String catalogPage(HttpSession session) {
-		String role = (String) session.getAttribute("role");
-		if (role != null) {
-			if (role.equals("Partner")) 
-				return "catalog";
-		}
-		return "404";
+		return "catalog";
 	}
 	
 	/**
-	 * Returns the homepage (index) upon request.
 	 * @author Anil
-	 * @return homepage view (index)
+	 * @return Order Process Browser Component only for Partners
+	 */
+	@GetMapping("/orders")
+	public String orderPage(HttpSession session) {
+		if (session.getAttribute("role").equals("Partner"))
+			return "orders";
+		else 
+			return "404";
+	}
+	
+	/**
+	 * Returns the homepage (index) upon request. Appropriate view is presented depending on role.
+	 * @author Anil
+	 * @return homepage view
 	 */
 	@RequestMapping(value= {"/", "/index"})
-	public ModelAndView getHomePage() {
-		return new ModelAndView("index");
+	public String getHomePage(Model model, HttpSession session) {
+		if (session.getAttribute("role") == null) {
+			// Visitor View
+			model.addAttribute("books", bookService.findAll());
+			return "books";
+		}  else if (session.getAttribute("role").equals("Partner")) {
+			// Partner View
+			return "catalog";
+		} else if (session.getAttribute("role").equals("Admin")) {
+			// Admin View
+			return "reports";
+		} else {
+			model.addAttribute("books", bookService.findAll());
+			return "books";
+		}
 	}
 	
 	/**
@@ -92,22 +134,38 @@ public class UserController {
 	@GetMapping("/checkout")
 	public String displayLogin(Model model, HttpSession session) {
 		Integer userid = (Integer) session.getAttribute("userId");
-		String page;
+		String page = null;
+		double singlePrice = 0.0;
+		double totalPrice = 0.0;
+		DecimalFormat df = new DecimalFormat("#.##");
 		if (userid == null) {
+			// User is a Visitor
 			// Redirect to Login Page.
 			Login login = new Login();
 			page = "login";
 			model.addAttribute("login", login);
 		} else {
-			// Logged In, Show Checkout
-			Checkout checkout = new Checkout();
+			//Verify the User is a Customer
+			if (session.getAttribute("role").equals("Customer")) {
+				Checkout checkout = new Checkout();
+				model.addAttribute("checkout", checkout);
+				model.addAttribute("provinces", provinces);	// List of Provinces for <form:select>
+				model.addAttribute("cardTypes", cardTypes); // List of Card Types for <form:select>
+				model.addAttribute("countries", countries); // List of Countries for <form:select>
+				
+			}
 			page = "checkout";
-			model.addAttribute("checkout", checkout);
-			model.addAttribute("provinces", provinces);	// List of Provinces for <form:select>
-			model.addAttribute("cardTypes", cardTypes); // List of Card Types for <form:select>
-			model.addAttribute("roles", roles);			// List of Roles for <form:select>
-			model.addAttribute("countries", countries); // List of Countries for <form:select>
 		}
+		// Logged In, Show Checkout
+		// Update the cart.
+		if (session.getAttribute("cart") != null) {
+			cart = (Map<String, Cart>) session.getAttribute("cart");
+			for (Map.Entry<String, Cart> cartItem : cart.entrySet()) {
+				singlePrice = cartItem.getValue().getBook().getPrice() * cartItem.getValue().getQuantity();
+				totalPrice = totalPrice + singlePrice;
+				}
+		}
+		session.setAttribute("totalPrice", df.format(totalPrice));
 		return page;
 	}
 	
@@ -124,28 +182,40 @@ public class UserController {
 	public ModelAndView processLogin(@Valid @ModelAttribute("login")Login login, Errors errors, Model model, HttpSession session) {
 		ModelAndView mav = null;
 		String page = null;
+		double singlePrice = 0.0;
+		double totalPrice = 0.0;
+		DecimalFormat df = new DecimalFormat("#.##");
 		User loggedInUser = userService.validateUser(login); // return the User in Database, based on login credentials.
 		if (loggedInUser != null) {
 			//LOGIN SUCCESS
 			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
 				addUserInSession(loggedInUser, session);
+				page = "reports";
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
 				addUserInSession(loggedInUser, session);
+				page = "catalog";
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
 				// User is a Customer, redirect to homepage.
 				addUserInSession(loggedInUser, session);
+				if (session.getAttribute("cart") != null) {
+					cart = (Map<String, Cart>) session.getAttribute("cart");
+					for (Map.Entry<String, Cart> cartItem : cart.entrySet()) {
+						singlePrice = cartItem.getValue().getBook().getPrice() * cartItem.getValue().getQuantity();
+						totalPrice = totalPrice + singlePrice;
+						}
+				}
+				Checkout checkout = new Checkout();
+				model.addAttribute("checkout", checkout);
+				model.addAttribute("provinces", provinces);
+				model.addAttribute("cardTypes", cardTypes);
+				model.addAttribute("roles", roles);
+				model.addAttribute("countries", countries);
+				session.setAttribute("totalPrice", df.format(totalPrice));
 				page = "checkout";
 			}
-//			Checkout checkout = new Checkout();
-//			model.addAttribute("checkout", checkout);
-//			model.addAttribute("provinces", provinces);
-//			model.addAttribute("cardTypes", cardTypes);
-//			model.addAttribute("roles", roles);
-//			model.addAttribute("countries", countries);
-			
-			mav = new ModelAndView("index", "model", model);
+			mav = new ModelAndView(page, "model", model);
 			return mav;
 		} else {
 			//LOGIN FAILED
@@ -262,7 +332,7 @@ public class UserController {
 		session.setAttribute("firstname", u.getFirstname());
 		List<Address> a = userService.findByPropertyAddress("USERID", u.getUserId());
 		List<Billing> b = userService.findByPropertyBilling("USERID", u.getUserId());
-		session.setAttribute("address", a);
-		session.setAttribute("billing", b);
+		session.setAttribute("address", a.get(0));
+		session.setAttribute("billing", b.get(0));
 	}
 }
