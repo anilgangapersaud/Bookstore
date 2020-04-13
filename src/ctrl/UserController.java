@@ -149,8 +149,9 @@ public class UserController {
 				model.addAttribute("provinces", provinces);	// List of Provinces for <form:select>
 				model.addAttribute("cardTypes", cardTypes); // List of Card Types for <form:select>
 				model.addAttribute("countries", countries); // List of Countries for <form:select>
-				page = "checkout";
+				
 			}
+			page = "checkout";
 		}
 		// Logged In, Show Checkout
 		// Update the cart.
