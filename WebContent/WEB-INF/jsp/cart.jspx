@@ -32,7 +32,7 @@
 	
 		</header>
 		<div class="grid-container">
-			<form action="/Bookstore/updateCart" method="POST">
+			<form action="updateCart" method="POST">
 				<div class="grid-item">
 					<table id="shoppingcart">
 						<tr>
