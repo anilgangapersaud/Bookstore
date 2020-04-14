@@ -101,6 +101,11 @@ public class UserServiceImpl implements UserService {
 			return billingdao.findByProperty(propName, propValue);
 		}
 
+		@Override
+		public User validateUser(String username, String password) {
+			return userdao.validateUser(username, password);
+		}
+
 		
 
 	

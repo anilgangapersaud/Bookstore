@@ -18,6 +18,7 @@ public interface UserService {
 		
 		void register(User user) throws Exception;
 		User validateUser(Login login);
+		User validateUser(String username, String password);
 		public void createAddress(Address a);
 		public void updateAddress(Address a);
 		public void deleteAddress(int addressid);

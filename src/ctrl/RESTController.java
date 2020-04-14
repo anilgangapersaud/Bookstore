@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import domain.Book;
 import domain.PO;
+import domain.User;
 import service.BookService;
 import service.OrderService;
+import service.UserService;
 
 /**
  * Handles REST Services, Exclusive for Partners.
@@ -22,6 +24,9 @@ public class RESTController {
 
 	@Autowired
 	BookService bookService;
+	
+	@Autowired 
+	UserService userService;
 	
 	@Autowired
 	OrderService orderService;
@@ -35,9 +40,9 @@ public class RESTController {
 	 * @return
 	 */
 	@RequestMapping("/rest/getProductInfo")
-	public Book getBooks(HttpSession session, @RequestParam("bid") String bid) {
-		String role = (String) session.getAttribute("role"); //Get the Role from the Session
-		if (role.equals("Partner")) {
+	public Book getBooks(HttpSession session, @RequestParam("bid") String bid, @RequestParam("username") String username, @RequestParam("password") String password) {
+		User u = userService.validateUser(username, password);
+		if (u.getRole().equals("Partner")) {
 			return bookService.findById(bid);
 		} else {
 			return null;
