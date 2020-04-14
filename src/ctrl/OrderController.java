@@ -114,6 +114,8 @@ public class OrderController {
 				mav = new ModelAndView("success");
 				mav.addObject("msg", "Order Successfully Completed. Thanks for shopping with Livraria!");
 				// Remove items from cart
+				cart.clear();
+				session.setAttribute("cart", cart);
 			}
 			authorization++;
 			return mav;

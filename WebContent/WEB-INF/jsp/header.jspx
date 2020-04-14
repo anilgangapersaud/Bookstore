@@ -16,24 +16,25 @@
 </head>
 <body>
 	<div class="head">
-
 	<c:if test="${sessionScope.userId eq null}">
 	<!--  User is a Visitor -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
-    <ul class="navbar" align="left">
-       <li> <a href="books"> Books </a> </li>
-       <li><a href="checkout">Checkout</a></li>
-       <li><a href="catalog">Search Catalog</a></li>
-       <li><a href="cart">Cart</a></li>
-
-       <li class="regButtons"><a href="register">Register</a></li>
-       <li class="regButtons"><a href="login">Login</a></li>
-     </ul>
+	<nav>
+    	<ul class="navbar" align="left">
+       		<li> <a href="books"> Books </a> </li>
+      	    <li><a href="checkout">Checkout</a></li>
+       		<li><a href="catalog">Search Catalog</a></li>
+       		<li><a href="cart">Cart</a></li>
+       		<li class="regButtons"><a href="register">Register</a></li>
+       		<li class="regButtons"><a href="login">Login</a></li>
+     	</ul>
+     </nav>
 	</c:if>
 
 	<c:if test="${sessionScope.role eq 'Admin'}">
 	<!--  User is an Admin -->
-		<a href="index"><img src="${logo}" class="center"></img></a>
+	<a href="index"><img src="${logo}" class="center"></img></a>
+	<nav>
     	<ul class="navbar" align="left">
     		<li> <a href="books"> Books </a> </li>
        		<li class="regButtons"><a href="logout">Logout</a></li>
@@ -41,31 +42,38 @@
        		<li><a href="catalog">Search Catalog</a></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
+     </nav>
 	</c:if>
 	<c:if test="${sessionScope.role eq 'Customer'}">
 	<!--  User is a Customer -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
-    <ul class="navbar" align="left">
-       <li> <a href="books"> Books </a> </li>
-       <li><a href="checkout">Checkout</a></li>
-       <li><a href="catalog">Search Catalog</a></li>
-       <li><a href="cart">Cart</a></li>
-       <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
-       <li class="regButtons"><a href="logout">Logout</a></li>
-     </ul>
+	<nav>
+   	   <ul class="navbar" align="left">
+       		<li> <a href="books"> Books </a> </li>
+       		<li><a href="checkout">Checkout</a></li>
+       		<li><a href="catalog">Search Catalog</a></li>
+      		<li><a href="cart">Cart</a></li>
+       		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
+      		<li class="regButtons"><a href="logout">Logout</a></li>
+     	</ul>
+     </nav>
      </c:if>
 
 	<c:if test="${sessionScope.role eq 'Partner'}">
 	<!--  User is a Partner -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
-    <ul class="navbar" align="left">
-       <li><a href="catalog">Search Catalog</a></li>
-       <li><a href="orders">Orders</a></li>
-       <li class="regButtons"><a href="logout">Logout</a></li>
-       	 <li class="loggedIn">Welcome ${sessionScope.firstname}</li>
-     </ul>
+	<nav>
+    	<ul class="navbar" align="left">
+       		<li><a href="catalog">Search Catalog</a></li>
+      		<li><a href="orders">Orders</a></li>
+       		<li class="regButtons"><a href="logout">Logout</a></li>
+       		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
+     	</ul>
+     </nav>
 	</c:if>
 	</div>
+	
+	
 	<c:if test="${param.act eq 'lo'}">
 	<!--  User is logged out -->
      	<p class="success" align="center"> You have been logged out! Thanks for visiting Livraria.</p>

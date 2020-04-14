@@ -2,9 +2,15 @@
 
 /* CSS for displaying books */
 .centerBooks{
-  width: 80%;
+  width: 90%;
+  margin:0 auto;
+  float: right;
+}
+
+.centerBookDetail{
   margin:0 auto;
 }
+
 div.gallery {
 
   border: 1px solid #ccc;
@@ -12,6 +18,10 @@ div.gallery {
   width: 200px;
   height: 280px;
   overflow:auto;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  margin-top: 0px;
 
 }
 
@@ -140,17 +150,25 @@ div.desc {
     text-align: center;
 }
 
+#bookTableCategory {
+	width: 10%;
+	float: left;
+	overflow:hidden;
+}
+
 .buttonReviewCategory
 {
+  overflow:hidden;
   margin: 5px;
   background-color: #333;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 10px 32px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  align: left;
 
 }
 .buttonReviewCategory:hover
@@ -171,7 +189,7 @@ input[type=text] {
 #submitReview {
   width: 100%;
   background-color: 333;
-  color: white;
+  color: black;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -180,7 +198,7 @@ input[type=text] {
 }
 
 #submitReview:hover {
-  background-color: black;
+  background-color: white;
 }
 
 #review {
