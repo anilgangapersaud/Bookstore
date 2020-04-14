@@ -119,5 +119,18 @@ public class CartController {
 		}
 		return "false";
 	}
+	
+	/**
+	 * Remove all item from cart.
+	 * @author Tram
+	 * @param session
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	private void emptyCart(HttpSession session) {
+		cart = (Map<String, Cart>) session.getAttribute("cart");
+		cart.clear();
+		session.setAttribute("cart", cart);
+	}
 
 }

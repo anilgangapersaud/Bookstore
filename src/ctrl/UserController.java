@@ -57,10 +57,10 @@ public class UserController {
 	 * @author Anil
 	 * @return
 	 */
-	@GetMapping("/reports")
+	@GetMapping("/report")
 	public String adminPage(HttpSession session) {
 		if (session.getAttribute("role").equals("Admin"))
-			return "reports"; // Verify the User is a Partner and return the reports page
+			return "report"; // Verify the User is a Admin and return the reports page
 		else 
 			return "404"; // Otherwise not authorized to view page.
 	}
@@ -105,7 +105,7 @@ public class UserController {
 			return "catalog";
 		} else if (session.getAttribute("role").equals("Admin")) {
 			// Admin View
-			return "reports";
+			return "report";
 		} else {
 			model.addAttribute("books", bookService.findAll());
 			return "books";
@@ -190,7 +190,7 @@ public class UserController {
 			//LOGIN SUCCESS
 			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
 				addUserInSession(loggedInUser, session);
-				page = "reports";
+				page = "report";
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
 				addUserInSession(loggedInUser, session);

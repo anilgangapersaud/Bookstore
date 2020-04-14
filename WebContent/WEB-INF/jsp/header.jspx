@@ -37,7 +37,7 @@
     	<ul class="navbar" align="left">
     		<li> <a href="books"> Books </a> </li>
        		<li class="regButtons"><a href="logout">Logout</a></li>
-       		<li><a href="reports">Reports</a></li>
+       		<li><a href="report">Reports</a></li>
        		<li><a href="catalog">Search Catalog</a></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
