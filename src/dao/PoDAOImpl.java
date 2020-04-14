@@ -35,24 +35,24 @@ public class PoDAOImpl extends BaseDAO implements PoDAO {
 		Map m = new HashMap();
 		m.put("status", p.getStatus());
 		m.put("orderDate", p.getOrderDate());
-		m.put("addressid", p.getAddressid());
-		m.put("cardid", p.getCardid());
+		m.put("addressid", p.getAddressID());
+		m.put("cardid", p.getCardID());
 		KeyHolder kh = new GeneratedKeyHolder();
 		SqlParameterSource ps = new MapSqlParameterSource(m);
 		super.getNamedParameterJdbcTemplate().update(sql, ps, kh);
 		Integer poid = kh.getKey().intValue();
-		p.setId(poid);
+		p.setPurchaseID(poid);
 	}
 
 	@Override
 	public void update(PO p) {
 		String sql = "UPDATE PO SET orderDate=:orderDate, addressid=:addressid, cardid=:cardid status=:status, WHERE id=:id";
 		Map m = new HashMap();
-		m.put("id", p.getId());
+		m.put("id", p.getPurchaseID());
 		m.put("status", p.getStatus());
 		m.put("orderDate", p.getOrderDate());
-		m.put("addressid", p.getAddressid());
-		m.put("cardid", p.getCardid());
+		m.put("addressid", p.getAddressID());
+		m.put("cardid", p.getCardID());
 		SqlParameterSource ps = new MapSqlParameterSource(m);	
 		super.getNamedParameterJdbcTemplate().update(sql, ps);
 	}
@@ -98,10 +98,10 @@ class POMapper implements RowMapper<PO> {
 	public PO mapRow(java.sql.ResultSet rs, int rowNum) throws SQLException {
 	PO p = new PO();
 	
-		p.setId(rs.getInt("ID"));
+		p.setPurchaseID(rs.getInt("ID"));
 		p.setStatus(rs.getString("STATUS"));
-		p.setAddressid(rs.getInt("ADDRESSID"));
-		p.setCardid(rs.getInt("CARDID"));
+		p.setAddressID(rs.getInt("ADDRESSID"));
+		p.setCardID(rs.getInt("CARDID"));
 		p.setOrderDate(rs.getString("ORDERDATE"));
 		
 		return p;

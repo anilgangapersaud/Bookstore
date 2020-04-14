@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 /**
  * Domain object to represent an PO (purchase order) entity.
  *
@@ -11,22 +13,28 @@ public class PO {
 	private String orderDate;
 	private Integer addressid;
 	private Integer cardid;
-	private Address a;
-	private Billing b;
+	private Address shipTo;
+	private Billing billTo;
+	private List<POItem> items;
 	
 	
-	
-	public Address getA() {
-		return a;
+	public List<POItem> getItems() {
+		return items;
 	}
-	public void setA(Address a) {
-		this.a = a;
+	public void setItems(List<POItem> items) {
+		this.items = items;
 	}
-	public Billing getB() {
-		return b;
+	public Address getshipTo() {
+		return shipTo;
 	}
-	public void setB(Billing billing) {
-		this.b = billing;
+	public void setshipTo(Address shipTo) {
+		this.shipTo = shipTo;
+	}
+	public Billing getbillTo() {
+		return billTo;
+	}
+	public void setbillTo(Billing billTo) {
+		this.billTo = billTo;
 	}
 	public String getOrderDate() {
 		return orderDate;
@@ -34,23 +42,23 @@ public class PO {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-	public Integer getAddressid() {
+	public Integer getAddressID() {
 		return addressid;
 	}
-	public void setAddressid(Integer addressid) {
-		this.addressid = addressid;
+	public void setAddressID(Integer addressID) {
+		this.addressid = addressID;
 	}
-	public Integer getCardid() {
+	public Integer getCardID() {
 		return cardid;
 	}
-	public void setCardid(Integer cardid) {
-		this.cardid = cardid;
+	public void setCardID(Integer cardID) {
+		this.cardid = cardID;
 	}
-	public Integer getId() {
+	public Integer getPurchaseID() {
 		return poid;
 	}
-	public void setId(Integer id) {
-		this.poid = id;
+	public void setPurchaseID(Integer purchaseID) {
+		this.poid = purchaseID;
 	}
 
 	public String getStatus() {

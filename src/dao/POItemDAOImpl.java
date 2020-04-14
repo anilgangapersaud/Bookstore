@@ -70,7 +70,7 @@ public class POItemDAOImpl extends BaseDAO implements POItemDAO {
 
 	@Override
 	public List<POItem> findByProperty(String propName, Object propValue) {
-		String sql = "SELECT * FROM PO WHERE "+propName+"=?";
+		String sql = "SELECT * FROM POItem WHERE "+propName+"=?";
 		List<POItem> POItems = getJdbcTemplate().query(sql, new POItemMapper(), propValue);
 		return POItems;
 	}

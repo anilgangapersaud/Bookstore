@@ -18,16 +18,16 @@
 </head>
 <body class="body">
      <br/>
-   <div class="centerBooks">
-     <form id="bookTable" action="category" method="get">
-     	<select name="bookCategory" class="buttonReviewCategory" >
+     <form id="bookTableCategory" action="category" method="get">
+     	<select width="10" name="bookCategory" class="buttonReviewCategory" >
      	<option value = "Science">Science</option>
         <option value = "Engineering">Engineering</option>
         <option value = "Fiction">Fiction</option>
      	</select>
-     	<button class="buttonReviewCategory" name="buttonCategory">Filter by category</button>
+     	<button  width="10" class="buttonReviewCategory" name="buttonCategory">Filter by category</button>
      </form>
-     <br/>
+   <div class="centerBooks">
+
     <c:if test="${ not empty books}">
 
   			<c:forEach var="bookRetrieve" items="${books}"> 
