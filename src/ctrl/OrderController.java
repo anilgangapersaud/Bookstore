@@ -82,8 +82,8 @@ public class OrderController {
 			// Authorization Denied
 			PO purchaseOrder = new PO();	
 			// Add Information to Purchase Order
-			purchaseOrder.setAddressid(checkout.getAddress().getAddressid());
-			purchaseOrder.setCardid(checkout.getBilling().getCardid());
+			purchaseOrder.setAddressID(checkout.getAddress().getAddressid());
+			purchaseOrder.setCardID(checkout.getBilling().getCardid());
 			purchaseOrder.setOrderDate(date);
 			purchaseOrder.setStatus("DENIED");
 			// DENY the request and return the checkout View
@@ -96,8 +96,8 @@ public class OrderController {
 			// Confirm Order 
 			PO purchaseOrder = new PO();
 			// Add Information to Purchase Order
-			purchaseOrder.setAddressid(checkout.getAddress().getAddressid());
-			purchaseOrder.setCardid(checkout.getBilling().getCardid());
+			purchaseOrder.setAddressID(checkout.getAddress().getAddressid());
+			purchaseOrder.setCardID(checkout.getBilling().getCardid());
 			purchaseOrder.setOrderDate(date);
 			purchaseOrder.setStatus("PROCESSED");
 			// Store the PO
@@ -105,7 +105,7 @@ public class OrderController {
 			// For each item in cart, create a POItem tuple.
 			for (Map.Entry<String, Cart> cartItem : cart.entrySet()) {
 				POItem item = new POItem();
-				item.setItemId(purchaseOrder.getId());
+				item.setItemId(purchaseOrder.getPurchaseID());
 				item.setBid(cartItem.getValue().getBook().getBid());
 				item.setPrice(cartItem.getValue().getBook().getPrice());
 				item.setQuantity(cartItem.getValue().getQuantity());
@@ -131,8 +131,8 @@ public class OrderController {
 		List<PO> orders = orderService.getOrdersByBid(bid);
 		// Set the Address and Billing of each PO, to retrieve in view.
 		for (PO po : orders) {
-			po.setA(userService.findById(po.getAddressid()));
-			po.setB(userService.findByBillingId(po.getCardid()));
+			po.setshipTo(userService.findById(po.getAddressID()));
+			po.setbillTo(userService.findByBillingId(po.getCardID()));
 		}
 		mav.addObject("orders", orders);
 		if (orders.isEmpty()) {

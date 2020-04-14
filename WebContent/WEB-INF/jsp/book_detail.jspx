@@ -15,7 +15,7 @@
  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/books.js">;</script>
 </head>
 <body class="body">
-<div class="centerBooks">
+<div class="centerBookDetail">
 <h2 style="text-align:center">${book.title}</h2>
 
 
