@@ -12,6 +12,8 @@
 <title>Analytics</title>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
+ 	<c:url var="url2" value="/resources/css/report.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${url2}"/>
 </head>
 <body class="body">
 
