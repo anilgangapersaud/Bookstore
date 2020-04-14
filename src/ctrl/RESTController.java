@@ -8,10 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import domain.Address;
+import domain.Billing;
 import domain.Book;
 import domain.PO;
+import domain.POItem;
+import domain.User;
 import service.BookService;
 import service.OrderService;
+import service.UserService;
 
 /**
  * Handles REST Services, Exclusive for Partners.
@@ -23,21 +29,24 @@ public class RESTController {
 	@Autowired
 	BookService bookService;
 	
+	@Autowired 
+	UserService userService;
+	
 	@Autowired
 	OrderService orderService;
 	
 	/**
 	 * Returns JSON information on a Book, given a unique bid passed through the query string.
-	 * Checks if the session attribute 'role' is a Partner. This method is exclusive for partners.
+	 * This method is exclusive for partners.
 	 * @param session
 	 * @param bid
 	 * @author Anil
 	 * @return
 	 */
 	@RequestMapping("/rest/getProductInfo")
-	public Book getBooks(HttpSession session, @RequestParam("bid") String bid) {
-		String role = (String) session.getAttribute("role"); //Get the Role from the Session
-		if (role.equals("Partner")) {
+	public Book getBooks(HttpSession session, @RequestParam("bid") String bid, @RequestParam("username") String username, @RequestParam("password") String password) {
+		User u = userService.validateUser(username, password);
+		if (u.getRole().equals("Partner")) {
 			return bookService.findById(bid);
 		} else {
 			return null;
@@ -46,16 +55,27 @@ public class RESTController {
 	
 	/**
 	 * Returns JSON information of a List of Purchase Orders, given a unique bid pass throught the query string.
-	 * Checks if the session attribute 'role' is a Partner. This method is exclusive for partners.
+	 *  This method is exclusive for partners.
 	 * @param session
 	 * @param bid
 	 * @return
 	 */
 	@RequestMapping("/rest/getOrdersByPartNumber")
-	public List<PO> getOrders(HttpSession session, @RequestParam("bid") String bid) {
-		String role = (String) session.getAttribute("role");
-		if (role.equals("Partner")) {
-			return orderService.getOrdersByBid(bid);
+	public List<PO> getOrders(HttpSession session, @RequestParam("bid") String bid, @RequestParam("username") String username, @RequestParam("password") String password) {
+		User u = userService.validateUser(username, password);
+		if (u.getRole().equals("Partner")) {
+			List<PO> orders = orderService.getOrdersByBid(bid);
+			
+			for (PO order : orders) {
+				Address shipTo = userService.findById(order.getAddressID());
+				Billing billTo = userService.findByBillingId(order.getCardID());
+				order.setshipTo(shipTo);
+				order.setbillTo(billTo);
+				List<POItem> items = orderService.findPOItemByProperty("id", order.getPurchaseID());
+				order.setItems(items);
+			}
+			
+			return orders;
 		} else 
 			return null;
 		}

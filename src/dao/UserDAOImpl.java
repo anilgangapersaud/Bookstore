@@ -51,6 +51,12 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
 		return users.size() > 0 ? users.get(0) : null;
 	}
+	
+	public User validateUser(String username, String password) {
+		String sql = "SELECT * FROM USERS WHERE USERNAME = '" + username + "' AND PASSWORD='" + password + "'";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		return users.size() > 0 ? users.get(0) : null;
+	}
 }
 
 class UserMapper implements RowMapper<User> {
