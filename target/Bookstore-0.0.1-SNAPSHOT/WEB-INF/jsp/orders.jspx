@@ -18,8 +18,8 @@
 	<div class="loginContainer">
 	<fieldset>
 		<legend>Get Orders</legend>
-			<label for="book">Enter ISBN: </label>
-			<input type="text" name="bid"></input>
+			<label for="book">Enter BID: </label>
+			<input type="text" name="bid" placeholder="b001"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>
@@ -39,14 +39,14 @@
 				</tr>
 			<c:forEach var="element" items="${orders}">
 				<tr>
-					<td>${element.getId()}</td>
+					<td>${element.getPurchaseID()}</td>
 					<td>${element.getOrderDate()}</td>
 					<td>${element.getStatus()}</td>
-					<td>${element.getB().getCardholderName()}</td>
-					<td>${element.getA().getCountry()}</td>
-					<td>${element.getA().getProvince()}</td>
-					<td>${element.getA().getStreet()}</td>
-					<td>${element.getA().getPostalCode()}</td>
+					<td>${element.getbillTo().getCardholderName()}</td>
+					<td>${element.getshipTo().getCountry()}</td>
+					<td>${element.getshipTo().getProvince()}</td>
+					<td>${element.getshipTo().getStreet()}</td>
+					<td>${element.getshipTo().getPostalCode()}</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -24,15 +24,6 @@ h1 {
 	margin-top: 15px;
 }
 
-.navbar {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-
 li {
 	display: inline;
 	float: left;
@@ -55,14 +46,20 @@ li {
 	float: right;
 }
 
-.navbar > li a {
-	display: block;
+
+
+.registerbtn {
+	background-color: #89cff0;
 	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
 }
 
-li a:hover {
-	background-color:#111;
+.registerbtn:hover {
+	opacity:1;
 }
+
