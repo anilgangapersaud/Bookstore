@@ -1,6 +1,10 @@
 @charset "ISO-8859-1";
 
 
+a {
+    
+    text-decoration: none;
+}
 
 .grid-container {
   display: grid;

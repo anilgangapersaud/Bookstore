@@ -12,11 +12,13 @@
 <head>
 <c:url var="url" value="/resources/css/cart.css" />
 <link rel="stylesheet" type="text/css" href="${url}" />
+<c:url var="url2" value="/resources/css/forms.css" />
+<link rel="stylesheet" type="text/css" href="${url2}" />
 <meta charset="UTF-8"></meta>
 <title>Cart</title>
 
 </head>
-<body>
+<body class="body">
 
 	<c:if test="${empty cart}">
 		<header>
@@ -30,7 +32,7 @@
 	
 		</header>
 		<div class="grid-container">
-			<form action="/Bookstore/updateCart" method="POST">
+			<form action="updateCart" method="POST">
 				<div class="grid-item">
 					<table id="shoppingcart">
 						<tr>
@@ -52,7 +54,7 @@
 								<td><input type="number" step="1" min="1" name="quantity"
 									id="quantity" value="${bookItem.value.quantity}"></input></td>
 
-								<td><a href="/Bookstore/removeItem/${bookItem.key}">remove</a></td>
+								<td><a href="removeItem/${bookItem.key}">remove</a></td>
 							</tr>
 						</c:forEach>
 
@@ -70,7 +72,7 @@
 				</div>
 				<div class="grid-item">
 					<input class="button button1" type="submit" value="Update Cart" />
-					<button type="button" class="button button1" onclick="location.href='/Bookstore/checkout'">Payment</button>
+					<a href="checkout"><button type="button" class="button button1">Payment</button></a>
 					
 				</div>
 			</form>
