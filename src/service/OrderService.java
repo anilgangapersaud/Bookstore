@@ -20,5 +20,6 @@ public interface OrderService {
 	public List<POItem> findAllPOItems();
 	public List<POItem> findPOItemByProperty(String propName, Object propValue);
 	public List<PO> getOrdersByBid(String bid);
-	//public List<Book> getOrdersBymonth(String month, String year);
+	public List<POItem> getPOItemByDate(String month, String year);
+	
 }

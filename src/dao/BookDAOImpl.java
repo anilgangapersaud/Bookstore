@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,8 @@ public class BookDAOImpl extends BaseDAO implements BookDAO{
 		List<Book> books = getJdbcTemplate().query(sql, new BookMapper());
 		return books;
 	}
+	
+	
 
 	@Override
 	public List<Book> findByProperty(String propName, Object propValue) {
@@ -70,6 +73,8 @@ public class BookDAOImpl extends BaseDAO implements BookDAO{
 		List<Book> books = getJdbcTemplate().query(sql, new BookMapper(), propValue);
 		return books;
 	}
+	
+	
 
 	@Override
 	public List<Book> searchByTitle(String title) {
