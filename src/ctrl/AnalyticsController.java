@@ -47,7 +47,6 @@ public class AnalyticsController {
 			model.addAttribute("message", "No results found.");
 		}
 		model.addAttribute("bookReport", books);
-
 		if (session.getAttribute("role").equals("Admin") )
 			return "report"; // Verify the User is a Admin and return the reports page
 		else 
