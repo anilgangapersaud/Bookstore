@@ -86,9 +86,11 @@ public class OrderServiceImpl implements OrderService {
 		return podao.getOrdersByBid(bid);
 	}
 	
-	/*@Override
-	public List<PO> getOrdersBymonth(String month, String year){
-		
-	}*/
+	@Override
+	public List<POItem> getPOItemByDate(String month, String year){
+		return poItemDAO.findByOrderDate(month, year);
+	}
+	
+	
 
 }

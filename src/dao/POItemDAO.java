@@ -14,4 +14,6 @@ public interface POItemDAO {
 	public POItem findById(Integer itemid);
 	public List<POItem> findAll();
 	public List<POItem> findByProperty(String propName, Object propValue);
+	public List<POItem> findByOrderDate(String month, String year);
+	
 }

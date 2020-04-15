@@ -74,6 +74,13 @@ public class POItemDAOImpl extends BaseDAO implements POItemDAO {
 		List<POItem> POItems = getJdbcTemplate().query(sql, new POItemMapper(), propValue);
 		return POItems;
 	}
+	
+	@Override
+	public List<POItem> findByOrderDate(String month, String year){
+		String sql="SELECT * FROM POItem, PO WHERE POItem.id = PO.id and PO.orderdate like '"+year+"-"+month+"%'ORDER BY PO.orderdate, POItem.bid ";
+		List<POItem> POItems = getJdbcTemplate().query(sql, new POItemMapper());
+		return POItems;
+	}
 
 }
 class POItemMapper implements RowMapper<POItem> {
