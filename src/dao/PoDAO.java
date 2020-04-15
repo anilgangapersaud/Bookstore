@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.Address;
 import domain.PO;
+import domain.POItem;
 
 /**
  * An interface to create, update, delete, read, from the PO Table
@@ -19,4 +20,7 @@ public interface PoDAO {
 	public List<PO> findAll();
 	public List<PO> findByProperty(String propName, Object propValue);
 	public List<PO> getOrdersByBid(String bid);
+	;
+	
+	
 }
