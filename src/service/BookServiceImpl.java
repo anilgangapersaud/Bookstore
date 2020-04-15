@@ -76,6 +76,16 @@ public class BookServiceImpl implements BookService {
 	{
 		return ++quantity;
 	}
+
+	@Override
+	public List<Book> searchByTitle(String title) {
+		return bookdao.searchByTitle(title);
+	}
+
+	@Override
+	public List<Book> searchByAuthor(String author) {
+		return bookdao.searchByAuthor(author);
+	}
 	
 
 }

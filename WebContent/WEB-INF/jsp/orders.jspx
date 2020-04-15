@@ -18,8 +18,8 @@
 	<div class="loginContainer">
 	<fieldset>
 		<legend>Get Orders</legend>
-			<label for="book">Enter ISBN: </label>
-			<input type="text" name="bid"></input>
+			<label for="book">Enter BID: </label>
+			<input type="text" name="bid" placeholder="b001"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>
