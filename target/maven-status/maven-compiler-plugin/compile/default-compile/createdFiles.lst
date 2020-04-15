@@ -24,6 +24,7 @@ dao\AddressDAO.class
 dao\UserDAOImpl.class
 domain\PO.class
 service\UserServiceImpl.class
+ctrl\AnalyticsController.class
 dao\ReviewDAO.class
 validation\EqualPasswords.class
 dao\BookDAO.class
@@ -44,3 +45,4 @@ service\BookServiceImpl.class
 domain\User.class
 dao\AddressMapper.class
 ctrl\OrderController.class
+RestClients\RestClientTest.class

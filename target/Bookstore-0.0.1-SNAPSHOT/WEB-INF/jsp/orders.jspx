@@ -13,7 +13,7 @@
 <c:url var="url" value="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
-<body>
+<body class="body">
 <form method="GET" action="getOrdersByPartNumber">
 	<div class="loginContainer">
 	<fieldset>
@@ -24,27 +24,34 @@
 	</fieldset>
 	</div>
 </form>
-<c:if test="${orders != null}">
-<h2>Purchase Orders</h2>
-		<table border="2">
+<c:if test="${not empty orders}">
+<h2 align="center">Purchase Orders</h2>
+		<table align="center" border="2">
 				<tr>
 					<th>Order ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
+					<th>Date</th>
 					<th>Status</th>
-					<th>Address ID</th>
+					<th>Name</th>
+					<th>Country</th>
+					<th>Province</th>
+					<th>Address</th>
+					<th>Zip</th>
 				</tr>
 			<c:forEach var="element" items="${orders}">
 				<tr>
 					<td>${element.getId()}</td>
-					<td>${element.getFirstname()}</td>
-					<td>${element.getLastname()}</td>
+					<td>${element.getOrderDate()}</td>
 					<td>${element.getStatus()}</td>
-					<td>${element.getAddressid()}</td>
+					<td>${element.getB().getCardholderName()}</td>
+					<td>${element.getA().getCountry()}</td>
+					<td>${element.getA().getProvince()}</td>
+					<td>${element.getA().getStreet()}</td>
+					<td>${element.getA().getPostalCode()}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
+	<p align="center" style="font-style: italic; color: red;">${message}</p>
 </body>
 </html>
 </jsp:root>

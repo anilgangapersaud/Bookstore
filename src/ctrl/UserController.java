@@ -58,9 +58,11 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/report")
-	public String adminPage(HttpSession session) {
-		if (session.getAttribute("role").equals("Admin"))
+	public String adminPage(HttpSession session, Model model) {
+		if (session.getAttribute("role").equals("Admin")) {
+			model.addAttribute("reportStyle", "reportStyle");
 			return "report"; // Verify the User is a Admin and return the reports page
+		}
 		else 
 			return "404"; // Otherwise not authorized to view page.
 	}
@@ -73,7 +75,8 @@ public class UserController {
 	 * @return catalog view 
 	 */
 	@GetMapping("/catalog")
-	public String catalogPage(HttpSession session) {
+	public String catalogPage(HttpSession session, Model model) {
+		model.addAttribute("catalogStyle", "catalogStyle");
 		return "catalog";
 	}
 	
@@ -82,9 +85,11 @@ public class UserController {
 	 * @return Order Process Browser Component only for Partners
 	 */
 	@GetMapping("/orders")
-	public String orderPage(HttpSession session) {
-		if (session.getAttribute("role").equals("Partner"))
+	public String orderPage(HttpSession session, Model model) {
+		if (session.getAttribute("role").equals("Partner")) {
+			model.addAttribute("orderStyle", "orderStyle");
 			return "orders";
+		}
 		else 
 			return "404";
 	}
@@ -99,15 +104,19 @@ public class UserController {
 		if (session.getAttribute("role") == null) {
 			// Visitor View
 			model.addAttribute("books", bookService.findAll());
+			model.addAttribute("bookStyle", "bookStyle");
 			return "books";
 		}  else if (session.getAttribute("role").equals("Partner")) {
 			// Partner View
+			model.addAttribute("catalogStyle", "catalogStyle");
 			return "catalog";
 		} else if (session.getAttribute("role").equals("Admin")) {
 			// Admin View
+			model.addAttribute("reportStyle", "reportStyle");
 			return "report";
 		} else {
 			model.addAttribute("books", bookService.findAll());
+			model.addAttribute("bookStyle", "bookStyle");
 			return "books";
 		}
 	}
@@ -122,6 +131,7 @@ public class UserController {
 	public String loginPage(Model model) {
 		Login login = new Login();
 		model.addAttribute("login", login);
+		model.addAttribute("loginStyle", "loginStyle");
 		return "login";
 	}
 	
@@ -143,12 +153,14 @@ public class UserController {
 			// Redirect to Login Page.
 			Login login = new Login();
 			page = "login";
+			model.addAttribute("loginStyle", "loginStyle");
 			model.addAttribute("login", login);
 		} else {
 			//Verify the User is a Customer
 			if (session.getAttribute("role").equals("Customer")) {
 				Checkout checkout = new Checkout();
 				model.addAttribute("checkout", checkout);
+				model.addAttribute("checkoutStyle", "checkoutStyle");
 				model.addAttribute("provinces", provinces);	// List of Provinces for <form:select>
 				model.addAttribute("cardTypes", cardTypes); // List of Card Types for <form:select>
 				model.addAttribute("countries", countries); // List of Countries for <form:select>
@@ -191,10 +203,12 @@ public class UserController {
 			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
 				addUserInSession(loggedInUser, session);
 				page = "report";
+				model.addAttribute("reportStyle", "reportStyle");
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
 				addUserInSession(loggedInUser, session);
 				page = "catalog";
+				model.addAttribute("catalogStyle", "catalogStyle");
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
 				// User is a Customer, redirect to homepage.
@@ -214,6 +228,7 @@ public class UserController {
 				model.addAttribute("countries", countries);
 				session.setAttribute("totalPrice", df.format(totalPrice));
 				page = "checkout";
+				model.addAttribute("checkoutStyle", "checkoutStyle");
 			}
 			mav = new ModelAndView(page, "model", model);
 			return mav;
@@ -221,6 +236,7 @@ public class UserController {
 			//LOGIN FAILED
 			mav = new ModelAndView("login"); // Return the login page and indicate the credentials were incorrect.
 			mav.addObject("message", "Username or Password is wrong!!");
+			model.addAttribute("loginStyle", "loginStyle");
 			return mav;
 		}
 	}
@@ -239,6 +255,7 @@ public class UserController {
 		model.addAttribute("registration", registration);
 		model.addAttribute("roles", roles);
 		model.addAttribute("countries", countries);
+		model.addAttribute("regStyle", "regStyle");
 		return "register";
 	}
 	
@@ -261,6 +278,7 @@ public class UserController {
 			model.addAttribute("cardTypes", cardTypes);
 			model.addAttribute("roles", roles);
 			model.addAttribute("countries", countries);
+			model.addAttribute("regStyle", "regStyle");
 			mav.addObject("message", "Information entered is invalid");
 			return mav;
 		}
@@ -274,6 +292,7 @@ public class UserController {
 			model.addAttribute("cardTypes", cardTypes);
 			model.addAttribute("roles", roles);
 			model.addAttribute("countries", countries);
+			model.addAttribute("regStyle", "regStyle");
 			mav.addObject("message", "Username already exists");
 			return mav;
 		}
@@ -286,6 +305,7 @@ public class UserController {
 		registration.getBilling().setUserid(userId);
 		userService.createBilling(registration.getBilling()); // Store the User's Billing info in the Billing table.
 		Login login = new Login(); 
+		model.addAttribute("loginStyle", "loginStyle");
 		mav.addObject(login);
 		mav.addObject("reg", "You have registered successfully, login with your credentials.");
 		return mav;
@@ -316,6 +336,7 @@ public class UserController {
 		model.addAttribute("cardTypes", cardTypes);
 		model.addAttribute("roles", roles);
 		model.addAttribute("countries", countries);
+		model.addAttribute("checkoutStyle", "checkoutStyle");
 		return "checkout";
 	}
 	
