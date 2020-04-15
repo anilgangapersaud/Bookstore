@@ -43,7 +43,7 @@
   	</td>
   </tr>
    </table>
-  	<c:if test="${sessionScope.role != 'Partner'}">
+  	<c:if test="${sessionScope.role != 'Partner' and sessionScope.role != 'Admin'}">
   		<p><form id="addBook" action="addToCart" method="post">
     
      		<button id="buttonCart" name="buttonCart" value="${book.bid}">Add to Cart</button>

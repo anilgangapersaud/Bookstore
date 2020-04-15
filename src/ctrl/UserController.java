@@ -67,19 +67,6 @@ public class UserController {
 			return "404"; // Otherwise not authorized to view page.
 	}
 	
-	
-	/**
-	 * Gets a request to redirect to the catalog page. DB search
-	 * Product Catalog Browser Component
-	 * @author Anil	
-	 * @return catalog view 
-	 */
-	@GetMapping("/catalog")
-	public String catalogPage(HttpSession session, Model model) {
-		model.addAttribute("catalogStyle", "catalogStyle");
-		return "catalog";
-	}
-	
 	/**
 	 * @author Anil
 	 * @return Order Process Browser Component only for Partners
@@ -108,8 +95,8 @@ public class UserController {
 			return "books";
 		}  else if (session.getAttribute("role").equals("Partner")) {
 			// Partner View
-			model.addAttribute("catalogStyle", "catalogStyle");
-			return "catalog";
+			model.addAttribute("orderStyle", "orderStyle");
+			return "orders";
 		} else if (session.getAttribute("role").equals("Admin")) {
 			// Admin View
 			model.addAttribute("reportStyle", "reportStyle");
@@ -207,8 +194,8 @@ public class UserController {
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_PARTNER)) {
 				addUserInSession(loggedInUser, session);
-				page = "catalog";
-				model.addAttribute("catalogStyle", "catalogStyle");
+				page = "orders";
+				model.addAttribute("orderStyle", "orderStyle");
 			}
 			if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
 				// User is a Customer, redirect to homepage.
