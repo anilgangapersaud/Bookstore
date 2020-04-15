@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Book;
 import domain.Cart;
+import domain.PO;
 import domain.POItem;
 import service.BookService;
 import service.OrderService;
@@ -30,27 +31,31 @@ public class AnalyticsController {
 	@Autowired
 	OrderService orderService;
 	
-		
+	/**
+	 * Generate report by month and year.
+	 * @author Tram
+	 * @param month
+	 * @param year
+	 * @param session
+	 * @return
+	 */	
 	@GetMapping("/monthlyReport")
 	public String monthlyReport(@RequestParam(name="month", required=true)String month, @RequestParam(name="year", required=true)String year, Model model, HttpSession session) {
-		Map<Book, Integer> books = new HashMap<Book, Integer>();
 		List<POItem> orderedItems = orderService.getPOItemByDate(month, year);
 		for (POItem item: orderedItems) {
-			books.put(bookService.findById(item.getBid()), item.getQuantity());
-			
+			item.setBook(bookService.findById(item.getBid()));
+			item.setOrderDate(orderService.findOrderById(item.getItemId()).getOrderDate());
 		}
-		/*for (Map.Entry<Book, Integer> item : books.entrySet()) {
-			item.getValue()
-		}*/
-		//get book information
-		if (books.isEmpty()) {
+
+		if (orderedItems.isEmpty()) {
 			model.addAttribute("message", "No results found.");
 		}
-		model.addAttribute("bookReport", books);
+		model.addAttribute("orderedItems", orderedItems);
+	
 		if (session.getAttribute("role").equals("Admin") )
-			return "report"; // Verify the User is a Admin and return the reports page
+			return "report";
 		else 
-			return "404"; // Otherwise not authorized to view page.
+			return "404"; 
 		
 	}
 	

@@ -12,3 +12,7 @@ table {
 th, td {
   padding: 15px;
 }
+
+th{
+	font-weight: bold;
+}

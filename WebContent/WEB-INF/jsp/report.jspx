@@ -49,10 +49,12 @@
 	</div>
 	</form>
 
-	<c:if test="${not empty bookReport}">
+	<c:if test="${not empty orderedItems}">
 		<!-- <h2 align="center" id="reportHeader"></h2> -->
 		<table align="center" border="2">
 				<tr>
+					<th>Order Date</th>
+					<th>Order ID</th>
 					<th>Bid</th>
 					<th>Title</th>
 					<th>Price</th>
@@ -60,14 +62,16 @@
 					<th>Author</th>
 					<th>Quantity</th>
 				</tr>
-			<c:forEach var="item" items="${bookReport}">
+			<c:forEach var="item" items="${orderedItems}">
 				<tr>
-					<td>${item.getKey().getBid()}</td>
-					<td>${item.getKey().getTitle()}</td>
-					<td>$${item.getKey().getPrice()}</td>
-					<td>${item.getKey().getCategory()}</td>
-					<td>${item.getKey().getAuthor()}</td>
-					<td>${item.getValue()}</td>
+					<td>${item.getOrderDate()}</td>
+					<td>${item.getItemId()}</td>
+					<td>${item.getBook().getBid()}</td>
+					<td>${item.getBook().getTitle()}</td>
+					<td>$${item.getBook().getPrice()}</td>
+					<td>${item.getBook().getCategory()}</td>
+					<td>${item.getBook().getAuthor()}</td>
+					<td>${item.getQuantity()}</td>
 				</tr>
 			</c:forEach>
 		</table>
