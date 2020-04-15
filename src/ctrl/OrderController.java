@@ -64,6 +64,7 @@ public class OrderController {
 			mav = new ModelAndView("checkout");
 			addCheckout(mav);
 			mav.addObject("message", "Information entered is invalid");
+			model.addAttribute("checkoutStyle", "checkoutStyle");
 			return mav;
 		}
 		if (cart == null) {
@@ -71,6 +72,7 @@ public class OrderController {
 			mav = new ModelAndView("checkout");
 			addCheckout(mav);
 			mav.addObject("message", "Your cart is empty!");
+			model.addAttribute("checkoutStyle", "checkoutStyle");
 			return mav;
 		}
 	
@@ -90,6 +92,7 @@ public class OrderController {
 			mav = new ModelAndView("checkout");
 			addCheckout(mav);
 			mav.addObject("message", "Credit Card Authorization Failed.");
+			model.addAttribute("checkoutStyle", "checkoutStyle");
 			// Store the PO
 			orderService.createOrder(purchaseOrder);
 		} else {
@@ -128,7 +131,7 @@ public class OrderController {
 	 * @return
 	 */
 	@GetMapping("/getOrdersByPartNumber")
-	public ModelAndView orderProcess(@RequestParam("bid")String bid) {
+	public ModelAndView orderProcess(@RequestParam("bid")String bid, Model model) {
 		ModelAndView mav = new ModelAndView("orders");
 		List<PO> orders = orderService.getOrdersByBid(bid);
 		// Set the Address and Billing of each PO, to retrieve in view.
@@ -141,6 +144,7 @@ public class OrderController {
 			// No orders linked to this bid
 			mav.addObject("message", "No results found.");
 		}
+		model.addAttribute("orderStyle", "orderStyle");
 		return mav;
 	}
 	

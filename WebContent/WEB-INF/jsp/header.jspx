@@ -11,22 +11,23 @@
  <c:url var="url" value="/resources/css/header.css"/>
  <link rel="stylesheet" type="text/css" href="${url}"/>
  <c:url var="logo" value="/resources/images/logo.png.png"/>
- <c:url var="cart" value="/resources/images/shoppingcart.png"/>
+ <c:url var="nav" value="/resources/css/nav.css"/>
+ <link rel="stylesheet" type="text/css" href="${nav}"/>
  <meta charset="UTF-8"></meta>
 </head>
 <body>
-	<div class="head">
+	<div id="head">
 	<c:if test="${sessionScope.userId eq null}">
 	<!--  User is a Visitor -->
 	<a href="index"><img src="${logo}" class="center"></img></a>
 	<nav>
     	<ul class="navbar" align="left">
-       		<li> <a href="books"> Books </a> </li>
-      	    <li><a href="checkout">Checkout</a></li>
-       		<li><a href="catalog">Search Catalog</a></li>
-       		<li><a href="cart">Cart</a></li>
-       		<li class="regButtons"><a href="register">Register</a></li>
-       		<li class="regButtons"><a href="login">Login</a></li>
+       		<li class="link "><a class="option" href="books">Books</a><div class="${bookStyle}"></div> </li>
+      	    <li class="link "><a class="option" href="checkout">Checkout</a><div class="${checkoutStyle}"></div></li>
+       		<li class="link "><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
+       		<li class="link "><a class="option" href="cart">Cart</a><div class="${cartStyle}"></div></li>
+       		<li class="regButtons "><a class="option" href="register">Register</a><div class="${regStyle}"></div></li>
+       		<li class="regButtons "><a class="option" href="login">Login</a><div class="${loginStyle}"></div></li>
      	</ul>
      </nav>
 	</c:if>
@@ -36,10 +37,10 @@
 	<a href="index"><img src="${logo}" class="center"></img></a>
 	<nav>
     	<ul class="navbar" align="left">
-    		<li> <a href="books"> Books </a> </li>
-       		<li class="regButtons"><a href="logout">Logout</a></li>
-       		<li><a href="report">Reports</a></li>
-       		<li><a href="catalog">Search Catalog</a></li>
+    		<li class="link"><a class="option" href="books"> Books </a><div class="${bookStyle}"></div></li>
+       		<li class="regButtons"><a class="option" href="logout">Logout</a></li>
+       		<li class="link"><a class="option" href="report">Reports</a><div class="${reportStyle}"></div></li>
+       		<li class="link"><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
      </nav>
@@ -49,12 +50,12 @@
 	<a href="index"><img src="${logo}" class="center"></img></a>
 	<nav>
    	   <ul class="navbar" align="left">
-       		<li> <a href="books"> Books </a> </li>
-       		<li><a href="checkout">Checkout</a></li>
-       		<li><a href="catalog">Search Catalog</a></li>
-      		<li><a href="cart">Cart</a></li>
+       		<li class="link"><a class="option" href="books"> Books </a><div class="${bookStyle}"></div> </li>
+       		<li class="link"><a class="option" href="checkout">Checkout </a><div class="${checkoutStyle}"></div></li>
+       		<li class="link"><a class="option" href="catalog">Search Catalog </a><div class="${catalogStyle}"></div></li>
+      		<li class="link"><a class="option" href="cart">Cart </a><div class="${cartStyle}"></div></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
-      		<li class="regButtons"><a href="logout">Logout</a></li>
+      		<li class="regButtons"><a class="option" href="logout">Logout</a></li>
      	</ul>
      </nav>
      </c:if>
@@ -64,15 +65,14 @@
 	<a href="index"><img src="${logo}" class="center"></img></a>
 	<nav>
     	<ul class="navbar" align="left">
-       		<li><a href="catalog">Search Catalog</a></li>
-      		<li><a href="orders">Orders</a></li>
-       		<li class="regButtons"><a href="logout">Logout</a></li>
+       		<li class="link"><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
+      		<li class="link"><a class="option" href="orders">Orders</a><div class="${orderStyle}"></div></li>
+       		<li class="regButtons "><a class="option" href="logout">Logout</a></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
      </nav>
 	</c:if>
 	</div>
-	
 	
 	<c:if test="${param.act eq 'lo'}">
 	<!--  User is logged out -->
