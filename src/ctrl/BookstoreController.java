@@ -56,6 +56,7 @@ public class BookstoreController {
 	public String showBooks(Model model)
 	{
 		model.addAttribute("books", bookService.findAll());
+		model.addAttribute("bookStyle", "bookStyle");
 		return "books";
 	}
 
@@ -72,6 +73,7 @@ public class BookstoreController {
 	  n,Model model) 
 	  { 
 		  model.addAttribute("books",bookService.findByProperty("category",n )); 
+		  model.addAttribute("bookStyle", "bookStyle");
 		  return "books";
 	  }
 	  
@@ -90,6 +92,7 @@ public class BookstoreController {
 		  List<Book> bookList= bookService.findByProperty("bid",bid );
 		  List<Review> reviewList = bookService.findAllReviews(bid);
 		  addInformationBook(bookList.get(0),model,reviewList);
+		  model.addAttribute("bookStyle", "bookStyle");
 		  return "book_detail";
 	  }	 
 	  /** 
@@ -114,6 +117,7 @@ public class BookstoreController {
 		  List<Book> bookList= bookService.findByProperty("bid",r.getBid() );
 		  List<Review> reviewList = bookService.findAllReviews(bid);
 		  addInformationBook(bookList.get(0),model,reviewList);
+		  model.addAttribute("bookStyle", "bookStyle");
 		  return "book_detail";
 	  }
 	 
@@ -170,6 +174,7 @@ public class BookstoreController {
 		  // Add Cart to session ( new or updates the old one).
 		  session.setAttribute("cart", cart);
 		  model.addAttribute("msg", b.getTitle() + " added to cart.");
+		  model.addAttribute("bookStyle", "bookStyle");
 		  return "book_detail";
 	  }
 	

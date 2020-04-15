@@ -13,7 +13,7 @@
 <c:url var="url" value="/resources/css/forms.css"/>
 <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
-<body>
+<body class="body">
 <form method="GET" action="findId">
 	<div class="loginContainer">
 	<fieldset>

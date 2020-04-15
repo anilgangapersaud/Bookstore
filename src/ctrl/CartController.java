@@ -47,7 +47,7 @@ public class CartController {
 	 */
 	@SuppressWarnings("unchecked")
 	@GetMapping("/cart")
-	public String displayCart(HttpSession session) {
+	public String displayCart(HttpSession session, Model model) {
 		double totalPrice = 0.0;
 		double singlePrice = 0.0;
 
@@ -61,6 +61,7 @@ public class CartController {
 			session.setAttribute("totalPrice", df.format(totalPrice));
 		}
 		session.setAttribute("cart", cart);
+		model.addAttribute("cartStyle", "cartStyle");
 		return "cart";
 	}
 
@@ -73,7 +74,7 @@ public class CartController {
 	 */
 	@SuppressWarnings("unchecked")
 	@PostMapping("/updateCart")
-	public String updateCart(HttpServletRequest request, HttpSession session) {
+	public String updateCart(HttpServletRequest request, HttpSession session, Model model) {
 		cart = (Map<String, Cart>) session.getAttribute("cart");
 		String[] quantity = request.getParameterValues("quantity");
 		int i = 0;
@@ -82,6 +83,7 @@ public class CartController {
 			i++;
 		}
 		session.setAttribute("cart", cart);
+		model.addAttribute("cartStyle", "cartStyle");
 		return "redirect:/cart";
 	}
 
@@ -94,11 +96,12 @@ public class CartController {
 	 */
 	@SuppressWarnings("unchecked")
 	@GetMapping("removeItem/{bid}")
-	public String removeItem(@PathVariable(value = "bid") String bid, HttpSession session) {
+	public String removeItem(@PathVariable(value = "bid") String bid, HttpSession session, Model model) {
 		cart = (Map<String, Cart>) session.getAttribute("cart");
 		String bookId = isExisting(bid, session);
 		cart.remove(bookId);
 		session.setAttribute("cart", cart);
+		model.addAttribute("cartStyle", "cartStyle");
 		return "redirect:/cart";
 	}
 
