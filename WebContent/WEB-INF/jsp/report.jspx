@@ -14,9 +14,65 @@
  	<link rel="stylesheet" type="text/css" href="${url}"/>
  	<c:url var="url2" value="/resources/css/report.css"/>
  	<link rel="stylesheet" type="text/css" href="${url2}"/>
+ 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/report.js">;</script>
 </head>
 <body class="body">
+	<form id="bookReport" action="monthlyReport" method="get">
+	<div class="loginContainer">
+	<fieldset>
+		<legend>Get Monthly Report</legend>
+		<LABEL for="month">Select month:</LABEL>
+		<select width="10" name="month" id="month" >
+			<option value="01">January</option>
+			<option value="02">February</option>
+			<option value="03">March</option>
+			<option value="04">April</option>
+			<option value="05">May</option>
+			<option value="06">June</option>
+			<option value="07">July</option>
+			<option value="08">August</option>
+			<option value="09">September</option>
+			<option value="10">October</option>
+			<option value="11">November</option>
+			<option value="12">December</option>
+		</select>
+		<LABEL for="year" >Select year:</LABEL>
+		<select width="10" name="year" id="year">
+			<option value="2020">2020</option>
+			<option value="2019">2019</option>
+			<option value="2018">2018</option>
+			<option value="2017">2017</option>
+			<option value="2016">2016</option>
+		</select>
+		<input class="registerbtn" type="submit" onclick="myFunction()"></input>
+		</fieldset>
+	</div>
+	</form>
 
+	<c:if test="${not empty bookReport}">
+		<!-- <h2 align="center" id="reportHeader"></h2> -->
+		<table align="center" border="2">
+				<tr>
+					<th>Bid</th>
+					<th>Title</th>
+					<th>Price</th>
+					<th>Category</th>
+					<th>Author</th>
+					<th>Quantity</th>
+				</tr>
+			<c:forEach var="item" items="${bookReport}">
+				<tr>
+					<td>${item.getKey().getBid()}</td>
+					<td>${item.getKey().getTitle()}</td>
+					<td>$${item.getKey().getPrice()}</td>
+					<td>${item.getKey().getCategory()}</td>
+					<td>${item.getKey().getAuthor()}</td>
+					<td>${item.getValue()}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
+	<p align="center" style="font-style: italic; color: red;">${message}</p>
 </body>
 </html>
 </jsp:root>
