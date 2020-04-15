@@ -4,8 +4,10 @@ public class POItem {
 
 	private Integer itemId;
 	private String bid;
+	private Book book;
 	private double price;
 	private Integer quantity;
+	private String orderDate;
 	
 
 
@@ -37,5 +39,33 @@ public class POItem {
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	/**
+	 * @return the orderDate
+	 */
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	/**
+	 * @param orderDate the orderDate to set
+	 */
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	/**
+	 * @return the book
+	 */
+	public Book getBook() {
+		return book;
+	}
+
+	/**
+	 * @param book the book to set
+	 */
+	public void setBook(Book book) {
+		this.book = book;
 	}
 }
