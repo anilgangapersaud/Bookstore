@@ -12,7 +12,7 @@
 	<title>Checkout</title>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
- 	<c:url var="url1" value="/resources/css/cart.css" />
+ 	<c:url var="url1" value="/resources/css/report.css" />
 <link rel="stylesheet" type="text/css" href="${url1}" />
 </head>
 <body class="body">
@@ -167,17 +167,23 @@
 		</c:if>
 		<div class="orderSummary">
 			<h2 align="center"> Order Summary</h2>
+			
 		<c:if test="${empty cart}">
 			<header>
+			<br/>
+			<br/>
 				<h1 align="center">Your shopping cart is empty</h1>
 			</header>
 		</c:if>
 		<c:if test="${ not empty cart}">
+		<br/>
+				<br/>
 		<div class="grid-container">
 			<form action="/Bookstore/updateCart" method="POST">
 				<div class="grid-item">
 					<table id="shoppingcart">
 						<tr>
+							<th>Book</th>
 							<th>Title</th>
 							<th>Author</th>
 							<th>Category</th>
@@ -188,12 +194,13 @@
 
 						<c:forEach var="bookItem" items="${cart}">
 							<tr>
+								<td><img src="${pageContext.request.contextPath}/resources/images/${bookItem.value.book.bid}.jpg" alt="no image" height="80" width="50"> </img></td>
 								<td>${bookItem.value.book.title}</td>
 								<td>${bookItem.value.book.author}</td>
 								<td>${bookItem.value.book.category}</td>
 								<td id="item1">$${bookItem.value.book.price}</td>
 								<td>${bookItem.value.quantity}</td>
-							</tr>
+							</tr> 
 						</c:forEach>
 
 						<tr>
@@ -201,6 +208,7 @@
 							<td></td>
 							<td><STRONG>Total</STRONG></td>
 							<td><strong>$${totalPrice}</strong></td>
+							<td></td>
 							<td></td>
 						</tr>
 

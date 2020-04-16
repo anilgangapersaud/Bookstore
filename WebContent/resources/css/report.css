@@ -16,3 +16,8 @@ th, td {
 th{
 	font-weight: bold;
 }
+
+.contain {
+	margin: auto;
+	width: 50%;
+}
