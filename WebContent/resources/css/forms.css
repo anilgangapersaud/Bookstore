@@ -77,18 +77,27 @@ th{
 }
 
 
-input[type=text], input[type=password], select {
+input[type=text], input[type=password], select, textarea {
 	width: 100%;
-	padding: 15px;
-	margin:auto;
 	display: inline-block;
-	border: none;
 	background: #f1f1f1;
+	-webkit-transition: all 0.30s ease-in-out;
+	-mod-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	padding: 15px;
+	margin: 5px 1px 3px 0px;
+	border:none;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
 	background-color: #ddd;
 	outline: none;
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	padding: 15px;
+	margin: 5px 1px 3px 0px;
+	border: none;
 }
 
 a {

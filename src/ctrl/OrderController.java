@@ -115,7 +115,8 @@ public class OrderController {
 				orderService.createPOItem(item);	
 			}
 				mav = new ModelAndView("success");
-				mav.addObject("msg", "Order Successfully Completed. Thanks for shopping with Livraria!");
+				mav.addObject("msg", "Order #" + purchaseOrder.getPurchaseID() +" Successfully Processed. Thanks for shopping with Livraria!");
+				
 				// Remove items from cart
 				cart.clear();
 				session.setAttribute("cart", cart);
