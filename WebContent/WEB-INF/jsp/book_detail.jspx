@@ -23,7 +23,7 @@
   <table>
   <tr>
   	<td>
-  		<img src="${pageContext.request.contextPath}/resources/images/Book.png" alt="no image" style="width:100%"> </img>
+  		<img src="${pageContext.request.contextPath}/resources/images/${book.bid}.jpg" alt="no image"> </img>
   	</td>
   	<td id="centerInfoCard">
   		<h2>Author: <br/> 
