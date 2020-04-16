@@ -233,7 +233,7 @@ input[type=text] {
 }
 
 #submitReview:hover {
-  background-color: white;
+  background-color: black;
 }
 
 #review {
