@@ -167,12 +167,17 @@
 		</c:if>
 		<div class="orderSummary">
 			<h2 align="center"> Order Summary</h2>
+			
 		<c:if test="${empty cart}">
 			<header>
+			<br/>
+			<br/>
 				<h1 align="center">Your shopping cart is empty</h1>
 			</header>
 		</c:if>
 		<c:if test="${ not empty cart}">
+		<br/>
+				<br/>
 		<div class="grid-container">
 			<form action="/Bookstore/updateCart" method="POST">
 				<div class="grid-item">
