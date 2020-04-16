@@ -10,9 +10,11 @@
 <jsp:include page="header.jspx"/>
 <head>
 <title>Book Information</title>
-<c:url var="url" value="/resources/css/books.css"/>
- <link rel="stylesheet" type="text/css" href="${url}"/>
- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/books.js">;</script>
+	<c:url var="url" value="/resources/css/books.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${url}"/>
+ 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/books.js">;</script>
+ 	<c:url var="forms" value="/resources/css/forms.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${forms}"/>
 </head>
 <body class="body">
 <div class="centerBookDetail">
@@ -39,7 +41,7 @@
   		</h2>
   		<p class="price">$${book.price}</p>
   		<p>${book.category}</p>
-  		<p> Rating:${rating} </p>
+  		<p> Rating: ${rating} </p>
   	</td>
   </tr>
    </table>
@@ -60,6 +62,7 @@
 	Show Reviews</button> 
 </div>
 	<br/>
+	<div class="addReview">
 	<form:form modelAttribute="reviewModel" action="addReview" method="POST" style="display:none" id="addReview"
 	onsubmit="return validate();">
 	<table align="center">
@@ -101,18 +104,18 @@
             </tr>
             <tr>
             		<td>
-            			<form:button value="${book.bid}" name="bookId" id="submitReview"> Submit </form:button>
+            			<form:button value="${book.bid}" name="bookId" class="registerbtn"> Submit </form:button>
             		</td>
             </tr>
         </table>
-	
 	</form:form>
+	</div>
 	
 	
 	 <div id="reviewList" style="display:none;"> 
 	 
 	 <c:forEach var="r" items="${Reviews}"> 
-  			<div class="container">
+  			<div class="container1">
   	
   			<p><span>
   				<c:choose>

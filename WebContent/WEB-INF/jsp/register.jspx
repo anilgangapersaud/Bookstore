@@ -20,85 +20,118 @@
 			<div class="loginContainer">
 					<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
 			
-					<h2 align="left">Contact Information</h2>
+					<h2 align="center">Contact Information</h2>
+					<br/>
 					<form:label for="username" path="registrationUser.username"><b>Username     </b></form:label>
 					<form:errors path="registrationUser.username" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input  path="registrationUser.username" placeholder="Enter Username" name="username" id="username"/> 
+					<br/>
 					<br/>
 					<form:label for="password" path="registrationUser.password"><b>Password     </b></form:label>
 					<form:errors  path="registrationUser.password" style="font-style: italic; color: red;"/>
 					<form:errors  path="registrationUser" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:password path="registrationUser.password" placeholder="Enter Password" name="password" id="password"/>
+					<br/>
 					<br/>
 					<form:label path="registrationUser.confirmPassword"><b>Confirm Password     </b></form:label>
 					<form:errors  path="confirmPassword" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:password path="registrationUser.confirmPassword" placeholder="Re-Enter Password" name="confirmPassword" id="confirmPassword"/>
+					<br/>
 					<br/>
 					<form:label path="registrationUser.firstname"><b>First Name     </b></form:label>
 					<form:errors path="registrationUser.firstname" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="registrationUser.firstname" placeholder="Enter first name" name="firstname" id="firstname"/>
+					<br/>
 					<br/>
 					<form:label path="registrationUser.lastname"><b>Last Name     </b></form:label>
 					<form:errors path="registrationUser.lastname" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="registrationUser.lastname" placeholder="Enter last name" name="lastname" id="lastname"/>
+					<br/>
 					<br/>
 					<form:label path="registrationUser.email"><b>Email     </b></form:label>
 					<form:errors path="registrationUser.email" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="registrationUser.email" placeholder="Enter email address" name="email" id="email"/>
+					<br/>
 					<br/>
 					<form:label path="registrationUser.role"><b>Role      </b></form:label> 
 					<br/>
+					<br/>
 					<form:select path="registrationUser.role" items="${roles}" name="role" id="role"/>
-			<h2 align="left">Shipping Address</h2>
+					<br/>
+					<br/>
+			<h2 align="center">Shipping Address</h2>
+					<br/>
 				 	<form:label path="address.street"><b>Street</b></form:label>
+				 	<br/>
 				 	<br/>
 					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
 					<br/>
+					<br/>
 					<form:label path="address.country"><b>Country</b></form:label>
+					<br/>
 					<br/>
 					<form:select path="address.country" items="${countries}" name="country" id="country"/>
 					<br/>
+					<br/>
 					<form:label path="address.province"><b>Province</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="address.province" items="${provinces}" name="province" id="province"/>
+					<br/>
 					<br/>
 					<form:label path="address.postalCode"><b>Postal Code    </b></form:label>
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
-			<h2 align="left">Billing Information</h2>
+					<br/>
+					<br/>
+			<h2 align="center">Billing Information</h2>
+					<br/>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
+					<br/>
 					<br/>
 					<form:label path="billing.cardholderName"><b>Cardholder Name(as shown on card)      </b></form:label> 
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
 					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
+					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
-					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/><br/>
+					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
+					<br/>
 					<br/>
 					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
-					<br/>
-		
-		
 					<form:button id="register" name="register" class="registerbtn">Register</form:button>
 					</form:form>
 		</div>

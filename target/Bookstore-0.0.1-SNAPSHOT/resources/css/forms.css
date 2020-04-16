@@ -1,5 +1,23 @@
 * {box-sizing: border-box;}
 
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+th{
+	font-weight: bold;
+}
+
 .orderSummary {
 	overflow:hidden;
 	padding: 16px;
@@ -47,6 +65,8 @@
 	margin:auto;
 	
 }
+
+
 
 .signin {
 	background-color: #f1f1f1;

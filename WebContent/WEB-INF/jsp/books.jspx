@@ -14,8 +14,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
  <title>Livraria</title>
- <c:url var="url" value="/resources/css/books.css"/>
- <link rel="stylesheet" type="text/css" href="${url}"/>
+ <c:url var="booksCSS" value="/resources/css/books.css"/>
+ <link rel="stylesheet" type="text/css" href="${booksCSS}"/>
+ <c:url var="formsCSS" value="/resources/css/forms.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${formsCSS}"/>
 </head>
 <body class="body">
      <br/>

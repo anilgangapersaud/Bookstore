@@ -48,9 +48,11 @@
 		</fieldset>
 	</div>
 	</form>
-
+	<c:if test="${not empty month}">
+	<p style="font-size:160%; font-family:verdana; text-align:center;">Sold Books Report for ${month} - ${year}</p>
+	</c:if>
 	<c:if test="${not empty orderedItems}">
-		<!-- <h2 align="center" id="reportHeader"></h2> -->
+		
 		<table align="center" border="2">
 				<tr>
 					<th>Order Date</th>
