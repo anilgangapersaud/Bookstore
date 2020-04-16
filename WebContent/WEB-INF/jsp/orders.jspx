@@ -26,6 +26,7 @@
 	</fieldset>
 	</div>
 </form>
+<div class="contain">
 <c:if test="${not empty orders}">
 <h2 align="center">Purchase Orders</h2>
 		<table align="center" border="2">
@@ -53,6 +54,7 @@
 			</c:forEach>
 		</table>
 	</c:if>
+</div>
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
 </body>
 </html>
