@@ -150,12 +150,21 @@ div.desc {
   font-family: arial;
   overflow:auto;
 }
+.card table{
+	 width: 100%;
+    border-collapse:collapse;
+}
+
+.card td{
+    width: 50%;
+}
 
 
 .card img
 {
-  max-width:auto;
-  max-height:auto;
+  max-width:181px;
+  max-height:281px;
+  padding-top: 16px;
 }
 
 .price {
@@ -233,7 +242,7 @@ input[type=text] {
 }
 
 #submitReview:hover {
-  background-color: white;
+  background-color: black;
 }
 
 #review {

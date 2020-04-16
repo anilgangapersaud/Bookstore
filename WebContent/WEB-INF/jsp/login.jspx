@@ -10,23 +10,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Login</title>
-	<c:url var="url" value="/resources/css/forms.css"/>
- 	<link rel="stylesheet" type="text/css" href="${url}"/>
+	<c:url var="forms" value="/resources/css/forms.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${forms}"/>
+ 	<c:url var="formsJS" value="/resources/js/forms.js"/>
+ 	<script type="text/javascript" src="${formsJS}">;</script>
 </head>
 <body class="body">
 <p align="center" style="font-style: italic; color: red;">${message}</p>
 <p align="center" style="font-style: italic; color: blue;">${reg}</p>
 	<div class="loginContainer">
 		<h2 align="left">Login</h2>
+			<br/>
 			<form:form modelAttribute="login" action="loginProcess" method="POST">
 				<form:label path="username"><b>Username     </b></form:label>
 				<form:errors path="username" style="font-style: italic; color: red;"/>
 				<br/>
-				<form:input id="username" path="username" type="text"/>
+				<form:input  id="username" path="username" type="text"/>
+			
 				<form:label path="password"><b>Password     </b></form:label>
 				<form:errors style="font-style: italic; color: red;" path="password"/>
+
 				<br/>
-				<form:input id="password" path="password" type="password"/>
+				<form:input  id="password" path="password" type="password"/>
             	<form:button value="login" class="registerbtn"> Login </form:button>		
 			</form:form>
 	</div>
