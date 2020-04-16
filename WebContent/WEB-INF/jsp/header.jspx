@@ -24,7 +24,6 @@
     	<ul class="navbar" align="left">
        		<li class="link "><a class="option" href="books">Books</a><div class="${bookStyle}"></div> </li>
       	    <li class="link "><a class="option" href="checkout">Checkout</a><div class="${checkoutStyle}"></div></li>
-       		<li class="link "><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
        		<li class="link "><a class="option" href="cart">Cart</a><div class="${cartStyle}"></div></li>
        		<li class="regButtons "><a class="option" href="register">Register</a><div class="${regStyle}"></div></li>
        		<li class="regButtons "><a class="option" href="login">Login</a><div class="${loginStyle}"></div></li>
@@ -40,7 +39,6 @@
     		<li class="link"><a class="option" href="books"> Books </a><div class="${bookStyle}"></div></li>
        		<li class="regButtons"><a class="option" href="logout">Logout</a></li>
        		<li class="link"><a class="option" href="report">Reports</a><div class="${reportStyle}"></div></li>
-       		<li class="link"><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
      	</ul>
      </nav>
@@ -52,7 +50,6 @@
    	   <ul class="navbar" align="left">
        		<li class="link"><a class="option" href="books"> Books </a><div class="${bookStyle}"></div> </li>
        		<li class="link"><a class="option" href="checkout">Checkout </a><div class="${checkoutStyle}"></div></li>
-       		<li class="link"><a class="option" href="catalog">Search Catalog </a><div class="${catalogStyle}"></div></li>
       		<li class="link"><a class="option" href="cart">Cart </a><div class="${cartStyle}"></div></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>
       		<li class="regButtons"><a class="option" href="logout">Logout</a></li>
@@ -65,7 +62,7 @@
 	<a href="index"><img src="${logo}" class="center"></img></a>
 	<nav>
     	<ul class="navbar" align="left">
-       		<li class="link"><a class="option" href="catalog">Search Catalog</a><div class="${catalogStyle}"></div></li>
+    		<li class="link"><a class="option" href="books"> Books </a><div class="${bookStyle}"></div> </li>
       		<li class="link"><a class="option" href="orders">Orders</a><div class="${orderStyle}"></div></li>
        		<li class="regButtons "><a class="option" href="logout">Logout</a></li>
        		<li class="loggedIn">Welcome ${sessionScope.firstname}</li>

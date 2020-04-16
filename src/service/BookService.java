@@ -16,4 +16,6 @@ public interface BookService {
 	public List<Review> findAllReviews(String bid);
 	public float findRatingAverage(List<Review> r);
 	public int increaseQuantity(int quantity);
+	public List<Book> searchByTitle(String title);
+	public List<Book> searchByAuthor(String author);
 }

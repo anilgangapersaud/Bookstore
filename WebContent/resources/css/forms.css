@@ -1,5 +1,23 @@
 * {box-sizing: border-box;}
 
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+th{
+	font-weight: bold;
+}
+
 .orderSummary {
 	overflow:hidden;
 	padding: 16px;
@@ -48,6 +66,8 @@
 	
 }
 
+
+
 .signin {
 	background-color: #f1f1f1;
 	text-align:center;
@@ -60,7 +80,7 @@
 input[type=text], input[type=password], select {
 	width: 100%;
 	padding: 15px;
-	margin: 5px 0 22px 0;
+	margin:auto;
 	display: inline-block;
 	border: none;
 	background: #f1f1f1;

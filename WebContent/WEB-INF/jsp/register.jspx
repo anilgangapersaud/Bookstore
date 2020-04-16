@@ -16,9 +16,11 @@
 </head>
 <body class="body">
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
-		<div class="loginContainer">
-			<h2 align="left">Contact Information</h2>
+		
+			<div class="loginContainer">
 					<form:form id="regForm" modelAttribute="registration" action="registerProcess" method="POST">
+			
+					<h2 align="left">Contact Information</h2>
 					<form:label for="username" path="registrationUser.username"><b>Username     </b></form:label>
 					<form:errors path="registrationUser.username" style="font-style: italic; color: red;"/>
 					<br/>
@@ -75,7 +77,6 @@
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
 					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
-
 			<h2 align="left">Billing Information</h2>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
 					<br/>
@@ -96,10 +97,13 @@
 					<br/>
 					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
 					<br/>
+		
+		
 					<form:button id="register" name="register" class="registerbtn">Register</form:button>
 					</form:form>
 		</div>
 		<div class="signin">
+		
 			<p>Already have an account? <a href="login">Sign in</a>.</p>
 		</div>
 </body>

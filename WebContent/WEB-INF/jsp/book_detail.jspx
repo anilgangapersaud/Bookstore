@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <jsp:include page="header.jspx"/>
 <head>
-<title> Book Information</title>
+<title>Book Information</title>
 <c:url var="url" value="/resources/css/books.css"/>
  <link rel="stylesheet" type="text/css" href="${url}"/>
  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/books.js">;</script>
@@ -43,7 +43,7 @@
   	</td>
   </tr>
    </table>
-  	<c:if test="${sessionScope.role != 'Partner'}">
+  	<c:if test="${sessionScope.role != 'Partner' and sessionScope.role != 'Admin'}">
   		<p><form id="addBook" action="addToCart" method="post">
     
      		<button id="buttonCart" name="buttonCart" value="${book.bid}">Add to Cart</button>

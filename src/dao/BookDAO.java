@@ -17,6 +17,7 @@ public interface BookDAO {
 	public Book findById(String bid);
 	public List<Book> findAll();
 	public List<Book> findByProperty(String propName, Object propValue);
-	
-	
+	public List<Book> searchByTitle(String title);
+	public List<Book> searchByAuthor(String author);
+
 }

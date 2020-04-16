@@ -10,24 +10,55 @@
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
 		<jsp:include page="header.jspx"/>
+		
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Online Bookstore</title>
-<c:url var="url" value="/resources/css/books.css"/>
+ <title>Livraria</title>
+ <c:url var="url" value="/resources/css/books.css"/>
  <link rel="stylesheet" type="text/css" href="${url}"/>
 </head>
 <body class="body">
      <br/>
-     <form id="bookTableCategory" action="category" method="get">
-     	<select width="10" name="bookCategory" class="buttonReviewCategory" >
+     <div class="categoryContainer">
+     
+     <form action="category" method="get">
+     <fieldset>
+		<legend>Filter By Category</legend>
+     	<select id="selector" width="10" name="bookCategory"  >
      	<option value = "Science">Science</option>
         <option value = "Engineering">Engineering</option>
         <option value = "Fiction">Fiction</option>
      	</select>
-     	<button  width="10" class="buttonReviewCategory" name="buttonCategory">Filter by category</button>
+     	<button  width="10" class="registerbtn"  name="buttonCategory">Filter</button>
+     </fieldset>
      </form>
+     </div>
+     
+    <div class="searchCatalog">
+    <fieldset>
+    <legend>Search Catalog</legend>
+    <form method="GET" action="findId">
+	<p align="center" style="font-style: italic; color: red;">${msg}</p>
+			<label for="book">Search BID: </label>
+			<input type="text" name="bookId" placeholder="b001"></input>
+			<input class="registerbtn" type="submit" value="Search"></input>
+	
+	</form>
+	<form method="GET" action="findTitle">
+	<p align="center" style="font-style: italic; color: red;">${msg2}</p>
+			<label for="book">Search Title: </label>
+			<input type="text" name="title" placeholder="Little Prince"></input>
+			<input class="registerbtn" type="submit" value="Search"></input>
+	</form>
+	<form method="GET" action="findAuthor">
+	<p align="center" style="font-style: italic; color: red;">${msg3}</p>
+			<label for="book">Search Author: </label>
+			<input type="text" name="author" placeholder="J.K Rowling"></input>
+			<input class="registerbtn" type="submit" value="Search"></input>
+	</form>
+	</fieldset>
+	</div>
    <div class="centerBooks">
-
     <c:if test="${ not empty books}">
 
   			<c:forEach var="bookRetrieve" items="${books}"> 
@@ -37,15 +68,15 @@
   						<button id="buttonBook" name="bookId" value="${bookRetrieve.bid}" style="cursor:pointer;">
   							
   						<c:if test="${ bookRetrieve.category eq 'Engineering'}">
-				 			<img src="${pageContext.request.contextPath}/resources/images/Engineering.png" alt="engineering" width="600" height="400"> 
+				 			<img src="${pageContext.request.contextPath}/resources/images/${bookRetrieve.bid}.jpg" alt="engineering" width="600" height="400"> 
 				 			</img>
 				 		</c:if>
 						 <c:if test="${ bookRetrieve.category eq 'Science'}">
-				 			<img src="${pageContext.request.contextPath}/resources/images/Science.png" alt="Science" width="600" height="400"> 
+				 			<img src="${pageContext.request.contextPath}/resources/images/${bookRetrieve.bid}.jpg" alt="Science" width="600" height="400"> 
 				 			</img>
 						 </c:if>
 						 <c:if test="${ bookRetrieve.category eq 'Fiction'}">
-				 			<img src="${pageContext.request.contextPath}/resources/images/Fiction.png" alt="Fiction" width="600" height="400"> 
+				 			<img src="${pageContext.request.contextPath}/resources/images/${bookRetrieve.bid}.jpg" alt="Fiction" width="600" height="400"> 
 				 			</img>
 						 </c:if>
   						

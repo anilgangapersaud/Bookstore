@@ -89,11 +89,65 @@ public class BookstoreController {
 	  public String findById(@RequestParam(name="bookId", required=true) String
 	  bid,Model model) 
 	  { 
+		  
 		  List<Book> bookList= bookService.findByProperty("bid",bid );
+		  if (bookList.isEmpty()) {
+			  model.addAttribute("msg", "The ISBN you provided does not exist in our catalog");
+			  model.addAttribute("books", bookService.findAll());
+			  return "books";
+		  }
 		  List<Review> reviewList = bookService.findAllReviews(bid);
 		  addInformationBook(bookList.get(0),model,reviewList);
 		  model.addAttribute("bookStyle", "bookStyle");
 		  return "book_detail";
+	  }	 
+	  
+	  /**
+	   * Searches the db catalog for a matching title
+	   * @author Anil
+	   * @param title
+	   * @param model
+	   * @return books with matching title
+	   */
+	  @GetMapping("/findTitle") 
+	  public String findByTitle(@RequestParam(name="title", required=true) String
+	  title,Model model) 
+	  { 
+		  
+		  List<Book> bookList= bookService.searchByTitle(title);
+		  if (bookList.isEmpty()) {
+			  model.addAttribute("msg2", "No books have matched the title you provided.");
+			  model.addAttribute("books", bookService.findAll());
+			  return "books";
+		  } else {
+			  model.addAttribute("books", bookList);
+			  model.addAttribute("bookStyle", "bookStyle");
+			  return "books";
+		  }
+	  }	 
+	  
+	  /**Searches the db catalog for a matching author
+	   * 
+	   * @author Anil
+	   * @param author
+	   * @param model
+	   * @return books with matching author
+	   */
+	  @GetMapping("/findAuthor") 
+	  public String findByAuthor(@RequestParam(name="author", required=true) String
+	  author,Model model) 
+	  { 
+		  
+		  List<Book> bookList= bookService.searchByAuthor(author);
+		  if (bookList.isEmpty()) {
+			  model.addAttribute("msg3", "No authors have matched the name you provided.");
+			  model.addAttribute("books", bookService.findAll());
+			  return "books";
+		  } else {
+			  model.addAttribute("books", bookList);
+			  model.addAttribute("bookStyle", "bookStyle");
+			  return "books";
+		  }
 	  }	 
 	  /** 
 	   * Adds a review of a book. It returns the updated list of reviews and

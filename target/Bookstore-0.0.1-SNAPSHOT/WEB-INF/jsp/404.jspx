@@ -9,10 +9,11 @@
 	<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Request Denied</title>
+	<title>Request Denied</title>
 </head>
 <body class="body">
-<p align="center" style="font-style: italic; color: red;">You don't have access privileges to this page.</p>
+	<!-- A page that denies access if the User does not have privilege to access the specified page -->
+	<p align="center" style="font-style: italic; color: red;">You don't have access privileges to this page.</p>
 </body>
 </html>
 </jsp:root>

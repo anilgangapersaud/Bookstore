@@ -51,6 +51,8 @@ public class AnalyticsController {
 			model.addAttribute("message", "No results found.");
 		}
 		model.addAttribute("orderedItems", orderedItems);
+		model.addAttribute("month", month);
+		model.addAttribute("year", year);
 	
 		if (session.getAttribute("role").equals("Admin") )
 			return "report";

@@ -9,17 +9,19 @@
 		<jsp:include page="header.jspx"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Order Process</title>
-<c:url var="url" value="/resources/css/forms.css"/>
-<link rel="stylesheet" type="text/css" href="${url}"/>
+<title>Purchase Orders</title>
+	<c:url var="forms" value="/resources/css/forms.css"/>
+	<link rel="stylesheet" type="text/css" href="${forms}"/>
+	<c:url var="reports" value="/resource/css/report.css"/>
+	<link rel="stylesheet" type="text/css" href="${reports}"/>
 </head>
 <body class="body">
 <form method="GET" action="getOrdersByPartNumber">
 	<div class="loginContainer">
 	<fieldset>
 		<legend>Get Orders</legend>
-			<label for="book">Enter ISBN: </label>
-			<input type="text" name="bid"></input>
+			<label for="book">Enter BID: </label>
+			<input type="text" name="bid" placeholder="b001"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>

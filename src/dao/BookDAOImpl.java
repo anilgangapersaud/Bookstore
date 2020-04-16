@@ -76,6 +76,22 @@ public class BookDAOImpl extends BaseDAO implements BookDAO{
 	
 	
 
+	@Override
+	public List<Book> searchByTitle(String title) {
+		String param = title.toUpperCase();
+		String sql = "SELECT * FROM BOOK WHERE UPPER(title) LIKE ?";
+		List<Book> books = getJdbcTemplate().query(sql, new BookMapper(), param);
+		return books;
+	}
+
+	@Override
+	public List<Book> searchByAuthor(String author) {
+		String param = author.toUpperCase();
+		String sql = "SELECT * FROM BOOK WHERE UPPER(author) LIKE ?";
+		List<Book> books = getJdbcTemplate().query(sql, new BookMapper(), param);
+		return books;
+	}
+
 }
 
 class BookMapper implements RowMapper<Book> {
