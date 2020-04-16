@@ -45,7 +45,6 @@ public class UserController {
 	@Autowired
 	BookService bookService;
 	
-	
 	private Map<String, Cart> cart;
 	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
 	private List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
@@ -53,32 +52,42 @@ public class UserController {
 	private List<String> countries = Arrays.asList("Canada");
 	
 	
-	/** Returns the admin view.
+	/** Returns the Administrator view only if the User logged in is an Administrator
 	 * @author Anil
-	 * @return
+	 * @return report.jspx
 	 */
 	@GetMapping("/report")
 	public String adminPage(HttpSession session, Model model) {
-		if (session.getAttribute("role").equals("Admin")) {
-			model.addAttribute("reportStyle", "reportStyle");
-			return "report"; // Verify the User is a Admin and return the reports page
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Admin")) {
+				model.addAttribute("reportStyle", "reportStyle");
+				return "report"; // Verify the User is a Admin and return the reports page
+			}
+			else 
+				return "404"; // Otherwise not authorized to view page.
+		} else {
+			return "404";
 		}
-		else 
-			return "404"; // Otherwise not authorized to view page.
+	
 	}
 	
-	/**
+	/** Returns the Partner view only if the User logged in is a Partner
 	 * @author Anil
-	 * @return Order Process Browser Component only for Partners
+	 * @return orders.jspx
 	 */
 	@GetMapping("/orders")
 	public String orderPage(HttpSession session, Model model) {
-		if (session.getAttribute("role").equals("Partner")) {
-			model.addAttribute("orderStyle", "orderStyle");
-			return "orders";
-		}
-		else 
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Partner")) {
+				model.addAttribute("orderStyle", "orderStyle");
+				return "orders";
+			}
+			else 
+				return "404";
+		} else {
 			return "404";
+		}
+		
 	}
 	
 	/**
