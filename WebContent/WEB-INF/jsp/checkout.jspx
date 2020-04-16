@@ -152,8 +152,7 @@
 								<td>${bookItem.value.book.author}</td>
 								<td>${bookItem.value.book.category}</td>
 								<td id="item1">$${bookItem.value.book.price}</td>
-								<td><input type="number" step="1" min="1" name="quantity"
-									id="quantity" value="${bookItem.value.quantity}"></input></td>
+								<td>${bookItem.value.quantity}</td>
 							</tr>
 						</c:forEach>
 
