@@ -35,6 +35,8 @@ th{
 	font-size: 15px;
 }
 
+
+
 .active, .collapsible:hover {
 	background-color: #ccc;
 }
@@ -48,10 +50,12 @@ th{
 
 .container {
 	padding: 16px;
-	width: 50%;
+	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
 	float:left;
+	left:100px;
+	position: relative;
 }
 
 .loginContainer {
