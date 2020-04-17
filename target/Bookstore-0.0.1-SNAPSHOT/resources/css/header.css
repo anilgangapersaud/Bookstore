@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.head {
+	background-color: ghostwhite;
+	margin: initial;
+}
+
+.center {
+	display: block;
+ 	margin-left: auto;
+	margin-right: auto;
+}
+
+.body {
+	background-color: ghostwhite;
+}
+
+.success {
+	color: blue;
+}
+
+h1 {
+	margin: initial;
+	margin-top: 15px;
+}
+
+li {
+	display: inline;
+	float: left;
+}
+
+.loggedIn {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	float: right;
+}
+
+.regButtons {
+	display: block;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+}
+
+
+
+.registerbtn {
+	background-color: #89cff0;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+.registerbtn:hover {
+	opacity:1;
+}
+
