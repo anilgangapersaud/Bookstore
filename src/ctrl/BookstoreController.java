@@ -172,6 +172,7 @@ public class BookstoreController {
 		  List<Review> reviewList = bookService.findAllReviews(bid);
 		  addInformationBook(bookList.get(0),model,reviewList);
 		  model.addAttribute("bookStyle", "bookStyle");
+		  model.addAttribute("addedReview", "Thank you for your review!");
 		  return "book_detail";
 	  }
 	 
