@@ -12,55 +12,75 @@
 	<title>Checkout</title>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
- 	<c:url var="url1" value="/resources/css/cart.css" />
+ 	<c:url var="url1" value="/resources/css/report.css" />
 <link rel="stylesheet" type="text/css" href="${url1}" />
 </head>
 <body class="body">
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
 	<c:if test="${sessionScope.role eq 'Customer'}">
 		<div class="container">
-			<h2 align="left"> 1.Shipping</h2>
+			<h2 align="left">Review Shipping and Payment</h2>
+			<br/>
+			<br/>
 			<form:form id="regForm" modelAttribute="checkout" action="checkoutProcess" method="POST">
 					<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
+				 	<br/>
 					<form:input path="address.street" value="${sessionScope.address.getStreet()}" name="street" id="street"/>
+					<br/>
 					<br/>
 					<form:label path="address.country"><b>Country</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="address.country" items="${countries}" name="country" id="country"/>
+					<br/>
 					<br/>
 					<form:label path="address.province"><b>Province</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="address.province" items="${provinces}" value="${sessionScope.address.getProvince()}" name="province" id="province"/>
+					<br/>
 					<br/>
 					<form:label path="address.postalCode"><b>Postal Code    </b></form:label>
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.postalCode" value="${sessionScope.address.getPostalCode()}" name="postalCode" id="postalCode"/>
+					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.phone" value="${sessionScope.address.getPhone()}" name="phone" id="phone"/>
-			<h2 align="left">2. Payment</h2>
+					<br/>
+					<br/>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
+					<br/>
 					<br/>
 					<form:label path="billing.cardholderName"><b>Cardholder Name(as shown on card)      </b></form:label> 
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardholderName" value="${sessionScope.billing.getCardholderName()}" name="cardholderName" id="cardholderName"></form:input>
+					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
 					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
+					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
-					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/><br/>
+					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
+					<br/>
 					<br/>
 					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<br/>
 					<br/>
 					<form:button id="register" name="register" class="registerbtn">Confirm Order</form:button>
 			</form:form>
@@ -78,48 +98,68 @@
 	
 	<c:if test="${sessionScope.userId eq null}">
 		<div class="container">
-			<h2 align="left"> 1.Shipping</h2>
+			<h2 align="center">Review Shipping and Payment</h2>
+			<br/>
+			<br/>
 			<form:form id="regForm" modelAttribute="checkout" action="checkoutProcess" method="POST">
 					<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
+				 	<br/>
 					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
+					<br/>
 					<br/>
 					<form:label path="address.country"><b>Country</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="address.country" items="${countries}" name="country" id="country"/>
+					<br/>
 					<br/>
 					<form:label path="address.province"><b>Province</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="address.province" items="${provinces}" name="province" id="province"/>
+					<br/>
 					<br/>
 					<form:label path="address.postalCode"><b>Postal Code    </b></form:label>
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
-			<h2 align="left">2. Payment</h2>
+					<br/>
+					<br/>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
 					<br/>
+					<br/>
 					<form:select path="billing.cardType" items="${cardTypes}" name="cardtype" id="cardtype"></form:select>
+					<br/>
 					<br/>
 					<form:label path="billing.cardholderName"><b>Cardholder Name(as shown on card)      </b></form:label> 
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
 					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
+					<br/>
 					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
+					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
-					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/><br/>
+					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
+					<br/>
 					<br/>
 					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<br/>
 					<br/>
 					<form:button id="register" name="register" class="registerbtn">Confirm Order</form:button>
 			</form:form>
@@ -127,17 +167,23 @@
 		</c:if>
 		<div class="orderSummary">
 			<h2 align="center"> Order Summary</h2>
+			
 		<c:if test="${empty cart}">
 			<header>
+			<br/>
+			<br/>
 				<h1 align="center">Your shopping cart is empty</h1>
 			</header>
 		</c:if>
 		<c:if test="${ not empty cart}">
+		<br/>
+				<br/>
 		<div class="grid-container">
 			<form action="/Bookstore/updateCart" method="POST">
 				<div class="grid-item">
 					<table id="shoppingcart">
 						<tr>
+							<th>Book</th>
 							<th>Title</th>
 							<th>Author</th>
 							<th>Category</th>
@@ -148,12 +194,13 @@
 
 						<c:forEach var="bookItem" items="${cart}">
 							<tr>
+								<td><img src="${pageContext.request.contextPath}/resources/images/${bookItem.value.book.bid}.jpg" alt="no image" height="80" width="50"> </img></td>
 								<td>${bookItem.value.book.title}</td>
 								<td>${bookItem.value.book.author}</td>
 								<td>${bookItem.value.book.category}</td>
 								<td id="item1">$${bookItem.value.book.price}</td>
 								<td>${bookItem.value.quantity}</td>
-							</tr>
+							</tr> 
 						</c:forEach>
 
 						<tr>
@@ -161,6 +208,7 @@
 							<td></td>
 							<td><STRONG>Total</STRONG></td>
 							<td><strong>$${totalPrice}</strong></td>
+							<td></td>
 							<td></td>
 						</tr>
 
