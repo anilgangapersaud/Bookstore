@@ -31,7 +31,7 @@
 				<form:errors style="font-style: italic; color: red;" path="password"/>
 
 				<br/>
-				<form:input  id="password" path="password" type="password"/>
+				<form:input onkeyup="validatePassword(this);" id="password" path="password" type="password"/>
             	<form:button value="login" class="registerbtn"> Login </form:button>		
 			</form:form>
 	</div>
