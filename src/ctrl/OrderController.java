@@ -38,7 +38,7 @@ public class OrderController {
 	@Autowired
 	UserService userService;
 	
-	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard", "American Express");
+	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard");
 	private List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
 	private List<String> roles = Arrays.asList("Admin", "Customer", "Partner");
 	private List<String> countries = Arrays.asList("Canada");

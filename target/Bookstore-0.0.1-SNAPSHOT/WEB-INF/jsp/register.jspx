@@ -131,7 +131,7 @@
 					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<form:input path="billing.expDate" placeholder="MMYY" name="expDate" id="expDate"/>
 					<form:button id="register" name="register" class="registerbtn">Register</form:button>
 					</form:form>
 		</div>

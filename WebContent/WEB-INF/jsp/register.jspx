@@ -11,6 +11,8 @@
 <head>
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
+ 	<c:url var="formsJS" value="/resources/js/forms.js"/>
+ 	<script type="text/javascript" src="${formsJS}">;</script>
  	<meta charset="UTF-8"></meta>
 	<title>Registration</title>
 </head>
@@ -26,7 +28,7 @@
 					<form:errors path="registrationUser.username" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input  path="registrationUser.username" placeholder="Enter Username" name="username" id="username"/> 
+					<form:input path="registrationUser.username" placeholder="Enter Username" name="username" id="username"/> 
 					<br/>
 					<br/>
 					<form:label for="password" path="registrationUser.password"><b>Password     </b></form:label>
@@ -34,28 +36,28 @@
 					<form:errors  path="registrationUser" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:password path="registrationUser.password" placeholder="Enter Password" name="password" id="password"/>
+					<form:password onkeyup="validatePassword(this);" path="registrationUser.password" placeholder="Enter Password" name="password" id="password"/>
 					<br/>
 					<br/>
 					<form:label path="registrationUser.confirmPassword"><b>Confirm Password     </b></form:label>
 					<form:errors  path="confirmPassword" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:password path="registrationUser.confirmPassword" placeholder="Re-Enter Password" name="confirmPassword" id="confirmPassword"/>
+					<form:password onkeyup="validatePassword(this);" path="registrationUser.confirmPassword" placeholder="Re-Enter Password" name="confirmPassword" id="confirmPassword"/>
 					<br/>
 					<br/>
 					<form:label path="registrationUser.firstname"><b>First Name     </b></form:label>
 					<form:errors path="registrationUser.firstname" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="registrationUser.firstname" placeholder="Enter first name" name="firstname" id="firstname"/>
+					<form:input onkeyup="validateName(this);" path="registrationUser.firstname" placeholder="Enter first name" name="firstname" id="firstname"/>
 					<br/>
 					<br/>
 					<form:label path="registrationUser.lastname"><b>Last Name     </b></form:label>
-					<form:errors path="registrationUser.lastname" style="font-style: italic; color: red;"/>
+					<form:errors  path="registrationUser.lastname" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="registrationUser.lastname" placeholder="Enter last name" name="lastname" id="lastname"/>
+					<form:input onkeyup="validateName(this);" path="registrationUser.lastname" placeholder="Enter last name" name="lastname" id="lastname"/>
 					<br/>
 					<br/>
 					<form:label path="registrationUser.email"><b>Email     </b></form:label>
@@ -76,10 +78,10 @@
 				 	<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
 				 	<br/>
-					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
+					<form:input onkeyup="validateName(this);" path="address.street" placeholder="Enter a street address" name="street" id="street"/>
 					<br/>
 					<br/>
-					<form:label path="address.country"><b>Country</b></form:label>
+					<form:label  path="address.country"><b>Country</b></form:label>
 					<br/>
 					<br/>
 					<form:select path="address.country" items="${countries}" name="country" id="country"/>
@@ -95,14 +97,14 @@
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<form:input onkeyup="validateZip(this)" path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
 					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
-					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
+					<form:errors  align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
+					<form:input onkeyup="validatePhone(this);" path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
 					<br/>
 					<br/>
 			<h2 align="center">Billing Information</h2>
@@ -117,21 +119,21 @@
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<form:input onkeyup="validateName(this);" path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
 					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
-					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
+					<form:errors  path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
+					<form:input onkeyup="validateCard(this);" path="billing.cardNumber" placeholder="16-Digit Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
 					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
 					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<form:input onkeyup="validateNumber(this);" path="billing.expDate" placeholder="MMYY" name="expDate" id="expDate"/>
 					<form:button id="register" name="register" class="registerbtn">Register</form:button>
 					</form:form>
 		</div>
