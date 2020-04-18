@@ -58,6 +58,7 @@ public class OrderController {
 	public ModelAndView confirmPayment(@Valid @ModelAttribute("checkout") Checkout checkout, Errors errors, Model model, HttpSession session) {
 		cart = (Map<String, Cart>) session.getAttribute("cart");
 		ModelAndView mav;
+		
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		if (errors.hasErrors()) {
 			// Errors detected in form, return to the checkout and display error.
@@ -76,9 +77,21 @@ public class OrderController {
 			return mav;
 		}
 	
-		// Store Order Information
-		userService.createAddress(checkout.getAddress());
-		userService.createBilling(checkout.getBilling());
+		// Store Order Information if Guest, Update Information if Customer
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Customer")) {
+				// Customer checkout -> Update Address and Billing Info
+				checkout.getAddress().setUserid((int) session.getAttribute("userId"));
+				checkout.getBilling().setUserid((int)session.getAttribute("userId"));
+				userService.updateAddress(checkout.getAddress());
+				userService.updateBilling(checkout.getBilling());
+			}
+		} else {
+			// Guest Checkout -> Store Address and Billing info
+			userService.createAddress(checkout.getAddress());
+			userService.createBilling(checkout.getBilling());
+		}
+	
 		
 		if (authorization % 3 == 0) {
 			// Authorization Denied

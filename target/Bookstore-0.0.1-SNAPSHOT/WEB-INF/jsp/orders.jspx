@@ -14,6 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="${forms}"/>
 	<c:url var="reports" value="/resource/css/report.css"/>
 	<link rel="stylesheet" type="text/css" href="${reports}"/>
+	<c:url var="formsJS" value="/resources/js/forms.js"/>
+	<script type="text/javascript" src="${formsJS}">;</script>
 </head>
 <body class="body">
 <form method="GET" action="getOrdersByPartNumber">
@@ -21,7 +23,7 @@
 	<fieldset>
 		<legend>Get Orders</legend>
 			<label for="book">Enter BID: </label>
-			<input type="text" name="bid" placeholder="b001"></input>
+			<input onkeyup="validateBid(this);" type="text" name="bid" placeholder="b001"></input>
 			<input class="registerbtn" type="submit"></input>
 	</fieldset>
 	</div>

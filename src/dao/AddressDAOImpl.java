@@ -48,7 +48,7 @@ public class AddressDAOImpl extends BaseDAO implements AddressDAO  {
 
 	@Override
 	public void update(Address a) {
-		String sql = "UPDATE ADDRESS SET userId=:userId, street=:street, phone=:phone, zip=:zip, country=:country, province=:province WHERE addressid=:addressid";
+		String sql = "UPDATE ADDRESS SET street=:street, phone=:phone, zip=:zip, country=:country, province=:province WHERE userId=:userId";
 		Map m = new HashMap();
 		m.put("userId", a.getUserid());
 		m.put("street", a.getStreet());
@@ -56,7 +56,6 @@ public class AddressDAOImpl extends BaseDAO implements AddressDAO  {
 		m.put("zip", a.getPostalCode());
 		m.put("country", a.getCountry());
 		m.put("province", a.getProvince());
-		m.put("addressid", a.getAddressid());
 		SqlParameterSource ps = new MapSqlParameterSource(m);	
 		super.getNamedParameterJdbcTemplate().update(sql, ps);
 	}

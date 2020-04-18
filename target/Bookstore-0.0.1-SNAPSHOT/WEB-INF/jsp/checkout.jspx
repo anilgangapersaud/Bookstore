@@ -13,7 +13,9 @@
  	<c:url var="url" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${url}"/>
  	<c:url var="url1" value="/resources/css/report.css" />
-<link rel="stylesheet" type="text/css" href="${url1}" />
+	<link rel="stylesheet" type="text/css" href="${url1}" />
+	<c:url var="formsJS" value="/resources/js/forms.js"/>
+	<script type="text/javascript" src="${formsJS}">;</script>
 </head>
 <body class="body">
 	<p align="center" style="font-style: italic; color: red;">${message}</p>
@@ -26,7 +28,7 @@
 					<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
 				 	<br/>
-					<form:input path="address.street" value="${sessionScope.address.getStreet()}" name="street" id="street"/>
+					<form:input onkeyup="validateName(this);" path="address.street" value="${sessionScope.address.getStreet()}" name="street" id="street"/>
 					<br/>
 					<br/>
 					<form:label path="address.country"><b>Country</b></form:label>
@@ -45,14 +47,14 @@
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.postalCode" value="${sessionScope.address.getPostalCode()}" name="postalCode" id="postalCode"/>
+					<form:input onkeyup="validateZip(this);" path="address.postalCode" value="${sessionScope.address.getPostalCode()}" name="postalCode" id="postalCode"/>
 					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.phone" value="${sessionScope.address.getPhone()}" name="phone" id="phone"/>
+					<form:input onkeyup="validatePhone(this);" path="address.phone" value="${sessionScope.address.getPhone()}" name="phone" id="phone"/>
 					<br/>
 					<br/>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
@@ -65,21 +67,21 @@
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardholderName" value="${sessionScope.billing.getCardholderName()}" name="cardholderName" id="cardholderName"></form:input>
+					<form:input onkeyup="validateName(this);" path="billing.cardholderName" value="${sessionScope.billing.getCardholderName()}" name="cardholderName" id="cardholderName"></form:input>
 					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
 					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
+					<form:input onkeyup="validateCard(this);" path="billing.cardNumber" placeholder="16-Digit Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
 					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
 					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<form:input onkeyup="validateNumber(this);" path="billing.expDate" placeholder="MMYY" name="expDate" id="expDate"/>
 					<br/>
 					<br/>
 					<form:button id="register" name="register" class="registerbtn">Confirm Order</form:button>
@@ -105,7 +107,7 @@
 					<form:label path="address.street"><b>Street</b></form:label>
 				 	<br/>
 				 	<br/>
-					<form:input path="address.street" placeholder="Enter a street address" name="street" id="street"/>
+					<form:input onkeyup="validateName(this);" path="address.street" placeholder="Enter a street address" name="street" id="street"/>
 					<br/>
 					<br/>
 					<form:label path="address.country"><b>Country</b></form:label>
@@ -124,14 +126,14 @@
 					<form:errors align="center" path="address.postalCode" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
+					<form:input onkeyup="validateZip(this);" path="address.postalCode" placeholder="eg. A1A 1A1" name="postalCode" id="postalCode"/>
 					<br/>
 					<br/>
 					<form:label path="address.phone"><b>Phone    </b></form:label>
 					<form:errors align="center" path="address.phone" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
+					<form:input onkeyup="validatePhone(this);" path="address.phone" placeholder="eg. 000-000-0000" name="phone" id="phone"/>
 					<br/>
 					<br/>
 					<form:label path="billing.cardType"><b>Card Type</b></form:label>
@@ -144,21 +146,21 @@
 					<form:errors path="billing.cardholderName" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
+					<form:input onkeyup="validateName(this);" path="billing.cardholderName" placeholder="Enter Cardholder Name" name="cardholderName" id="cardholderName"></form:input>
 					<br/>
 					<br/>
 					<form:label path="billing.cardNumber"><b>Card Number      </b></form:label>
 					<form:errors path="billing.cardNumber" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.cardNumber" placeholder="Enter Card Number" name="cardNumber" id="cardNumber"/>
+					<form:input onkeyup="validateCard(this);" path="billing.cardNumber" placeholder="16-Digit Card Number" name="cardNumber" id="cardNumber"/>
 					<br/>
 					<br/>
 					<form:label path="billing.expDate"><b>Expiration Date      </b></form:label>
 					<form:errors  path="billing.expDate" style="font-style: italic; color: red;"/>
 					<br/>
 					<br/>
-					<form:input path="billing.expDate" placeholder="Enter Expiration Date" name="expDate" id="expDate"/>
+					<form:input onkeyup="validateNumber(this);" path="billing.expDate" placeholder="MMYY" name="expDate" id="expDate"/>
 					<br/>
 					<br/>
 					<form:button id="register" name="register" class="registerbtn">Confirm Order</form:button>

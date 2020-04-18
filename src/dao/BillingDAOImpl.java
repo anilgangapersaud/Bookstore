@@ -47,14 +47,13 @@ public class BillingDAOImpl extends BaseDAO implements BillingDAO {
 
 	@Override
 	public void update(Billing b) {
-		String sql = "UPDATE BILLING SET cardtype=:cardtype, expdate=:expdate, cardnumber=:cardnumber, cardholder=:cardholder, userid:userid WHERE cardid=:cardid";
+		String sql = "UPDATE BILLING SET cardtype=:cardtype, expdate=:expdate, cardnumber=:cardnumber, cardholder=:cardholder, userid:userid WHERE userid=:userid";
 		Map m = new HashMap();
 		m.put("cardtype", b.getCardType());
 		m.put("expdate", b.getExpDate());
 		m.put("cardnumber", b.getCardNumber());
 		m.put("cardholder", b.getCardholderName());
 		m.put("userid", b.getUserid());
-		m.put("cardid", b.getCardid());
 		SqlParameterSource ps = new MapSqlParameterSource(m);	
 		super.getNamedParameterJdbcTemplate().update(sql, ps);
 	}
