@@ -59,8 +59,8 @@
 						<tr>
 							<td></td>
 							<td></td>
-							<td><STRONG>Total</STRONG></td>
-							<td><strong>$${totalPrice}</strong></td>
+							<td style="font-weight: bold">Total</td>
+							<td style="font-weight: bold">$${totalPrice}</td>
 							<td></td>
 							<td></td>
 						</tr>
