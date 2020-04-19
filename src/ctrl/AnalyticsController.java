@@ -54,10 +54,16 @@ public class AnalyticsController {
 		model.addAttribute("month", month);
 		model.addAttribute("year", year);
 	
-		if (session.getAttribute("role").equals("Admin") )
-			return "report";
-		else 
-			return "404"; 
+	
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Admin")) {
+				return "report"; 
+			}
+			else 
+				return "404"; 
+		} else {
+			return "404";
+		}
 		
 	}
 	
