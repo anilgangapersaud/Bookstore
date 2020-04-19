@@ -77,8 +77,9 @@ public class POItemDAOImpl extends BaseDAO implements POItemDAO {
 	
 	@Override
 	public List<POItem> findByOrderDate(String month, String year){
-		String sql="SELECT * FROM POItem, PO WHERE POItem.id = PO.id and PO.orderdate like '"+year+"-"+month+"%'ORDER BY PO.orderdate, POItem.id, POItem.bid ";
-		List<POItem> POItems = getJdbcTemplate().query(sql, new POItemMapper());
+		String monthAndYear = year + "-" + month;
+		String sql="SELECT * FROM POItem, PO WHERE POItem.id = PO.id and PO.orderdate like ? ORDER BY PO.orderdate, POItem.id, POItem.bid ";
+		List<POItem> POItems = getJdbcTemplate().query(sql, new POItemMapper(), monthAndYear+"%");
 		return POItems;
 	}
 

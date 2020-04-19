@@ -47,14 +47,14 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	}
 	
 	public User validateUser(Login login) {
-		String sql = "SELECT * FROM USERS WHERE USERNAME='" + login.getUsername() + "' AND PASSWORD='" + login.getPassword() +"'";
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		String sql = "SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper(),login.getUsername(),login.getPassword() );
 		return users.size() > 0 ? users.get(0) : null;
 	}
 	
 	public User validateUser(String username, String password) {
-		String sql = "SELECT * FROM USERS WHERE USERNAME = '" + username + "' AND PASSWORD='" + password + "'";
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		String sql = "SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper(), username, password);
 		return users.size() > 0 ? users.get(0) : null;
 	}
 }

@@ -31,8 +31,8 @@ public class ReviewDAOImpl extends BaseDAO implements ReviewDAO  {
 	@Override
 	public List<Review> findAllReviews(String bid) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM REVIEWS where bid = '"+bid+"'";
-		List<Review> reviews = getJdbcTemplate().query(sql, new ReviewMapper());
+		String sql = "SELECT * FROM REVIEWS where bid =?";
+		List<Review> reviews = getJdbcTemplate().query(sql, new ReviewMapper(), bid);
 		return reviews;
 	}
 }
