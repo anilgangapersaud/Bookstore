@@ -13,11 +13,13 @@
 		
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <title>Livraria</title>
- <c:url var="booksCSS" value="/resources/css/books.css"/>
- <link rel="stylesheet" type="text/css" href="${booksCSS}"/>
- <c:url var="formsCSS" value="/resources/css/forms.css"/>
+ 	<title>Livraria</title>
+ 	<c:url var="booksCSS" value="/resources/css/books.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${booksCSS}"/>
+ 	<c:url var="formsCSS" value="/resources/css/forms.css"/>
  	<link rel="stylesheet" type="text/css" href="${formsCSS}"/>
+ 	<c:url var="formsJS" value="/resources/js/forms.js"/>
+ 	<script type="text/javascript" src="${formsJS}">;</script>
 </head>
 <body class="body">
      <br/>
@@ -42,7 +44,7 @@
     <form method="GET" action="findId">
 	<p align="center" style="font-style: italic; color: red;">${msg}</p>
 			<label for="book">Search BID: </label>
-			<input type="text" name="bookId" placeholder="b001"></input>
+			<input onkeyup="validateBid(this);" type="text" name="bookId" placeholder="b001"></input>
 			<input class="registerbtn" type="submit" value="Search"></input>
 	
 	</form>

@@ -57,7 +57,7 @@ function validateNumber(num) {
 }
 
 function validateBid(bid) {
-	var re = /^b[0-9][0-9][0-9]/;
+	var re = /^b[0-9][0-9][0-9]$/;
 	
 	if (re.test(bid.value)) {
 		bid.style.boxShadow = " 0 0 5px rgba(81, 203, 238, 1)";

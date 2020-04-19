@@ -76,16 +76,39 @@ public class OrderController {
 			return mav;
 		}
 	
-		// Store Order Information
-		userService.createAddress(checkout.getAddress());
-		userService.createBilling(checkout.getBilling());
+		// Store Order Information if Guest, Update Information if Customer
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Customer")) {
+				// Customer checkout -> Update Address and Billing Info
+				checkout.getAddress().setUserid((int) session.getAttribute("userId"));
+				checkout.getBilling().setUserid((int) session.getAttribute("userId"));
+				int aid = userService.findByPropertyAddress("userid", checkout.getAddress().getUserid()).get(0).getAddressid();
+				int cid = userService.findByPropertyBilling("userid", checkout.getBilling().getUserid()).get(0).getCardid();
+				checkout.getAddress().setAddressid(aid);
+				checkout.getBilling().setCardid(cid);
+				userService.updateAddress(checkout.getAddress());
+				userService.updateBilling(checkout.getBilling());
+				session.setAttribute("address", checkout.getAddress());
+				session.setAttribute("billing", checkout.getBilling());
+			}
+		} else {
+			// Guest Checkout -> Store Address and Billing info
+			userService.createAddress(checkout.getAddress());
+			userService.createBilling(checkout.getBilling());
+			session.setAttribute("address", checkout.getAddress());
+			session.setAttribute("billing", checkout.getBilling());
+		}
+	
+		Address currentAddress = (Address) session.getAttribute("address");
+		Billing currentBilling = (Billing) session.getAttribute("billing");
 		
 		if (authorization % 3 == 0) {
 			// Authorization Denied
 			PO purchaseOrder = new PO();	
 			// Add Information to Purchase Order
-			purchaseOrder.setAddressID(checkout.getAddress().getAddressid());
-			purchaseOrder.setCardID(checkout.getBilling().getCardid());
+			purchaseOrder.setAddressID(currentAddress.getAddressid());
+			purchaseOrder.setCardID(currentBilling.getCardid());
+			
 			purchaseOrder.setOrderDate(date);
 			purchaseOrder.setStatus("DENIED");
 			// DENY the request and return the checkout View
@@ -99,8 +122,8 @@ public class OrderController {
 			// Confirm Order 
 			PO purchaseOrder = new PO();
 			// Add Information to Purchase Order
-			purchaseOrder.setAddressID(checkout.getAddress().getAddressid());
-			purchaseOrder.setCardID(checkout.getBilling().getCardid());
+			purchaseOrder.setAddressID(currentAddress.getAddressid());
+			purchaseOrder.setCardID(currentBilling.getCardid());
 			purchaseOrder.setOrderDate(date);
 			purchaseOrder.setStatus("PROCESSED");
 			// Store the PO
@@ -116,7 +139,6 @@ public class OrderController {
 			}
 				mav = new ModelAndView("success");
 				mav.addObject("msg", "Order #" + purchaseOrder.getPurchaseID() +" Successfully Processed. Thanks for shopping with Livraria!");
-				
 				// Remove items from cart
 				cart.clear();
 				session.setAttribute("cart", cart);

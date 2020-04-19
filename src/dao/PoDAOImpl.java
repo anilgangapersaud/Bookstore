@@ -50,7 +50,7 @@ public class PoDAOImpl extends BaseDAO implements PoDAO {
 
 	@Override
 	public void update(PO p) {
-		String sql = "UPDATE PO SET orderDate=:orderDate, addressid=:addressid, cardid=:cardid status=:status, WHERE id=:id";
+		String sql = "UPDATE PO SET orderDate=:orderDate, addressid=:addressid, cardid=:cardid, status=:status, WHERE id=:id";
 		Map m = new HashMap();
 		m.put("id", p.getPurchaseID());
 		m.put("status", p.getStatus());

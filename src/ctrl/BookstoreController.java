@@ -1,4 +1,5 @@
 package ctrl;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -67,10 +68,11 @@ public class BookstoreController {
 	 * @param model
 	 * @author josedelgado
 	 * @return
+	 * 
 	 */
 	  @GetMapping("/category") 
 	  public String findByCategory(@RequestParam(name="bookCategory", required=true) String
-	  n,Model model) 
+	  n,Model model)
 	  { 
 		  model.addAttribute("books",bookService.findByProperty("category",n )); 
 		  model.addAttribute("bookStyle", "bookStyle");
@@ -90,7 +92,10 @@ public class BookstoreController {
 	  bid,Model model) 
 	  { 
 		  
-		  List<Book> bookList= bookService.findByProperty("bid",bid );
+		  List<Book> bookList;
+		
+			bookList = bookService.findByProperty("bid",bid );
+	
 		  if (bookList.isEmpty()) {
 			  model.addAttribute("msg", "The ISBN you provided does not exist in our catalog");
 			  model.addAttribute("books", bookService.findAll());
