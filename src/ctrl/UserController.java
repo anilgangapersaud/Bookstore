@@ -195,8 +195,6 @@ public class UserController {
 		double totalPrice = 0.0;
 		DecimalFormat df = new DecimalFormat("#.##");
 		User loggedInUser = userService.validateUser(login); // return the User in Database, based on login credentials.
-		
-		System.out.println(loggedInUser);
 		if (loggedInUser != null) {
 			//LOGIN SUCCESS
 			if (loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
