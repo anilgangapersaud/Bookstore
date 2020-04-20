@@ -64,7 +64,7 @@
 	</fieldset>
 	</div>
    <div class="centerBooks">
-    <c:if test="${ not empty displayTop}">
+    <c:if test="${ (not empty displayTop) and  (sessionScope.role eq 'Admin')}">
 
   			<c:forEach var="bookRetrieve" items="${displayTop}"> 
 				<div class="gallery">
