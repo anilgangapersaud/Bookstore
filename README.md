@@ -1,10 +1,10 @@
 # Livraria
 E-Commerce Application (Bookstore) built using J2EE, Spring MVC, HTML CSS JS, DB2
-Deployed on IBM Cloud at the following URL: https://bookstore--56226.mybluemix.net/
+Deployed on IBM Cloud at the following URL: https://livraria.mybluemix.net/
 
 How to run it:
 
-REST calls can be made using the following in url: https://bookstore--56226.mybluemix.net/rest/getOrdersByPartNumber?bid=b001&username=Partner&password=destruction 
+REST calls can be made using the following in url: https://livraria.mybluemix.net/rest/getOrdersByPartNumber?bid=b001&username=Partner&password=destruction 
 
 REST client test cases can be found in the RESTClients package in the src file. Run as Java Application to retrieve JSON data in the console. 
 
