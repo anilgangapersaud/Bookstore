@@ -61,6 +61,11 @@
 			<input class="registerbtn" type="submit" value="Search"></input>
 	</form>
 	</fieldset>
+	<br/>
+	<fieldset>
+	<legend> Ranking</legend>
+	<a href="topBooks"> Top 10 Books</a>
+	</fieldset>
 	</div>
    <div class="centerBooks">
     <c:if test="${ not empty books}">
