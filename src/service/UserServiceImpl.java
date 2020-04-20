@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 		@Autowired
 		public BillingDAO billingdao;
 		
-		public void register(User user) throws Exception {
+		public void register(User user) {
 					userdao.register(user);
 		}
 		

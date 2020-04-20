@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -266,7 +267,7 @@ public class UserController {
 	 * @throws DuplicateKeyException, if Username already exists in the database
 	 */
 	@PostMapping("/registerProcess")
-	public ModelAndView addUser(@Valid @ModelAttribute("registration") Registration registration, Errors errors, Model model) throws DuplicateKeyException {
+	public ModelAndView addUser(@Valid @ModelAttribute("registration") Registration registration, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			// Registration form has errors, return to the registration page.
 			ModelAndView mav = new ModelAndView("register");
@@ -281,7 +282,7 @@ public class UserController {
 		
 		try {
 			 userService.register(registration.getRegistrationUser()); // Register the User in the database.
-		} catch (Exception e) {
+		} catch (DuplicateKeyException e) {
 			// Username already exists in the database, return to the registration page.
 			ModelAndView mav = new ModelAndView("register");
 			model.addAttribute("provinces", provinces);
@@ -290,6 +291,15 @@ public class UserController {
 			model.addAttribute("countries", countries);
 			model.addAttribute("regStyle", "regStyle");
 			mav.addObject("message", "Username already exists");
+			return mav;
+		} catch (DataIntegrityViolationException e) {
+			ModelAndView mav = new ModelAndView("register");
+			model.addAttribute("provinces", provinces);
+			model.addAttribute("cardTypes", cardTypes);
+			model.addAttribute("roles", roles);
+			model.addAttribute("countries", countries);
+			model.addAttribute("regStyle", "regStyle");
+			mav.addObject("message", "Data you entered is invalid");
 			return mav;
 		}
 		

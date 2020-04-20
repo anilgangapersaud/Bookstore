@@ -13,7 +13,7 @@ import domain.User;
  *
  */
 public interface UserDAO {
-		void register(User u) throws Exception;
+		void register(User u);
 		User validateUser(Login login);
 		User validateUser(String username, String password);
 }

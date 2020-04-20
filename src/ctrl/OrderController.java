@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -93,8 +94,28 @@ public class OrderController {
 			}
 		} else {
 			// Guest Checkout -> Store Address and Billing info
-			userService.createAddress(checkout.getAddress());
-			userService.createBilling(checkout.getBilling());
+			try {
+				userService.createAddress(checkout.getAddress());
+			} catch (DataIntegrityViolationException e) {
+				// Invalid Input
+				mav = new ModelAndView("checkout");
+				addCheckout(mav);
+				mav.addObject("message", "Data you entered in invalid!");
+				model.addAttribute("checkoutStyle", "checkoutStyle");
+				return mav;
+			}
+			
+			try {
+				userService.createBilling(checkout.getBilling());
+			} catch (DataIntegrityViolationException e) {
+				// Invalid Input
+				mav = new ModelAndView("checkout");
+				addCheckout(mav);
+				mav.addObject("message", "Data you entered in invalid!");
+				model.addAttribute("checkoutStyle", "checkoutStyle");
+				return mav;
+			}
+			
 			session.setAttribute("address", checkout.getAddress());
 			session.setAttribute("billing", checkout.getBilling());
 		}
@@ -156,17 +177,28 @@ public class OrderController {
 	@GetMapping("/getOrdersByPartNumber")
 	public ModelAndView orderProcess(@RequestParam("bid")String bid, Model model) {
 		ModelAndView mav = new ModelAndView("orders");
-		List<PO> orders = orderService.getOrdersByBid(bid);
+		try {
+			List<PO> orders = orderService.getOrdersByBid(bid);
+			if (orders.isEmpty()) {
+				// No orders linked to this bid
+				mav.addObject("message", "No results found.");
+			}
+			for (PO po : orders) {
+				po.setshipTo(userService.findById(po.getAddressID()));
+				po.setbillTo(userService.findByBillingId(po.getCardID()));
+			}
+			
+			mav.addObject("orders", orders);
+			
+		} catch (DataIntegrityViolationException e) {
+			// Invalid Input
+			mav.addObject("message", "Data you entered is invalid!");
+			model.addAttribute("orderStyle", "orderStyle");
+			return mav;
+		}
+		
 		// Set the Address and Billing of each PO, to retrieve in view.
-		for (PO po : orders) {
-			po.setshipTo(userService.findById(po.getAddressID()));
-			po.setbillTo(userService.findByBillingId(po.getCardID()));
-		}
-		mav.addObject("orders", orders);
-		if (orders.isEmpty()) {
-			// No orders linked to this bid
-			mav.addObject("message", "No results found.");
-		}
+
 		model.addAttribute("orderStyle", "orderStyle");
 		return mav;
 	}
