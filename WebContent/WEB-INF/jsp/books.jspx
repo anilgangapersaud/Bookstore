@@ -62,10 +62,13 @@
 	</form>
 	</fieldset>
 	<br/>
-	<fieldset>
-	<legend> Ranking</legend>
-		<a href="topBooks"> Top 10 Books</a>
-	</fieldset>
+	<c:if test="${sessionScope.role eq 'Admin'}">
+		<fieldset>
+	
+			<legend> Ranking</legend>
+			<a href="topBooks"> Top 10 Books</a>
+		</fieldset>
+	</c:if>
 	</div>
    <div class="centerBooks">
     <c:if test="${ not empty books}">
