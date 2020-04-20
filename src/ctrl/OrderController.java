@@ -22,11 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Address;
 import domain.Billing;
+import domain.Book;
 import domain.Cart;
 import domain.Checkout;
 import domain.PO;
 import domain.POItem;
 import domain.User;
+import service.BookService;
 import service.OrderService;
 import service.UserService;
 
@@ -38,6 +40,9 @@ public class OrderController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	BookService bookService;
 	
 	private List<String> cardTypes = Arrays.asList("Visa", "Mastercard");
 	private List<String> provinces = Arrays.asList("ON", "QC", "NS", "NB", "MB", "BC", "PE", "SK", "AB", "NL");
@@ -162,6 +167,9 @@ public class OrderController {
 				mav.addObject("msg", "Order #" + purchaseOrder.getPurchaseID() +" Successfully Processed. Thanks for shopping with Livraria!");
 				// Remove items from cart
 				cart.clear();
+				// Notifies the listener of a change 
+				List<Book> items= bookService.searchTopBooks();
+				session.setAttribute("topBooks", items);
 				session.setAttribute("cart", cart);
 			}
 			authorization++;

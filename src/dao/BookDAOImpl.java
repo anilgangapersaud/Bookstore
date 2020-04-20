@@ -92,6 +92,16 @@ public class BookDAOImpl extends BaseDAO implements BookDAO{
 		List<Book> books = getJdbcTemplate().query(sql, new BookMapper(), null);
 		return books;
 	}
+	@Override
+	public List<Book> searchTopBooks()
+	{
+		String sql = "SELECT * FROM BOOK B RIGHT JOIN "
+				+ "(Select SUM(quantity) as quant, P.bid from POItem P"
+				+ " GROUP BY P.bid) as PO "
+				+ "on PO.bid = B.bid ORDER BY PO.quant DESC LIMIT 10";
+		List<Book> books = getJdbcTemplate().query(sql, new BookMapper(), null);
+		return books;
+	}
 
 }
 
