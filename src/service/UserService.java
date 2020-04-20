@@ -16,7 +16,7 @@ public interface UserService {
 		public static final String ROLE_USER="Customer";
 		public static final String ROLE_PARTNER="Partner";
 		
-		void register(User user) throws Exception;
+		void register(User user);
 		User validateUser(Login login);
 		User validateUser(String username, String password);
 		public void createAddress(Address a);

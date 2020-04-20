@@ -30,7 +30,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public void register(User user) throws Exception {
+	public void register(User user){
 		String sql = "INSERT INTO USERS(username, password, firstname, lastname, email, role)  VALUES(:username, :password, :firstname, :lastname, :email, :role)";
 		Map m = new HashMap();
 		m.put("username", user.getUsername());

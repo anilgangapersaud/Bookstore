@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -94,7 +95,13 @@ public class BookstoreController {
 		  
 		  List<Book> bookList;
 		
+		  try {
 			bookList = bookService.findByProperty("bid",bid );
+		  } catch (DataIntegrityViolationException e) {
+			  model.addAttribute("msg", "Data you entered is invalid!");
+			  model.addAttribute("books", bookService.findAll());
+			  return "books";
+		  }
 	
 		  if (bookList.isEmpty()) {
 			  model.addAttribute("msg", "The ISBN you provided does not exist in our catalog");
