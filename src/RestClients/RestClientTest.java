@@ -46,7 +46,7 @@ public class RestClientTest {
 	 */
 	private void restOrders() throws Exception {
 		
-		HttpGet request = new HttpGet("https://bookstore--56226.mybluemix.net/rest/getOrdersByPartNumber?bid=b004&username=Partner&password=destruction");
+		HttpGet request = new HttpGet("https://livraria.mybluemix.net/rest/getOrdersByPartNumber?bid=b004&username=Partner&password=destruction");
 		
 		try(CloseableHttpResponse response = httpClient.execute(request)) {
 			
@@ -70,7 +70,7 @@ public class RestClientTest {
 	 * @throws Exception
 	 */
 	private void restCatalog() throws Exception {
-	HttpGet request = new HttpGet("https://bookstore--56226.mybluemix.net/rest/getProductInfo?bid=b004&username=Partner&password=destruction");
+	HttpGet request = new HttpGet("https://livraria.mybluemix.net/rest/getProductInfo?bid=b004&username=Partner&password=destruction");
 	
 		try(CloseableHttpResponse response = httpClient.execute(request)) {
 			
