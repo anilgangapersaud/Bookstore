@@ -24,25 +24,27 @@ import service.OrderService;
 
 @Controller
 public class AnalyticsController {
-	
+
 	@Autowired
 	BookService bookService;
-	
+
 	@Autowired
 	OrderService orderService;
-	
+
 	/**
 	 * Generate report by month and year.
+	 * 
 	 * @author Tram
 	 * @param month
 	 * @param year
 	 * @param session
 	 * @return
-	 */	
+	 */
 	@GetMapping("/monthlyReport")
-	public String monthlyReport(@RequestParam(name="month", required=true)String month, @RequestParam(name="year", required=true)String year, Model model, HttpSession session) {
+	public String monthlyReport(@RequestParam(name = "month", required = true) String month,
+			@RequestParam(name = "year", required = true) String year, Model model, HttpSession session) {
 		List<POItem> orderedItems = orderService.getPOItemByDate(month, year);
-		for (POItem item: orderedItems) {
+		for (POItem item : orderedItems) {
 			item.setBook(bookService.findById(item.getBid()));
 			item.setOrderDate(orderService.findOrderById(item.getItemId()).getOrderDate());
 		}
@@ -53,31 +55,35 @@ public class AnalyticsController {
 		model.addAttribute("orderedItems", orderedItems);
 		model.addAttribute("month", month);
 		model.addAttribute("year", year);
-	
-	
+
 		if (session.getAttribute("role") != null) {
 			if (session.getAttribute("role").equals("Admin")) {
-				return "report"; 
-			}
-			else 
-				return "404"; 
+				return "report";
+			} else
+				return "404";
 		} else {
 			return "404";
 		}
-		
+
 	}
+
 	/**
 	 * Redirects the user to the top 10 books page
+	 * 
 	 * @author josedelgado
 	 * @return top_books.jspx
 	 */
 	@GetMapping("/topBooks")
-	public String topBooks()
-	{
-		return "top_books";
-	}
+	public String topBooks(HttpSession session) {
+		if (session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("Admin")) {
+				return "top_books";
+			} else
+				return "404";
+		} else {
+			return "404";
+		}
 
-	
-	
+	}
 
 }
