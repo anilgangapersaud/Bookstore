@@ -64,7 +64,7 @@
 	<br/>
 	<fieldset>
 	<legend> Ranking</legend>
-	<a href="topBooks"> Top 10 Books</a>
+		<a href="topBooks"> Top 10 Books</a>
 	</fieldset>
 	</div>
    <div class="centerBooks">
