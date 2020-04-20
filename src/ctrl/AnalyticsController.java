@@ -66,7 +66,17 @@ public class AnalyticsController {
 		}
 		
 	}
-	
+	/**
+	 * Redirects the user to the top 10 books page
+	 * @author josedelgado
+	 * @return top_books.jspx
+	 */
+	@GetMapping("/topBooks")
+	public String topBooks()
+	{
+		return "top_books";
+	}
+
 	
 	
 

@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Address;
 import domain.Billing;
+import domain.Book;
 import domain.Cart;
 import domain.Checkout;
 import domain.Login;
@@ -98,6 +99,12 @@ public class UserController {
 	 */
 	@RequestMapping(value= {"/", "/index"})
 	public String getHomePage(Model model, HttpSession session) {
+		// Make the ranking visible to all the users if the application is restarted
+		if(session.getServletContext().getAttribute("displayTop") == null)
+		{
+			List<Book> items= bookService.searchTopBooks();
+			session.setAttribute("topBooks", items);
+		}
 		if (session.getAttribute("role") == null) {
 			// Visitor View
 			model.addAttribute("books", bookService.findAll());
